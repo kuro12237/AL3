@@ -11,8 +11,8 @@ GameScene::GameScene()
 
 
 GameScene::~GameScene()
-{
-
+{ 
+	 
 }
 void GameScene::Initialize() 
 {
@@ -23,10 +23,12 @@ void GameScene::Initialize()
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
-	
+	//player
+	player_->Initialize();
 
-	// ワールドトランスフォーム
-	worldTransform_.Initialize();
+
+
+
 	// ビュープロジェクション
 	viewProjection_.Initialize();
 	//でバックカメラの生成
@@ -41,7 +43,7 @@ void GameScene::Update()
 	
 	
 	debugCamera_->Update();
-
+	player_->Update();
 	
 }
 
@@ -63,9 +65,7 @@ void GameScene::Draw() {
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
-	// ライン描画
-	PrimitiveDrawer::GetInstance()->DrawLine3d({0, 0, 0}, {0, 10, 0}, {1.0f, 0.0f, 0.0f, 1.0f});
-
+	
 
 	// 深度バッファクリア
 	dxCommon_->ClearDepthBuffer();
@@ -79,6 +79,8 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+
+	player_->Draw(debugCamera_->GetViewProjection());
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

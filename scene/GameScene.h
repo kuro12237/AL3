@@ -10,6 +10,7 @@
 #include "WorldTransform.h"
 #include"DebugCamera.h"
 
+#include "Player.h"
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -49,9 +50,6 @@ private: // メンバ変数
 	Input* input_ = nullptr;
 	
 	Audio* audio_ = nullptr;
-	
-	//ワールドトランスフォーム
-	WorldTransform worldTransform_;
 	//ビュープロジェクション
 	ViewProjection viewProjection_;
 
@@ -62,6 +60,8 @@ private: // メンバ変数
 	float inputFloat3[3] = {0, 0, 0};
 
 	 DebugCamera* debugCamera_ = nullptr;
+
+	 Player* player_ = new Player();
 
 	/// <summary>
 	/// ゲームシーン用
