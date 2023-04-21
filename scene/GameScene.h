@@ -54,6 +54,7 @@ private: // メンバ変数
 	ViewProjection viewProjection_;
 
 
+
 	
 	 //uint32_t soundDataHandle_ = 0;
 	 //uint32_t voiceHandle_ = 0;
