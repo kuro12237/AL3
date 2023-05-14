@@ -41,7 +41,7 @@ void GameScene::Update()
 { 
 	
 	
-	debugCamera_->Update();
+	//debugCamera_->Update();
 	player_->Update();
 	
 }

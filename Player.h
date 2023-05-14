@@ -2,7 +2,10 @@
 #include<Model.h>
 #include<WorldTransform.h>
 #include<Vector3.h>
+#include<Input.h>
+#include"MatrixTrans.h"
 
+//#incude"MatrixTrans.h"
 
 
 class Player {
@@ -22,6 +25,11 @@ private:
 	uint32_t modeltexHandle;
 	Model* model_;
 	WorldTransform worldTransform_;
+	
+
+
+	Input* input_ = nullptr;
+	
 
 };
 
