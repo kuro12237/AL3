@@ -36,7 +36,7 @@ void Player::Attack(Vector3& position) {
 
 		//intealize
 		PlayerBullet* newBullet = new PlayerBullet();
-		newBullet->Initialize(model_, position,velocity);
+		newBullet->Initialize(model_, position);
 
 		bullets_.push_back(newBullet);
 	}
@@ -56,13 +56,7 @@ void Player::Update()
 {
 
 		// BulletKill
-	bullets_.remove_if([](PlayerBullet* bullet) {
-		if (bullet->IsDead()) {
-			delete bullet;
-			return true;
-		}
-		return false;
-	});
+
 
 	
 	//move
@@ -133,8 +127,11 @@ void Player::Update()
 	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
 	worldTransform_.TransferMatrix();
 
-	
+	ImGui::Begin("Player");
 
+	ImGui::Text("bullet::Space");
+
+	ImGui::End();
 
 	
 }

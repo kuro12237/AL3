@@ -13,7 +13,7 @@ public:
 	/// </summary>
 	/// <param name="model"></param>
 	/// <param name="position"></param>
-	void Initialize(Model* model, Vector3& position,const Vector3& velocity);
+	void Initialize(Model* model, Vector3& position);
 
 	/// <summary>
 	/// 
@@ -26,11 +26,7 @@ public:
 	/// <param name="viewProjection"></param>
 	void Draw(const ViewProjection& viewProjection);
 
-	// BulletLimitTime
-	static const int32_t kLifeTime = 60 * 5;
-
-    /// Getter
-	bool IsDead() const { return isDead_; }
+	
 
 private:
 
@@ -42,7 +38,5 @@ private:
 
 	// BulletLimitTime
 	
-	int32_t deathTimer_ = kLifeTime;
-	bool isDead_ = false;
 };
 
