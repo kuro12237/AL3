@@ -135,7 +135,12 @@ void Player::Update()
 
 	
 
+	ImGui::Begin("Player");
 
+	ImGui::Text("bullet::Space");
+
+	ImGui::End();
+	
 	
 }
 void Player::Draw(ViewProjection ViewProjection_)
