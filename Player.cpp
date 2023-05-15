@@ -73,7 +73,7 @@ void Player::Update()
 
 	ImGui::InputFloat3("Position", &worldTransform_.translation_.x);
 	ImGui::SliderFloat3("Slide", &worldTransform_.translation_.x, -20.0f, 30.0f);
-	
+	ImGui::Text("DebugCamera::K");
 	ImGui::End();
 }
 void Player::Draw(ViewProjection ViewProjection_)
