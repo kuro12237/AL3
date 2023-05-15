@@ -24,6 +24,8 @@ private:
 
 	void Attack(Vector3 &position);
 
+    void Rotate(Vector3& RotateMove);
+
 	Vector3 position_;
 	uint32_t modeltexHandle;
 	Model* model_;

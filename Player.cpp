@@ -28,6 +28,18 @@ void Player::Attack(Vector3& position) {
 	}
 }
 
+void Player::Rotate(Vector3& RotateMove)
+{
+
+	const float kRotSpeed = 0.2f;
+	if (input_->PushKey(DIK_A)) {
+		RotateMove.y += kRotSpeed;
+	}
+	if (input_->PushKey(DIK_D)) {
+		RotateMove.y -= kRotSpeed;
+	}
+}
+
 void Player::Initialize()
 {
 	worldTransform_.Initialize();
@@ -61,16 +73,8 @@ void Player::Update()
 	}
     //Rotate
 	Vector3 RotateMove = {0, 0, 0};
-	const float kRotSpeed = 0.2f;
-	if (input_->PushKey(DIK_A))
-	{
-		RotateMove.y += kRotSpeed;
-	}
-	if (input_->PushKey(DIK_D))
-	{
-		RotateMove.y -= kRotSpeed;
-	}
 	
+	Rotate(RotateMove);
 	//bullet
 	Attack(worldTransform_.translation_);
 
