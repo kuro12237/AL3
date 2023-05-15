@@ -16,3 +16,6 @@ Matrix4x4 MakeRotateZMatrix(float radian);
 Matrix4x4 MakeRotateXYZMatrix(float radianX, float radianY, float radianZ);
 
 Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Vector3& translate);
+
+Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m);
+

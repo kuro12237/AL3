@@ -2,20 +2,21 @@
 
 PlayerBullet::PlayerBullet() 
 {
-
-
+	model_ = nullptr;
+	velocity_ = {0, 0, 0};
 
 }
 
 PlayerBullet::~PlayerBullet() {}
 
-void PlayerBullet::Initialize(Model* model, Vector3& position)
+void PlayerBullet::Initialize(Model* model, Vector3& position,const Vector3& velocity)
 { 
 	model_ = model;
 	modeltexHandle = TextureManager::Load("kamata.ico");
 	
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = position;
+	velocity_ = velocity;
 
 }
 
@@ -23,9 +24,17 @@ void PlayerBullet::Initialize(Model* model, Vector3& position)
 
 void PlayerBullet::Update() 
 {
-	
-	
+	if (--deathTimer_<=0)
+	{
+
+		isDead_ = true;
+	}
+
+
+	worldTransform_.translation_ = Add(worldTransform_.translation_, velocity_);
 	worldTransform_.UpdateMatrix();
+
+
 
 }
 

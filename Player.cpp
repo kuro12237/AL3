@@ -24,15 +24,19 @@ Player::~Player()
 
 void Player::Attack(Vector3& position) {
 
-	
 
 	if (input_->PushKey(DIK_SPACE)) {
+		
+		// BulletSpeed
+		const float kBulletSpeed = 1.0f;
+		Vector3 velocity(0, 0, kBulletSpeed);
 
+		velocity = TransformNormal(velocity, worldTransform_.matWorld_);
 	
 
 		//intealize
 		PlayerBullet* newBullet = new PlayerBullet();
-		newBullet->Initialize(model_, position);
+		newBullet->Initialize(model_, position,velocity);
 
 		bullets_.push_back(newBullet);
 	}
@@ -50,6 +54,16 @@ void Player::Initialize()
 
 void Player::Update()
 {
+
+		// BulletKill
+	bullets_.remove_if([](PlayerBullet* bullet) {
+		if (bullet->IsDead()) {
+			delete bullet;
+			return true;
+		}
+		return false;
+	});
+
 	
 	//move
 	Vector3 VelocityMove = {0, 0, 0};
@@ -89,6 +103,14 @@ void Player::Update()
 		bullet->Update();
 	}
 	
+
+
+
+
+
+
+
+
 	
 	//MoveLimit
 	const float kmoveLimitX = 35.0f;

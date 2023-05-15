@@ -36,7 +36,7 @@ private:
 	
 	std::list<PlayerBullet*> bullets_;
 
-	//PlayerBullet * bullet_=nullptr;
+
 };
 
 
