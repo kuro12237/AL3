@@ -11,8 +11,7 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 { 
-	 
-}
+	delete debugCamera_; }
 void GameScene::Initialize() 
 {
     //ライン描画
@@ -35,15 +34,26 @@ void GameScene::Initialize()
     
 	AxisIndicator::GetInstance()->SetVisible(true);
 	AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
+	
 }
 
-void GameScene::Update() 
-{ 
-	
-	
-	//debugCamera_->Update();
-	player_->Update();
-	
+void GameScene::Update() {
+
+	if (input_->TriggerKey(DIK_K)) {
+		isDebugCameraActive_ = true;
+
+		// debugCamera_->Update();
+
+		// Camera
+		if (isDebugCameraActive_) {
+			debugCamera_->Update();
+
+			
+
+		}
+
+		player_->Update();
+	}
 }
 
 void GameScene::Draw() {

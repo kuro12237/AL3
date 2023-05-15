@@ -60,7 +60,11 @@ private: // メンバ変数
 	 //uint32_t voiceHandle_ = 0;
 	float inputFloat3[3] = {0, 0, 0};
 
+     bool isDebugCameraActive_ = false;
+	 
 	 DebugCamera* debugCamera_ = nullptr;
+	 WorldTransform DebugCameraWorldTransform;
+
 
 	 Player* player_ = new Player();
 
