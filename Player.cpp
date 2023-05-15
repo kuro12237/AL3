@@ -13,6 +13,19 @@ Player::~Player()
 {
 	model_->~Model();
 
+
+}
+
+
+void Player::Attack(Vector3& position) {
+
+	if (input_->PushKey(DIK_SPACE)) {
+
+		PlayerBullet* newBullet = new PlayerBullet();
+		newBullet->Initialize(model_, position);
+
+		bullet_ = newBullet;
+	}
 }
 
 void Player::Initialize()
@@ -29,24 +42,45 @@ void Player::Update()
 {
 	
 	//move
-	Vector3 move = {0, 0, 0};
+	Vector3 VelocityMove = {0, 0, 0};
 
 	const float kCharacterSpeed = 0.2f;
 	
 	if (input_->PushKey(DIK_LEFT))
 	{
-		move.x -= kCharacterSpeed;
+		VelocityMove.x -= kCharacterSpeed;
 	}
 	if (input_->PushKey(DIK_RIGHT)) {
-		move.x += kCharacterSpeed;
+		VelocityMove.x += kCharacterSpeed;
 	}
 	if (input_->PushKey(DIK_UP)) {
-		move.y += kCharacterSpeed;
+		VelocityMove.y += kCharacterSpeed;
 	}
     if (input_->PushKey(DIK_DOWN)) {
-		move.y -= kCharacterSpeed;
-	} 
+		VelocityMove.y -= kCharacterSpeed;
+	}
+    //Rotate
+	Vector3 RotateMove = {0, 0, 0};
+	const float kRotSpeed = 0.2f;
+	if (input_->PushKey(DIK_A))
+	{
+		RotateMove.y += kRotSpeed;
+	}
+	if (input_->PushKey(DIK_D))
+	{
+		RotateMove.y -= kRotSpeed;
+	}
+	
+	//bullet
+	Attack(worldTransform_.translation_);
 
+	if (bullet_!=nullptr) 
+	{
+
+		bullet_->Update();
+
+	}
+	
 	//MoveLimit
 	const float kmoveLimitX = 35.0f;
 	const float kmoveLimitY = 18.0f;
@@ -58,8 +92,11 @@ void Player::Update()
 
 
 
-    //matrix
-	worldTransform_.translation_ = Add(worldTransform_.translation_, move);
+    //VelocityMatrix
+	worldTransform_.translation_ = Add(worldTransform_.translation_, VelocityMove);
+
+	//RotateMatrix
+	worldTransform_.rotation_ = Add(worldTransform_.rotation_, RotateMove);
 
 	worldTransform_.matWorld_ = MakeAffineMatrix(
 	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
@@ -68,18 +105,19 @@ void Player::Update()
 	
 
 
-	///ImGui
-	ImGui::Begin("Player");
-
-	ImGui::InputFloat3("Position", &worldTransform_.translation_.x);
-	ImGui::SliderFloat3("Slide", &worldTransform_.translation_.x, -20.0f, 30.0f);
 	
-	ImGui::End();
 }
 void Player::Draw(ViewProjection ViewProjection_)
 {
 
 	model_->Draw(worldTransform_, ViewProjection_, modeltexHandle);
+	
+	// bullet
+	
+	if (bullet_!=nullptr) {
 
+		bullet_->Draw(ViewProjection_);
+	}
 
 }
+

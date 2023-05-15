@@ -4,6 +4,7 @@
 #include<Vector3.h>
 #include<Input.h>
 #include"MatrixTrans.h"
+#include "PlayerBullet.h" 
 
 //#incude"MatrixTrans.h"
 
@@ -21,6 +22,8 @@ public:
 
 private:
 
+	void Attack(Vector3 &position);
+
 	Vector3 position_;
 	uint32_t modeltexHandle;
 	Model* model_;
@@ -30,7 +33,7 @@ private:
 
 	Input* input_ = nullptr;
 	
-
+	PlayerBullet * bullet_=nullptr;
 };
 
 
