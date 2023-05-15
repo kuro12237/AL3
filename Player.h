@@ -6,6 +6,7 @@
 #include"MatrixTrans.h"
 #include "PlayerBullet.h" 
 
+#include <list>
 //#incude"MatrixTrans.h"
 
 
@@ -33,7 +34,9 @@ private:
 
 	Input* input_ = nullptr;
 	
-	PlayerBullet * bullet_=nullptr;
+	std::list<PlayerBullet*> bullets_;
+
+	//PlayerBullet * bullet_=nullptr;
 };
 
 

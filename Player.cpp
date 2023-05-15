@@ -13,18 +13,28 @@ Player::~Player()
 {
 	model_->~Model();
 
+	for (PlayerBullet *bullet:bullets_) 
+	{
+		delete bullet;
+
+	}
 
 }
 
 
 void Player::Attack(Vector3& position) {
 
+	
+
 	if (input_->PushKey(DIK_SPACE)) {
 
+	
+
+		//intealize
 		PlayerBullet* newBullet = new PlayerBullet();
 		newBullet->Initialize(model_, position);
 
-		bullet_ = newBullet;
+		bullets_.push_back(newBullet);
 	}
 }
 
@@ -74,12 +84,11 @@ void Player::Update()
 	//bullet
 	Attack(worldTransform_.translation_);
 
-	if (bullet_!=nullptr) 
+	for (PlayerBullet* bullet : bullets_)
 	{
-
-		bullet_->Update();
-
+		bullet->Update();
 	}
+	
 	
 	//MoveLimit
 	const float kmoveLimitX = 35.0f;
@@ -114,9 +123,10 @@ void Player::Draw(ViewProjection ViewProjection_)
 	
 	// bullet
 	
-	if (bullet_!=nullptr) {
+for (PlayerBullet*bullet:bullets_) 
+	{
 
-		bullet_->Draw(ViewProjection_);
+		bullet->Draw(ViewProjection_);
 	}
 
 }
