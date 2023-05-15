@@ -64,6 +64,8 @@ private: // メンバ変数
 
 	 Player* player_ = new Player();
 
+
+	 bool isDebugcameraActive_ = false;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
