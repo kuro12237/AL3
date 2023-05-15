@@ -130,7 +130,7 @@ void Player::Update()
 	ImGui::Begin("Player");
 
 	ImGui::Text("bullet::Space");
-
+	ImGui::Text("DebugCamera::K");
 	ImGui::End();
 
 	
