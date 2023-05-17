@@ -12,8 +12,8 @@ Vector3 Enemy::MoveApproch(const float speed, WorldTransform worldTransform_, Ph
 	result.z += -speed;
 	if (worldTransform_.translation_.z<0.0f) 
 	{
-		phase_ = Phase::Leave;
-		return phase_;
+		//phase_ = Phase::Leave;
+		
 	}
 
 
