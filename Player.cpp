@@ -47,7 +47,7 @@ void Player::Initialize()
 	worldTransform_.Initialize();
 	
 	model_ = Model::Create();
-	modeltexHandle = TextureManager::Load("kamata.ico");
+	modeltexHandle = TextureManager::Load("BreakBlock.png");
 	input_ = Input::GetInstance();
 
 }
