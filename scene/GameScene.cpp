@@ -4,6 +4,7 @@
 #include<ImGuiManager.h>
 #include<PrimitiveDrawer.h>
 #include "AxisIndicator.h"
+
 GameScene::GameScene() 
 {
 
@@ -11,7 +12,8 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 { 
-	 
+    player_->~Player();
+	enemy_->~Enemy();
 }
 void GameScene::Initialize() 
 {
@@ -22,9 +24,12 @@ void GameScene::Initialize()
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
+	
+	enemy_ = new Enemy();
+
 	//player
 	player_->Initialize();
-
+	enemy_->Initialize();
 
 
 
@@ -71,6 +76,11 @@ void GameScene::Update()
 	
 	//debugCamera_->Update();
 	player_->Update();
+
+	if (enemy_ != nullptr) {
+
+		enemy_->Update();
+	}
 	
 }
 
@@ -108,6 +118,9 @@ void GameScene::Draw() {
 	/// </summary>
 
 	player_->Draw(viewProjection_);
+
+	enemy_->Draw(viewProjection_);
+
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
