@@ -5,6 +5,11 @@
 
 class Enemy {
 public:
+	enum class Phase {
+		Approach,
+		Leave,
+	};
+
 	Enemy();
 	~Enemy();
 
@@ -14,13 +19,18 @@ public:
 
 	void Draw(ViewProjection ViewProjection_);
 
+	static Vector3 MoveApproch(const float speed, WorldTransform worldTransform_,Phase phase_);
+
 private:
-	enum class Phase {
-		Approach,
-		Leave,
-	};
+	
+
+
 
 	uint32_t modeltexHandle;
 	Model* model_;
 	WorldTransform worldTransform_;
+
+
+	Phase phase_ = Phase();
+
 };
