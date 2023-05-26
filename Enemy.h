@@ -19,8 +19,6 @@ public:
 
 	void Draw(ViewProjection ViewProjection_);
 
-	static Vector3 MoveApproch(const float speed, WorldTransform worldTransform_,Phase phase_);
-
 private:
 	
 

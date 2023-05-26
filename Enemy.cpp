@@ -6,20 +6,6 @@ Enemy::~Enemy() {}
 
 
 
-Vector3 Enemy::MoveApproch(const float speed, WorldTransform worldTransform_, Phase phase_) { 
-	Vector3 result = {0, 0, 0};
-	
-	result.z += -speed;
-	if (worldTransform_.translation_.z<0.0f) 
-	{
-		//phase_ = Phase::Leave;
-		
-	}
-
-
-	return result;
-}
-
 
 
 
@@ -31,7 +17,7 @@ void Enemy::Initialize() {
 	worldTransform_.Initialize();
 	worldTransform_.translation_.z =30.0f;
 	model_ = Model::Create();
-	modeltexHandle = TextureManager::Load("kamata.ico");
+	modeltexHandle = TextureManager::Load("Stone.png");
 }
 
 void Enemy::Update() {
@@ -45,15 +31,12 @@ void Enemy::Update() {
 	{
 
 		case Phase::Approach:
-
-			move = MoveApproch(kCharacterSpeed, worldTransform_, phase_);
-
-			/*
+			
 	        move.z += -kCharacterSpeed;
 		   
 			if (worldTransform_.translation_.z<0.0f) {
 			    phase_ = Phase::Leave;
-			}*/
+			}
 
 			break;
 
