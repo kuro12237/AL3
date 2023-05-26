@@ -1,5 +1,5 @@
-#include "Enemy.h"
-#include "MatrixTrans.h"
+#include "source/Enemy/Enemy.h"
+#include "source/Matrix/MatrixTrans.h"
 Enemy::Enemy() {}
 
 Enemy::~Enemy() {}
