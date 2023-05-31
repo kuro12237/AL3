@@ -15,12 +15,21 @@ public:
 
 	void Initialize();
 
+
+
 	void Update();
 
 	void Draw(ViewProjection ViewProjection_);
 
+	void ApproachUpdate();
+
+	void LeaveUpdate();
+
+
 private:
 	
+
+	static void(Enemy::*spPhaseTable[])();
 
 
 

@@ -20,38 +20,63 @@ void Enemy::Initialize() {
 	modeltexHandle = TextureManager::Load("Stone.png");
 }
 
+void Enemy::ApproachUpdate() {
+	
+	Vector3 kEnemySpeed = {0.0f, 0.0f, -0.2f};
+	worldTransform_.translation_ = Add(worldTransform_.translation_,kEnemySpeed);
+	
+	if (worldTransform_.translation_.z < 0.0f) {
+		phase_ = Phase::Leave;
+	}
+}
+
+void Enemy::LeaveUpdate() {
+
+	worldTransform_.translation_.x += 0.2f;
+	worldTransform_.translation_.y += 0.02f;
+}
+
+void (Enemy::*Enemy::spPhaseTable[])() = {
+
+	&Enemy::ApproachUpdate,
+	&Enemy::LeaveUpdate,
+
+};
+
+
 void Enemy::Update() {
 
 	
 	Vector3 move = {0, 0, 0};
 
-	const float kCharacterSpeed = 0.2f;
+	//const float kCharacterSpeed = 0.2f;
 
-	switch (phase_) 
-	{
+	//switch (phase_) 
+	//{
 
-		case Phase::Approach:
-			
-	        move.z += -kCharacterSpeed;
-		   
-			if (worldTransform_.translation_.z<0.0f) {
-			    phase_ = Phase::Leave;
-			}
+	//	case Phase::Approach:
+	//		
+	//        move.z += -kCharacterSpeed;
+	//	   
+	//		if (worldTransform_.translation_.z<0.0f) {
+	//		    phase_ = Phase::Leave;
+	//		}
 
-			break;
+	//		break;
 
-		case Phase::Leave:
-		    move.x -= kCharacterSpeed;
-		    move.z -= kCharacterSpeed;
-		   
-			
-			break;
+	//	case Phase::Leave:
+	//	    move.x -= kCharacterSpeed;
+	//	    move.z -= kCharacterSpeed;
+	//	   
+	//		
+	//		break;
 
-	default:
-		break;
-	}
+	//default:
+	//	break;
+	//}
 
-	 
+    (this->*spPhaseTable[static_cast<size_t>(phase_)])(); 
+
 	worldTransform_.translation_ = Add(worldTransform_.translation_, move);
 
 	worldTransform_.matWorld_ = MakeAffineMatrix(
