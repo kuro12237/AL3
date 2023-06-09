@@ -17,7 +17,7 @@ void Enemy::Initialize() {
 	worldTransform_.Initialize();
 	worldTransform_.translation_.z =30.0f;
 	model_ = Model::Create();
-	modeltexHandle = TextureManager::Load("Stone.png");
+	modeltexHandle = TextureManager::Load("Dirt.png");
 }
 
 void Enemy::Update() {
