@@ -12,7 +12,7 @@ PlayerBullet::~PlayerBullet() {}
 void PlayerBullet::Initialize(Model* model, Vector3& position,const Vector3& velocity)
 { 
 	model_ = model;
-	modeltexHandle = TextureManager::Load("kamata.ico");
+	modeltexHandle = TextureManager::Load("Dirt.png");
 	
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = position;
