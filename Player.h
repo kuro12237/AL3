@@ -3,10 +3,10 @@
 #include<WorldTransform.h>
 #include<Vector3.h>
 #include<Input.h>
+//#include"MatrixTrans.h"
+
 #include"MatrixTrans.h"
-
-//#incude"MatrixTrans.h"
-
+#include"./Matrix/MatrixTransform.h"
 
 class Player {
 public:
@@ -26,7 +26,7 @@ private:
 	Model* model_;
 	WorldTransform worldTransform_;
 	
-
+	MatrixTransform *matrixTransform;
 
 	Input* input_ = nullptr;
 	

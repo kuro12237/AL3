@@ -111,6 +111,7 @@
     <ClCompile Include="base\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatrixTrans.cpp" />
+    <ClCompile Include="Matrix\MatrixTransform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
   </ItemGroup>
@@ -143,8 +144,14 @@
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
     <ClInclude Include="MatrixTrans.h" />
+    <ClInclude Include="Matrix\Matrix2x2.h" />
+    <ClInclude Include="Matrix\Matrix3x3.h" />
+    <ClInclude Include="Matrix\MatrixTransform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="scene\GameScene.h" />
+    <ClInclude Include="Vector\Vector2.h" />
+    <ClInclude Include="Vector\Vector3.h" />
+    <ClInclude Include="Vector\Vector4.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">

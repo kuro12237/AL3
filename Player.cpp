@@ -6,7 +6,7 @@ Player::Player()
 	this->position_= {0, 0, 0};
 	this->modeltexHandle = 0;
 	this->model_ = nullptr;
-	
+	matrixTransform = new MatrixTransform();
 }
 
 Player::~Player() 
@@ -24,6 +24,7 @@ void Player::Initialize()
 	input_ = Input::GetInstance();
 
 }
+
 
 void Player::Update()
 {
@@ -61,11 +62,11 @@ void Player::Update()
     //matrix
 	worldTransform_.translation_ = Add(worldTransform_.translation_, move);
 
-	worldTransform_.matWorld_ = MakeAffineMatrix(
+	
+	worldTransform_.matWorld_ = matrixTransform->MakeAffine4x4Matrix(
 	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
 	worldTransform_.TransferMatrix();
 
-	
 
 
 	///ImGui
