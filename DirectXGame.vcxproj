@@ -149,9 +149,6 @@
     <ClInclude Include="Matrix\MatrixTransform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="scene\GameScene.h" />
-    <ClInclude Include="Vector\Vector2.h" />
-    <ClInclude Include="Vector\Vector3.h" />
-    <ClInclude Include="Vector\Vector4.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
