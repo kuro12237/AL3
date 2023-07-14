@@ -50,7 +50,7 @@ public:
 
 	void SetVelocity(Vector3 enemyVelocity);
 
-	// StatePattern
+	
 	void ChangeState(BaseEnemyState* newState);
 
 private:

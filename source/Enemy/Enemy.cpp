@@ -54,8 +54,7 @@ void EnemyStateLeave::Update(Enemy* enemy) {
 	enemy->SetVelocity({0.3f, 0.3f, -0.2f});
 }
 
-void BaseEnemyState::Update(Enemy* enemy) 
-{ enemy; }
+void BaseEnemyState::Update(Enemy* enemy) { enemy; }
 
 void Enemy::Update() {
 
