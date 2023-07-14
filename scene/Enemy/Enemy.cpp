@@ -10,6 +10,7 @@ Enemy::Enemy() {
 	state_ = new EnemyStateApproach();
 }
 
+BaseEnemyState::BaseEnemyState() {}
 
 void Enemy::Initialize(Model* model, uint32_t textureHandle) {
 
@@ -34,11 +35,31 @@ void Enemy::SetVelocity(Vector3 enemyVelocity) { enemyVelocity_ = enemyVelocity;
 
 
 
+// 接近
+void EnemyStateApproach::Update(Enemy* enemy) {
+
+	enemy->SetVelocity({0.0f, 0.0f, -0.2f});
+
+	enemy->SetTranslation(Add(enemy->GetTranslation(), enemy->GetVelocity()));
+
+
+	// 規定の位置に到達したら離脱
+	if (enemy->GetTranslation().z < 0.0f) {
+		enemy->ChangeState(new EnemyStateLeave());
+	}
+}
+
+void EnemyStateLeave::Update(Enemy* enemy) {
+
+	enemy->SetVelocity({0.3f, 0.3f, -0.2f});
+}
+
+void BaseEnemyState::Update(Enemy* enemy) { enemy; }
 
 void Enemy::Update() {
 
 	
-	//state_->Update(this);
+	state_->Update(this);
 
 
 	worldTransform_.translation_ = Add(worldTransform_.translation_, enemyVelocity_);
@@ -58,6 +79,5 @@ Enemy::~Enemy() { }
 
 void Enemy::ChangeState(BaseEnemyState* newState) {
 	
-	delete state_;
 	this->state_ = newState;
 }

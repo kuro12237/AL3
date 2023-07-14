@@ -3,9 +3,32 @@
 #include <ViewProjection.h>
 #include <WorldTransform.h>
 
-#include"Enemy/Base/EnemyStateBase.h"
-#include"scene/Enemy/Pattern/EnemyApproach.h"
+class Enemy;
+class BaseEnemyState;
+class EnemyStateApproach;
+class EnemyStateLeave;
 
+class BaseEnemyState {
+public:
+	BaseEnemyState();
+
+	virtual void Update(Enemy* enemy) = 0;
+
+protected:
+};
+
+class EnemyStateApproach : public BaseEnemyState {
+public:
+	void Update(Enemy* enemy) override;
+
+private:
+	Vector3 enemyVelocity = {0.0f, 0.0f, -0.2f};
+};
+
+class EnemyStateLeave : public BaseEnemyState {
+public:
+	void Update(Enemy* enemy) override;
+};
 
 class Enemy {
 public:
@@ -55,5 +78,5 @@ private:
 	static void (Enemy::*spFuncTable[])();
 
 	// StatePattern
-	BaseEnemyState* state_ ;
+	BaseEnemyState* state_ = nullptr;
 };

@@ -55,6 +55,18 @@
     <Filter Include="Player">
       <UniqueIdentifier>{39e4f660-f0cb-4cbf-85a8-489a250aace0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\scene\Player">
+      <UniqueIdentifier>{fb9f42b3-fc58-4422-8208-ba76db82e506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene\Enemy">
+      <UniqueIdentifier>{292bfee8-4926-4960-942f-6025bfc857a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\Enemy">
+      <UniqueIdentifier>{44bf3a7a-a2a1-498b-b3b1-458889baf031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\Player">
+      <UniqueIdentifier>{3ae19791-edb2-4ccb-964f-e0f2a4c01069}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,17 +87,17 @@
     <ClCompile Include="WorldTransformEx.cpp">
       <Filter>ヘッダー ファイル\3d</Filter>
     </ClCompile>
-    <ClCompile Include="source\Enemy\Enemy.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="scene\Enemy\Enemy.cpp">
+      <Filter>ヘッダー ファイル\scene\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="source\Matrix\MatrixTrans.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="scene\Matrix\MatrixTrans.cpp">
+      <Filter>ヘッダー ファイル\scene</Filter>
     </ClCompile>
-    <ClCompile Include="source\Player\Player.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="scene\Player\Player.cpp">
+      <Filter>ソース ファイル\scene\Player</Filter>
     </ClCompile>
-    <ClCompile Include="source\Player\PlayerBullet.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="scene\Player\PlayerBullet.cpp">
+      <Filter>ソース ファイル\scene\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,17 +185,17 @@
     <ClInclude Include="2d\ImGuiManager.h">
       <Filter>ヘッダー ファイル\2d</Filter>
     </ClInclude>
-    <ClInclude Include="source\Enemy\Enemy.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="scene\Player\PlayerBullet.h">
+      <Filter>ヘッダー ファイル\scene\Player</Filter>
     </ClInclude>
-    <ClInclude Include="source\Matrix\MatrixTrans.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="scene\Player\Player.h">
+      <Filter>ヘッダー ファイル\scene\Player</Filter>
     </ClInclude>
-    <ClInclude Include="source\Player\Player.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="scene\Enemy\Enemy.h">
+      <Filter>ヘッダー ファイル\scene\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="source\Player\PlayerBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="scene\Matrix\MatrixTrans.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
