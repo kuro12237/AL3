@@ -155,6 +155,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
+    <ClInclude Include="scene\Enemy\Base\Base.h" />
     <ClInclude Include="scene\Enemy\Enemy.h" />
     <ClInclude Include="scene\GameScene.h" />
     <ClInclude Include="scene\Matrix\MatrixTrans.h" />

@@ -3,10 +3,13 @@
 #include <ViewProjection.h>
 #include <WorldTransform.h>
 
+
+
 class Enemy;
-class BaseEnemyState;
+//class BaseEnemyState;
 class EnemyStateApproach;
 class EnemyStateLeave;
+
 
 class BaseEnemyState {
 public:

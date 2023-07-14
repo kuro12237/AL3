@@ -67,6 +67,9 @@
     <Filter Include="ソース ファイル\scene\Player">
       <UniqueIdentifier>{3ae19791-edb2-4ccb-964f-e0f2a4c01069}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scene\Enemy\Base">
+      <UniqueIdentifier>{a7434fed-6698-48c8-84e3-3f44ac9fdda3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="scene\Matrix\MatrixTrans.h">
       <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\Enemy\Base\Base.h">
+      <Filter>ソース ファイル\scene\Enemy\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

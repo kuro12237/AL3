@@ -3,14 +3,13 @@
 
 #include <cassert>
 
-//#pragma comment(lib, "dxguid.lib")
+#pragma comment(lib, "dxguid.lib")
 
 Enemy::Enemy() {
 	enemyVelocity_ = {0, 0, 0};
 	state_ = new EnemyStateApproach();
 }
 
-BaseEnemyState::BaseEnemyState() {}
 
 void Enemy::Initialize(Model* model, uint32_t textureHandle) {
 
@@ -54,7 +53,6 @@ void EnemyStateLeave::Update(Enemy* enemy) {
 	enemy->SetVelocity({0.3f, 0.3f, -0.2f});
 }
 
-void BaseEnemyState::Update(Enemy* enemy) { enemy; }
 
 void Enemy::Update() {
 
@@ -81,3 +79,5 @@ void Enemy::ChangeState(BaseEnemyState* newState) {
 	
 	this->state_ = newState;
 }
+
+BaseEnemyState::BaseEnemyState() {}
