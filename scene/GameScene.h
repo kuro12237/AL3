@@ -67,6 +67,8 @@ private: // メンバ変数
 	 Player* player_ = new Player();
 	 Enemy* enemy_ = nullptr;
 
+	 Model* enemyModel_ = nullptr;
+	 uint32_t enemyTextureHandle_ = 0;
 
 	 bool isDebugCameraActive_ = false;
 	/// <summary>

@@ -29,7 +29,11 @@ void GameScene::Initialize()
 
 	//player
 	player_->Initialize();
-	enemy_->Initialize();
+	enemyModel_ = Model::Create();
+	enemy_ = new Enemy();
+	enemyTextureHandle_ = TextureManager::Load("Stone.png");
+	
+	enemy_->Initialize(enemyModel_, enemyTextureHandle_);
 
 
 

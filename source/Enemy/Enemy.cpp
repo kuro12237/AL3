@@ -1,90 +1,84 @@
-#include "source/Enemy/Enemy.h"
-#include "source/Matrix/MatrixTrans.h"
-Enemy::Enemy() {}
+﻿#include"source/Enemy/Enemy.h"
+#include"source/Matrix/MatrixTrans.h"
 
-Enemy::~Enemy() {}
+#include <cassert>
 
+//#pragma comment(lib, "dxguid.lib")
 
-
-
-
-
-void Enemy::Initialize() {
-
-	phase_ = Phase::Approach;
-
-
-	worldTransform_.Initialize();
-	worldTransform_.translation_.z =30.0f;
-	model_ = Model::Create();
-	modeltexHandle = TextureManager::Load("Stone.png");
+Enemy::Enemy() {
+	enemyVelocity_ = {0, 0, 0};
+	state_ = new EnemyStateApproach();
 }
 
-void Enemy::ApproachUpdate() {
-	
-	Vector3 kEnemySpeed = {0.0f, 0.0f, -0.2f};
-	worldTransform_.translation_ = Add(worldTransform_.translation_,kEnemySpeed);
-	
-	if (worldTransform_.translation_.z < 0.0f) {
-		phase_ = Phase::Leave;
+BaseEnemyState::BaseEnemyState() {}
+
+void Enemy::Initialize(Model* model, uint32_t textureHandle) {
+
+	// NULLチェック
+	assert(model);
+
+	model_ = model;
+
+	textureHandle_ = textureHandle;
+
+	worldTransform_.Initialize();
+
+	this->worldTransform_.translation_ = {0.0f, 3.0f, 20.0f};
+}
+
+
+void Enemy::SetTranslation(Vector3 enemyTranslate) {
+	worldTransform_.translation_ = enemyTranslate;
+}
+
+void Enemy::SetVelocity(Vector3 enemyVelocity) { enemyVelocity_ = enemyVelocity; }
+
+
+
+// 接近
+void EnemyStateApproach::Update(Enemy* enemy) {
+
+	enemy->SetVelocity({0.0f, 0.0f, -0.2f});
+
+	enemy->SetTranslation(Add(enemy->GetTranslation(), enemy->GetVelocity()));
+
+
+	// 規定の位置に到達したら離脱
+	if (enemy->GetTranslation().z < 0.0f) {
+		enemy->ChangeState(new EnemyStateLeave());
 	}
 }
 
-void Enemy::LeaveUpdate() {
+void EnemyStateLeave::Update(Enemy* enemy) {
 
-	worldTransform_.translation_.x += 0.2f;
-	worldTransform_.translation_.y += 0.02f;
+	enemy->SetVelocity({0.3f, 0.3f, -0.2f});
 }
 
-void (Enemy::*Enemy::spPhaseTable[])() = {
-
-	&Enemy::ApproachUpdate,
-	&Enemy::LeaveUpdate,
-
-};
-
+void BaseEnemyState::Update(Enemy* enemy) 
+{ enemy; }
 
 void Enemy::Update() {
 
 	
-	Vector3 move = {0, 0, 0};
+	state_->Update(this);
 
-	//const float kCharacterSpeed = 0.2f;
 
-	//switch (phase_) 
-	//{
+	worldTransform_.translation_ = Add(worldTransform_.translation_, enemyVelocity_);
+	enemyVelocity_ = TransformNormal(enemyVelocity_, worldTransform_.matWorld_);
 
-	//	case Phase::Approach:
-	//		
-	//        move.z += -kCharacterSpeed;
-	//	   
-	//		if (worldTransform_.translation_.z<0.0f) {
-	//		    phase_ = Phase::Leave;
-	//		}
-
-	//		break;
-
-	//	case Phase::Leave:
-	//	    move.x -= kCharacterSpeed;
-	//	    move.z -= kCharacterSpeed;
-	//	   
-	//		
-	//		break;
-
-	//default:
-	//	break;
-	//}
-
-    (this->*spPhaseTable[static_cast<size_t>(phase_)])(); 
-
-	worldTransform_.translation_ = Add(worldTransform_.translation_, move);
-
-	worldTransform_.matWorld_ = MakeAffineMatrix(
-	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
-	worldTransform_.TransferMatrix();
+	
+	worldTransform_.UpdateMatrix();
 }
 
-void Enemy::Draw(ViewProjection ViewProjection_) {
+void Enemy::Draw(const ViewProjection& viewProjection) {
+	
+	model_->Draw(worldTransform_, viewProjection, textureHandle_);
+}
 
-	model_->Draw(worldTransform_, ViewProjection_, modeltexHandle);
+
+Enemy::~Enemy() { }
+
+void Enemy::ChangeState(BaseEnemyState* newState) {
+	
+	this->state_ = newState;
 }
