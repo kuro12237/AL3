@@ -46,9 +46,6 @@
     <Filter Include="ソース ファイル\math">
       <UniqueIdentifier>{4c21a99e-f783-4367-bdcb-0ebd1d434719}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\math">
-      <UniqueIdentifier>{647f4977-924a-4954-923f-5619e5afc9a3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\2d">
       <UniqueIdentifier>{814a0f6d-f847-4c45-856d-4688fa4c9e6c}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,24 @@
     </Filter>
     <Filter Include="ソース ファイル\scene\Enemy\Base">
       <UniqueIdentifier>{a7434fed-6698-48c8-84e3-3f44ac9fdda3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\math">
+      <UniqueIdentifier>{647f4977-924a-4954-923f-5619e5afc9a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene\Enemy\Base">
+      <UniqueIdentifier>{2f61ec9f-92eb-4e54-9730-90f54f18b393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\Enemy\Approach">
+      <UniqueIdentifier>{a1bd3d01-58bc-45de-a68c-e71030993a37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene\Enemy\Approach">
+      <UniqueIdentifier>{2dd3147a-6970-41a1-8aa9-51d1a5aff8a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene\Enemy\Leave">
+      <UniqueIdentifier>{b702ba39-7dc7-44ff-947c-5dd7f1fb6121}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\Enemy\EnemyLeave">
+      <UniqueIdentifier>{50943dc8-21ca-4903-ac82-4e928b81022d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +116,15 @@
     </ClCompile>
     <ClCompile Include="scene\Player\PlayerBullet.cpp">
       <Filter>ソース ファイル\scene\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\Enemy\Base\EnemyBase.cpp">
+      <Filter>ヘッダー ファイル\scene\Enemy\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\Enemy\Approach\EnemyApproach.cpp">
+      <Filter>ヘッダー ファイル\scene\Enemy\Approach</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\Enemy\Leave\EnemyLeave.cpp">
+      <Filter>ヘッダー ファイル\scene\Enemy\Leave</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,8 +224,14 @@
     <ClInclude Include="scene\Matrix\MatrixTrans.h">
       <Filter>ヘッダー ファイル\scene</Filter>
     </ClInclude>
-    <ClInclude Include="scene\Enemy\Base\Base.h">
+    <ClInclude Include="scene\Enemy\Base\EnemyBase.h">
       <Filter>ソース ファイル\scene\Enemy\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\Enemy\Approach\EnemyApproach.h">
+      <Filter>ソース ファイル\scene\Enemy\Approach</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\Enemy\Leave\EnemyLeave.h">
+      <Filter>ソース ファイル\scene\Enemy\EnemyLeave</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

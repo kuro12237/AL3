@@ -120,7 +120,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="base\DirectXCommon.cpp" />
     <ClCompile Include="base\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="scene\Enemy\Approach\EnemyApproach.cpp" />
+    <ClCompile Include="scene\Enemy\Base\EnemyBase.cpp" />
     <ClCompile Include="scene\Enemy\Enemy.cpp" />
+    <ClCompile Include="scene\Enemy\Leave\EnemyLeave.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
     <ClCompile Include="scene\Matrix\MatrixTrans.cpp" />
     <ClCompile Include="scene\Player\Player.cpp" />
@@ -155,8 +158,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
-    <ClInclude Include="scene\Enemy\Base\Base.h" />
+    <ClInclude Include="scene\Enemy\Approach\EnemyApproach.h" />
+    <ClInclude Include="scene\Enemy\Base\EnemyBase.h" />
     <ClInclude Include="scene\Enemy\Enemy.h" />
+    <ClInclude Include="scene\Enemy\Leave\EnemyLeave.h" />
     <ClInclude Include="scene\GameScene.h" />
     <ClInclude Include="scene\Matrix\MatrixTrans.h" />
     <ClInclude Include="scene\Player\Player.h" />
