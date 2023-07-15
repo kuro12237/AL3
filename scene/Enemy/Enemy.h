@@ -6,12 +6,6 @@
 #include"Enemy/Approach/EnemyApproach.h"
 
 
-
-
-
-
-
-
 class Enemy {
 public:
 	Enemy();
@@ -22,7 +16,7 @@ public:
 
 	void Update();
 
-	// ビュープロジェクション
+	
 	void Draw(const ViewProjection& viewProjection);
 
 	Vector3 GetTranslation() { return worldTransform_.translation_; }
@@ -48,13 +42,6 @@ private:
 
 	Vector3 enemyVelocity_;
 	const float kEnemySpeed_ = -0.2f;
-
-	enum class Phase {
-		Approach, // 接近
-		Leave,    // 離脱
-	};
-
-	Phase phase_ = Phase();
 
 	// メンバ関数ポインタのテーブル
 	static void (Enemy::*spFuncTable[])();
