@@ -110,11 +110,12 @@
     <ClCompile Include="base\DirectXCommon.cpp" />
     <ClCompile Include="base\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="scene\Enemy\Bullet\EnemyBullet.cpp" />
+    <ClCompile Include="scene\Enemy\Enemy.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
-    <ClCompile Include="source\Enemy\Enemy.cpp" />
-    <ClCompile Include="source\Matrix\MatrixTrans.cpp" />
-    <ClCompile Include="source\Player\Player.cpp" />
-    <ClCompile Include="source\Player\PlayerBullet.cpp" />
+    <ClCompile Include="scene\Matrix\MatrixTrans.cpp" />
+    <ClCompile Include="scene\Player\Player.cpp" />
+    <ClCompile Include="scene\Player\PlayerBullet.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,11 +146,12 @@
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
+    <ClInclude Include="scene\Enemy\Bullet\EnemyBullet.h" />
+    <ClInclude Include="scene\Enemy\Enemy.h" />
     <ClInclude Include="scene\GameScene.h" />
-    <ClInclude Include="source\Enemy\Enemy.h" />
-    <ClInclude Include="source\Matrix\MatrixTrans.h" />
-    <ClInclude Include="source\Player\Player.h" />
-    <ClInclude Include="source\Player\PlayerBullet.h" />
+    <ClInclude Include="scene\Matrix\MatrixTrans.h" />
+    <ClInclude Include="scene\Player\Player.h" />
+    <ClInclude Include="scene\Player\PlayerBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">

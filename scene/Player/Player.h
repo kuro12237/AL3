@@ -3,8 +3,8 @@
 #include<WorldTransform.h>
 #include<Vector3.h>
 #include<Input.h>
-#include"source/Player/PlayerBullet.h"
-#include "source/Matrix/MatrixTrans.h" 
+#include"scene/Matrix/MatrixTrans.h"
+#include"scene/Player/PlayerBullet.h"
 
 #include <list>
 //#incude"MatrixTrans.h"

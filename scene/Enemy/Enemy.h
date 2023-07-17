@@ -2,6 +2,7 @@
 
 #include <Model.h>
 #include <WorldTransform.h>
+#include"scene/Enemy/Bullet/EnemyBullet.h"
 
 class Enemy {
 public:
@@ -19,10 +20,13 @@ public:
 
 	void Draw(ViewProjection ViewProjection_);
 
+	void PhaseInitialize();
+	
+
 private:
 	
 
-
+	void Fire();
 
 	uint32_t modeltexHandle;
 	Model* model_;
@@ -30,5 +34,11 @@ private:
 
 
 	Phase phase_ = Phase();
+
+	std::list<EnemyBullet*> bullets_;
+
+	static const int kFireInterval = 60;
+
+	int32_t FireTimer = 0;
 
 };
