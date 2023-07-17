@@ -129,7 +129,7 @@ Vector3 Enemy::LerpFanc(Vector3 v1, Vector3 v2)
 void Enemy::Fire()
 {
 
-	/
+	
 	//ホーミング処理
 	Vector3 PlayerPos=player_->GetWorldPosition();
 	Vector3 EnemyPos = GetWorldPosition();
