@@ -3,6 +3,10 @@
 #include <Model.h>
 #include <WorldTransform.h>
 #include"scene/Enemy/Bullet/EnemyBullet.h"
+#include"scene/Player/Player.h"
+
+class Player;
+
 
 class Enemy {
 public:
@@ -22,6 +26,11 @@ public:
 
 	void PhaseInitialize();
 	
+	void SetPlayer(Player* player) { player_ = player; }
+
+	Vector3 GetWorldPosition();
+
+	Vector3 LerpFanc(Vector3 v1, Vector3 v2);
 
 private:
 	
@@ -41,4 +50,5 @@ private:
 
 	int32_t FireTimer = 0;
 
+	Player* player_ = nullptr;
 };
