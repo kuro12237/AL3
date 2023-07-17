@@ -6,9 +6,11 @@
 #include"scene/Matrix/MatrixTrans.h"
 #include"scene/Player/PlayerBullet.h"
 
+
+
+
 #include <list>
 //#incude"MatrixTrans.h"
-
 
 class Player {
 public:
@@ -21,6 +23,9 @@ public:
 
 	void Draw(ViewProjection ViewProjection_);
 
+	Vector3 GetWorldPosition();
+
+
 private:
 
 	void Attack(Vector3 &position);
@@ -28,6 +33,7 @@ private:
 	Vector3 position_;
 	uint32_t modeltexHandle;
 	Model* model_;
+
 	WorldTransform worldTransform_;
 	
 

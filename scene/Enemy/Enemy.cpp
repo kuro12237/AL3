@@ -1,4 +1,4 @@
-#include "Enemy.h"
+﻿#include "Enemy.h"
 #include "scene/Matrix/MatrixTrans.h"
 
 Enemy::Enemy() {}
@@ -92,12 +92,48 @@ void Enemy::PhaseInitialize()
 
 }
 
+Vector3 Enemy::GetWorldPosition()
+{
+	Vector3 worldPos;
+
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+	return worldPos;
+
+
+}
+
+Vector3 Enemy::LerpFanc(Vector3 v1, Vector3 v2) 
+{ 
+	Vector3 result;
+
+
+	result.x = v2.x - v1.x;
+	result.y = v2.y - v1.y;
+	result.z = v2.z - v1.z;
+
+	return result;
+
+}
+
 void Enemy::Fire()
 {
 
 	// BulletSpeed
-	const float kBulletSpeed = -1.0f;
-	Vector3 velocity(0, 0, kBulletSpeed);
+	//const float kBulletSpeed = -1.0f;
+
+	//ホーミング処理
+	Vector3 PlayerPos=player_->GetWorldPosition();
+	Vector3 EnemyPos = GetWorldPosition();
+
+	Vector3 PiEnLerp = LerpFanc(EnemyPos, PlayerPos);
+
+	Vector3 PiEnNormalize = Normalize(PiEnLerp);
+
+
+	Vector3 velocity = PiEnNormalize;
+
 
 	velocity = TransformNormal(velocity, worldTransform_.matWorld_);
 

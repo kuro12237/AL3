@@ -31,6 +31,7 @@ void GameScene::Initialize()
 	player_->Initialize();
 	enemy_->Initialize();
 
+	enemy_->SetPlayer(player_);
 
 
 	// ビュープロジェクション
