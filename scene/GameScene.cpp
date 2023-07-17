@@ -47,7 +47,7 @@ void GameScene::Update()
 { 
 	
 	
-	#ifdef _DEBUG
+#ifdef _DEBUG
 
 	if (input_->TriggerKey(DIK_K) == isDebugCameraActive_ == false) {
 		isDebugCameraActive_ = true;
@@ -57,6 +57,9 @@ void GameScene::Update()
 		isDebugCameraActive_ = false;
 	}
 
+	if (input_->TriggerKey(DIK_R) ){
+		enemy_->Initialize();
+	}
 #endif // _DEBUG
 
 	// Camera
@@ -77,6 +80,8 @@ void GameScene::Update()
 	
 	//debugCamera_->Update();
 	player_->Update();
+
+	CheckAllCollosions();
 
 	if (enemy_ != nullptr) {
 
@@ -139,4 +144,58 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 
 #pragma endregion
+}
+
+void GameScene::CheckAllCollosions() 
+{ Vector3 posA, posB;
+	
+//const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
+
+const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
+
+//int playerHitRadious = 2;
+
+
+#pragma region  自キャラと敵弾の当たり判定
+
+posA = player_->GetWorldPosition();
+
+for(EnemyBullet *bullet: enemyBullets) 
+{
+		posB = bullet->GetWorldTransform().translation_;
+
+		if (CheckBallCollosion(posA,3.0f,posB,3.0f))
+		{
+			player_->OnCollision();
+
+			bullet->OnCollision();
+
+		}
+}
+
+
+#pragma endregion
+
+}
+
+bool GameScene::CheckBallCollosion(Vector3 v1, float v1Radious, Vector3 v2, float v2Radious) 
+{
+	float x = (v2.x - v1.x);
+	float y = (v2.y - v1.y);
+	float z = (v2.z - v1.z);
+
+	float resultPos = (x* x) + (y* y) + (z* z);
+	
+	 float resultRadious = v1Radious + v2Radious;
+
+	bool Flag = false;
+
+
+
+	if (resultPos<=(resultRadious*resultRadious))
+	{
+		Flag = true;
+	}
+
+	return Flag;
 }

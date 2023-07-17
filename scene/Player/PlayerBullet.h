@@ -31,10 +31,17 @@ public:
 	// BulletLimitTime
 	static const int32_t kLifeTime = 60 * 5;
 
+	void OnCollision();
+
     /// Getter
 	bool IsDead() const { return isDead_; }
 
+	WorldTransform GetWorldTransform() { return worldTransform_; }
+
+
 private:
+
+
 
 	uint32_t modeltexHandle;
 	Model * model_;
@@ -45,6 +52,7 @@ private:
 	// BulletLimitTime
 	
 	int32_t deathTimer_ = kLifeTime;
+	
 	bool isDead_ = false;
 };
 

@@ -28,9 +28,15 @@ public:
 	
 	void SetPlayer(Player* player) { player_ = player; }
 
+	void OnCollision();
+
 	Vector3 GetWorldPosition();
 
 	Vector3 LerpFanc(Vector3 v1, Vector3 v2);
+
+	
+	const std::list<EnemyBullet*>& GetBullets() const { return bullets_; }
+
 
 private:
 	

@@ -28,11 +28,19 @@ void Enemy::Initialize() {
 void Enemy::Update() {
 
 	
-	Vector3 move = {0, 0, 0};
-
+	
 	
 
 	const float kCharacterSpeed = 0.2f;
+
+	bullets_.remove_if([](EnemyBullet* bullet) {
+		if (bullet->IsDead()) {
+			delete bullet;
+			return true;
+		}
+		return false;
+	});
+
 
 	for (EnemyBullet* bullet : bullets_) {
 		bullet->Update();
@@ -42,7 +50,7 @@ void Enemy::Update() {
 
 		case Phase::Approach:
 			
-	        move.z += -kCharacterSpeed;
+	        worldTransform_.translation_.z += -kCharacterSpeed;
 		   
 			if (worldTransform_.translation_.z<0.0f) {
 			    phase_ = Phase::Leave;
@@ -58,8 +66,8 @@ void Enemy::Update() {
 			break;
 
 		case Phase::Leave:
-		    move.x -= kCharacterSpeed;
-		    move.z -= kCharacterSpeed;
+		    worldTransform_.translation_.x -= kCharacterSpeed;
+		    worldTransform_.translation_.z -= kCharacterSpeed;
 		   
 			
 			break;
@@ -69,7 +77,7 @@ void Enemy::Update() {
 	}
 
 	 
-	worldTransform_.translation_ = Add(worldTransform_.translation_, move);
+	//worldTransform_.translation_ = Add(worldTransform_.translation_, move);
 
 	worldTransform_.matWorld_ = MakeAffineMatrix(
 	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
@@ -92,8 +100,9 @@ void Enemy::PhaseInitialize()
 
 }
 
-Vector3 Enemy::GetWorldPosition()
-{
+void Enemy::OnCollision() {}
+
+Vector3 Enemy::GetWorldPosition() {
 	Vector3 worldPos;
 
 	worldPos.x = worldTransform_.matWorld_.m[3][0];
@@ -132,14 +141,13 @@ void Enemy::Fire()
 	Vector3 PiEnNormalize = Normalize(PiEnLerp);
 
 
-	Vector3 velocity = PiEnNormalize;
 
-
-	velocity = TransformNormal(velocity, worldTransform_.matWorld_);
+	PiEnNormalize= TransformNormal(PiEnNormalize, EnemyPos);
 
 	// intealize
 	EnemyBullet* newBullet = new EnemyBullet();
-	newBullet->Initialize(model_, worldTransform_.translation_, velocity);
+
+	newBullet->Initialize(model_, worldTransform_.translation_, PiEnNormalize);
 
 	bullets_.push_back(newBullet);
 }

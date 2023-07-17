@@ -31,8 +31,10 @@ void PlayerBullet::Update()
 		isDead_ = true;
 	}
 
-
+	
 	worldTransform_.translation_ = Add(worldTransform_.translation_, velocity_);
+	
+
 	worldTransform_.UpdateMatrix();
 
 
@@ -44,4 +46,9 @@ void PlayerBullet::Draw(const ViewProjection& viewProjection)
 
 	model_->Draw(worldTransform_, viewProjection, modeltexHandle);
 
+}
+
+void PlayerBullet::OnCollision() 
+{
+	isDead_=false;
 }

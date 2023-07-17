@@ -139,6 +139,7 @@ void Player::Update()
 
 	ImGui::Text("bullet::Space");
 	ImGui::Text("DebugCamera::K");
+	ImGui::Text("EnemyInitialize::R");
 	ImGui::End();
 	
 	
@@ -168,4 +169,6 @@ Vector3 Player::GetWorldPosition()
 	return worldPos;
 
 }
+
+void Player::OnCollision() {}
 

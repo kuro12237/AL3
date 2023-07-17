@@ -13,6 +13,7 @@
 #include "scene/Enemy/Enemy.h"
 #include "scene/Player/Player.h"
 
+#include<cmath>
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -46,6 +47,10 @@ public: // メンバ関数
 	/// 描画
 	/// </summary>
 	void Draw();
+
+	void CheckAllCollosions();
+
+	bool CheckBallCollosion(Vector3 v1, float v1Radious, Vector3 v2, float v2Radious);
 
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
