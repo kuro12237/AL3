@@ -129,9 +129,7 @@ Vector3 Enemy::LerpFanc(Vector3 v1, Vector3 v2)
 void Enemy::Fire()
 {
 
-	// BulletSpeed
-	//const float kBulletSpeed = -1.0f;
-
+	/
 	//ホーミング処理
 	Vector3 PlayerPos=player_->GetWorldPosition();
 	Vector3 EnemyPos = GetWorldPosition();
@@ -142,7 +140,7 @@ void Enemy::Fire()
 
 
 
-	PiEnNormalize= TransformNormal(PiEnNormalize, EnemyPos);
+	PiEnNormalize= TransformNormal(PiEnNormalize, worldTransform_.matWorld_);
 
 	// intealize
 	EnemyBullet* newBullet = new EnemyBullet();
