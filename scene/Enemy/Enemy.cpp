@@ -34,9 +34,7 @@ void Enemy::Update() {
 
 	const float kCharacterSpeed = 0.2f;
 
-	for (EnemyBullet* bullet : bullets_) {
-		bullet->Update();
-	}
+
 	switch (phase_) 
 	{
 
@@ -68,7 +66,10 @@ void Enemy::Update() {
 		break;
 	}
 
-	 
+		for (EnemyBullet* bullet : bullets_) {
+		bullet->Update();
+	} 
+
 	worldTransform_.translation_ = Add(worldTransform_.translation_, move);
 
 	worldTransform_.matWorld_ = MakeAffineMatrix(
