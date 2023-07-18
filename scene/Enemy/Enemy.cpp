@@ -52,8 +52,8 @@ void Enemy::Update() {
 			    FireTimer = kFireInterval;
 			
 			}
-		    //Fire();
-		 
+		    
+
 			break;
 
 		case Phase::Leave:
