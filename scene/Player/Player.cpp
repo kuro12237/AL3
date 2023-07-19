@@ -25,7 +25,7 @@ Player::~Player()
 void Player::Attack(Vector3& position) {
 
 
-	if (input_->PushKey(DIK_SPACE)) {
+	if (input_->PushKey(DIK_SPACE)&&bulletCoolTimer<=0) {
 		
 		// BulletSpeed
 		const float kBulletSpeed = 1.0f;
@@ -33,12 +33,12 @@ void Player::Attack(Vector3& position) {
 
 		velocity = TransformNormal(velocity, worldTransform_.matWorld_);
 	
-
 		//intealize
 		PlayerBullet* newBullet = new PlayerBullet();
 		newBullet->Initialize(model_, position,velocity);
 
 		bullets_.push_back(newBullet);
+		bulletCoolTimer = 20;
 	}
 }
 
@@ -64,7 +64,7 @@ void Player::Update()
 		return false;
 	});
 
-	
+	bulletCoolTimer--;
 	//move
 	Vector3 VelocityMove = {0, 0, 0};
 

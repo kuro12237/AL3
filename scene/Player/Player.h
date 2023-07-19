@@ -45,7 +45,7 @@ private:
 	
 	std::list<PlayerBullet*> bullets_;
 
-
+	int bulletCoolTimer = 0;
 };
 
 

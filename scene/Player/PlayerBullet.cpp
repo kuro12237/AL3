@@ -50,5 +50,5 @@ void PlayerBullet::Draw(const ViewProjection& viewProjection)
 
 void PlayerBullet::OnCollision() 
 {
-	isDead_=false;
+	isDead_=true;
 }
