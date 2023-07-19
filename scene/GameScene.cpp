@@ -44,16 +44,22 @@ void GameScene::Initialize()
 
 void GameScene::Update() 
 { 
-	
-	
-	#ifdef _DEBUG
+
+	//debugCamera_->Update();
+	player_->Update();
+
+	if (enemy_ != nullptr) {
+
+		enemy_->Update();
+	}
+
+#ifdef _DEBUG
 
 	if (input_->TriggerKey(DIK_K) == isDebugCameraActive_ == false) {
 		isDebugCameraActive_ = true;
 
-		// debugCamera_->Update();
 	} else if (input_->TriggerKey(DIK_K) == isDebugCameraActive_ == true) {
-		isDebugCameraActive_ = false;
+	    isDebugCameraActive_ = false;
 	}
 
 #endif // _DEBUG
@@ -71,17 +77,6 @@ void GameScene::Update()
 
 		viewProjection_.UpdateMatrix();
 	}
-
-			
-	
-	//debugCamera_->Update();
-	player_->Update();
-
-	if (enemy_ != nullptr) {
-
-		enemy_->Update();
-	}
-	
 }
 
 void GameScene::Draw() {
