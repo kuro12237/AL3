@@ -45,10 +45,6 @@ void GameScene::Initialize()
 
 void GameScene::Update() 
 { 
-	
-	
-	
-	
 
 	player_->Update();
 
@@ -57,7 +53,6 @@ void GameScene::Update()
 
 		enemy_->Update();
 	}
-
 
 	CheckAllCollosions();
 
