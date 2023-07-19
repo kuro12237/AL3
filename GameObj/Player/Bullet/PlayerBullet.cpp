@@ -1,8 +1,7 @@
-#include"Obj/Player/Bullet/PlayerBullet.h"
+#include"GameObj/Player/Bullet/PlayerBullet.h"
 
 
-PlayerBullet::PlayerBullet() 
-{
+PlayerBullet::PlayerBullet() {
 	model_ = nullptr;
 	velocity_ = {0, 0, 0};
 

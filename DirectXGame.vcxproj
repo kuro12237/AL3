@@ -109,12 +109,12 @@
     <ClCompile Include="2d\ImGuiManager.cpp" />
     <ClCompile Include="base\DirectXCommon.cpp" />
     <ClCompile Include="base\WinApp.cpp" />
+    <ClCompile Include="GameObj\Enemy\Bullet\EnemyBullet.cpp" />
+    <ClCompile Include="GameObj\Enemy\Enemy.cpp" />
+    <ClCompile Include="GameObj\Player\Bullet\PlayerBullet.cpp" />
+    <ClCompile Include="GameObj\Player\Player.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\Matrix\MatrixTrans.cpp" />
-    <ClCompile Include="Obj\Enemy\Bullet\EnemyBullet.cpp" />
-    <ClCompile Include="Obj\Enemy\Enemy.cpp" />
-    <ClCompile Include="Obj\Player\Bullet\PlayerBullet.cpp" />
-    <ClCompile Include="Obj\Player\Player.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
   </ItemGroup>
@@ -141,16 +141,16 @@
     <ClInclude Include="base\SafeDelete.h" />
     <ClInclude Include="base\TextureManager.h" />
     <ClInclude Include="base\WinApp.h" />
+    <ClInclude Include="GameObj\Enemy\Bullet\EnemyBullet.h" />
+    <ClInclude Include="GameObj\Enemy\Enemy.h" />
+    <ClInclude Include="GameObj\Player\Bullet\PlayerBullet.h" />
+    <ClInclude Include="GameObj\Player\Player.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="math\Matrix4x4.h" />
     <ClInclude Include="math\Matrix\MatrixTrans.h" />
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
-    <ClInclude Include="Obj\Enemy\Bullet\EnemyBullet.h" />
-    <ClInclude Include="Obj\Enemy\Enemy.h" />
-    <ClInclude Include="Obj\Player\Bullet\PlayerBullet.h" />
-    <ClInclude Include="Obj\Player\Player.h" />
     <ClInclude Include="scene\GameScene.h" />
   </ItemGroup>
   <ItemGroup>
