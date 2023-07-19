@@ -3,7 +3,7 @@
 #include"Vector3.h"
 #include "WorldTransform.h"
 #include "scene/Player/PlayerBullet.h"
-#include"math/Matrix/MatrixTrans.h"
+#include"math/Matrix//MatrixFanc.h"
 
 class PlayerBullet {
 public:

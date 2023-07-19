@@ -3,7 +3,7 @@
 #include<WorldTransform.h>
 #include<Vector3.h>
 #include<Input.h>
-#include"math/Matrix/MatrixTrans.h"
+#include"math/Matrix/MatrixFanc.h"
 #include"scene/Player/PlayerBullet.h"
 
 #include <list>
