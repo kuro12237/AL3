@@ -2,8 +2,8 @@
 
 #include <Model.h>
 #include <WorldTransform.h>
-#include"scene/Enemy/Bullet/EnemyBullet.h"
-#include"scene/Player/Player.h"
+#include"scene/Obj/Enemy/Bullet/EnemyBullet.h"
+#include"scene/Obj/Player/Player.h"
 
 class Player;
 
