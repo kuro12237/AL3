@@ -1,5 +1,5 @@
 #include "Enemy.h"
-#include "math/Matrix/MatrixFanc.h"
+#include "math/Matrix/MatrixTrans.h"
 
 Enemy::Enemy() {}
 
