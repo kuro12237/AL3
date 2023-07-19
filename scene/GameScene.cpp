@@ -62,6 +62,19 @@ void GameScene::Update()
 	}
 #endif // _DEBUG
 
+	
+	
+	//debugCamera_->Update();
+	player_->Update();
+
+	CheckAllCollosions();
+
+	if (enemy_ != nullptr) {
+
+		enemy_->Update();
+
+	}
+	
 	// Camera
 	if (isDebugCameraActive_) {
 		debugCamera_->Update();
@@ -75,19 +88,6 @@ void GameScene::Update()
 
 		viewProjection_.UpdateMatrix();
 	}
-
-			
-	
-	//debugCamera_->Update();
-	player_->Update();
-
-	CheckAllCollosions();
-
-	if (enemy_ != nullptr) {
-
-		enemy_->Update();
-	}
-	
 }
 
 void GameScene::Draw() {
