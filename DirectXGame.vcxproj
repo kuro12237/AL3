@@ -110,6 +110,7 @@
     <ClCompile Include="base\DirectXCommon.cpp" />
     <ClCompile Include="base\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="math\Matrix\MatrixTrans.cpp" />
     <ClCompile Include="scene\Enemy\Bullet\EnemyBullet.cpp" />
     <ClCompile Include="scene\Enemy\Enemy.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="base\WinApp.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="math\Matrix4x4.h" />
+    <ClInclude Include="math\Matrix\MatrixTrans.h" />
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
