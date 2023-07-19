@@ -13,7 +13,6 @@ Enemy::~Enemy()
 }
 
 
-
 void Enemy::Initialize() {
 
 	phase_ = Phase::Approach;
