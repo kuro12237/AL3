@@ -147,9 +147,9 @@ void GameScene::Draw() {
 }
 
 void GameScene::CheckAllCollosions() 
-{ Vector3 posP, posEb;
-	
-//const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
+{
+	Vector3 posE, posEb;
+	Vector3 posP, posPb;
 
     const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
 	const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
@@ -177,7 +177,7 @@ void GameScene::CheckAllCollosions()
 
    #pragma region 自弾と敵との当たり判定
 
-   Vector3 posE, posPb;
+  
 
 	 posE = enemy_->GetWorldPosition();
 	  
