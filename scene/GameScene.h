@@ -10,8 +10,8 @@
 #include "WorldTransform.h"
 #include"DebugCamera.h"
 
-#include"scene/Obj/Enemy/Enemy.h"
-#include "scene/Obj/Player/Player.h"
+#include"Obj/Enemy/Enemy.h"
+#include "Obj/Player/Player.h"
 
 #include<cmath>
 /// <summary>

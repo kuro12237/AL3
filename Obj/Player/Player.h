@@ -4,7 +4,7 @@
 #include<Vector3.h>
 #include<Input.h>
 #include"math/Matrix/MatrixTrans.h"
-#include"scene/Obj/Player/Bullet/PlayerBullet.h"
+#include"Obj/Player/Bullet/PlayerBullet.h"
 
 
 
