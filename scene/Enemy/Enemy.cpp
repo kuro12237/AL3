@@ -32,7 +32,6 @@ void Enemy::Update() {
 	
 
 	const float kCharacterSpeed = 0.2f;
-
 	
 	switch (phase_) 
 	{
