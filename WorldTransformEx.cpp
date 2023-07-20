@@ -7,5 +7,4 @@ void WorldTransform::UpdateMatrix() {
 	);
 	TransferMatrix();
 
-
 }
