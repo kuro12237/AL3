@@ -14,6 +14,7 @@ GameScene::~GameScene()
 { 
     player_->~Player();
 	enemy_->~Enemy();
+	skydome_->~Skydome();
 }
 void GameScene::Initialize() 
 {
