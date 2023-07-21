@@ -12,7 +12,7 @@
 
 #include"GameObj/Enemy/Enemy.h"
 #include "GameObj/Player/Player.h"
-
+#include"GameObj/Skydome/Skydome.h"
 #include<cmath>
 /// <summary>
 /// ゲームシーン
@@ -71,7 +71,7 @@ private: // メンバ変数
 
 	 Player* player_ = new Player();
 	 Enemy* enemy_ = nullptr;
-
+	 Skydome* skydome_ = nullptr;
 
 	 bool isDebugCameraActive_ = false;
 	/// <summary>

@@ -26,13 +26,14 @@ void GameScene::Initialize()
 
 	
 	enemy_ = new Enemy();
+	skydome_ = new Skydome();
 
 	//player
 	player_->Initialize();
 	enemy_->Initialize();
 
 	enemy_->SetPlayer(player_);
-
+	skydome_->Initialize();
 
 	// ビュープロジェクション
 	viewProjection_.Initialize();
@@ -74,7 +75,9 @@ void GameScene::Update()
 		enemy_->Update();
 
 	}
-	
+
+	skydome_->Update();
+
 	// Camera
 	if (isDebugCameraActive_) {
 		debugCamera_->Update();
@@ -127,7 +130,7 @@ void GameScene::Draw() {
 
 	enemy_->Draw(viewProjection_);
 
-
+	skydome_->Draw(viewProjection_);
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion
