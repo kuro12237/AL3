@@ -16,21 +16,21 @@ void Skydome::Initialize()
 	worldTransform_.Initialize();
 	
 	//worldTransform_.scale_ = {100, 100, 100};
-
+	worldTransform_.scale_ = {100.0f, 100.0f, 100.0f};
 
 }
 
 void Skydome::Update() 
 {
-	// 行列を定数バッファに転送
-	worldTransform_.TransferMatrix();
+	
+	//worldTransform_.TransferMatrix();
 
-	worldTransform_.translation_ = {0.0f, 0.0f, 0.0f};
-	// 小さすぎたかも・・
-	worldTransform_.scale_ = {100.0f, 100.0f, 100.0f};
+	//worldTransform_.translation_ = {0.0f, 0.0f, 0.0f};
 
-	worldTransform_.matWorld_ = MakeAffineMatrix(
-	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
+	
+
+	//worldTransform_.matWorld_ = MakeAffineMatrix(
+	 //   worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
 
 	// 更新処理
 	worldTransform_.UpdateMatrix();
