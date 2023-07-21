@@ -8,6 +8,7 @@ public:
 	EnemyBullet();
 	~EnemyBullet();
 
+
 	void Initialize(Model* model, Vector3& position, const Vector3& velocity);
 
 	void Update();
@@ -24,9 +25,7 @@ private:
 
 	Vector3 kVelocity_ = {};
 
-	// BulletLimitTime
 
-	//int32_t deathTimer_ = kLifeTime;
 	bool isDead_ = false;
 };
 
