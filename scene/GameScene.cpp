@@ -48,21 +48,7 @@ void GameScene::Initialize()
 void GameScene::Update() 
 { 
 	
-	
-#ifdef _DEBUG
 
-	if (input_->TriggerKey(DIK_K) == isDebugCameraActive_ == false) {
-		isDebugCameraActive_ = true;
-
-		// debugCamera_->Update();
-	} else if (input_->TriggerKey(DIK_K) == isDebugCameraActive_ == true) {
-		isDebugCameraActive_ = false;
-	}
-
-	if (input_->TriggerKey(DIK_R) ){
-		enemy_->Initialize();
-	}
-#endif // _DEBUG
 
 	
 	
@@ -80,6 +66,21 @@ void GameScene::Update()
 	skydome_->Update();
 
 	// Camera
+
+#ifdef _DEBUG
+
+	if (input_->TriggerKey(DIK_K) == isDebugCameraActive_ == false) {
+		isDebugCameraActive_ = true;
+
+		// debugCamera_->Update();
+	} else if (input_->TriggerKey(DIK_K) == isDebugCameraActive_ == true) {
+		isDebugCameraActive_ = false;
+	}
+
+	if (input_->TriggerKey(DIK_R)) {
+		enemy_->Initialize();
+	}
+#endif // _DEBUG
 	if (isDebugCameraActive_) {
 		debugCamera_->Update();
 
