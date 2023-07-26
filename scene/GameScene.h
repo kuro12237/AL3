@@ -14,6 +14,7 @@
 #include "GameObj/Player/Player.h"
 #include"GameObj/Skydome/Skydome.h"
 #include<cmath>
+#include"../GameObj/RailCamera/RailCamera.h"
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -72,6 +73,7 @@ private: // メンバ変数
 	 Player* player_ = new Player();
 	 Enemy* enemy_ = nullptr;
 	 Skydome* skydome_ = nullptr;
+	 RailCamera* railCamera_ = nullptr;
 
 	 bool isDebugCameraActive_ = false;
 	/// <summary>

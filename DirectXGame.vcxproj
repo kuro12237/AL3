@@ -113,6 +113,7 @@
     <ClCompile Include="GameObj\Enemy\Enemy.cpp" />
     <ClCompile Include="GameObj\Player\Bullet\PlayerBullet.cpp" />
     <ClCompile Include="GameObj\Player\Player.cpp" />
+    <ClCompile Include="GameObj\RailCamera\RailCamera.cpp" />
     <ClCompile Include="GameObj\Skydome\Skydome.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\Matrix\MatrixTrans.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="GameObj\Enemy\Enemy.h" />
     <ClInclude Include="GameObj\Player\Bullet\PlayerBullet.h" />
     <ClInclude Include="GameObj\Player\Player.h" />
+    <ClInclude Include="GameObj\RailCamera\RailCamera.h" />
     <ClInclude Include="GameObj\Skydome\Skydome.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="math\Matrix4x4.h" />

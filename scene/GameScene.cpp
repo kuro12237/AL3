@@ -28,6 +28,7 @@ void GameScene::Initialize()
 	
 	enemy_ = new Enemy();
 	skydome_ = new Skydome();
+	railCamera_ = new RailCamera();
 
 	//player
 	player_->Initialize();
@@ -35,6 +36,10 @@ void GameScene::Initialize()
 
 	enemy_->SetPlayer(player_);
 	skydome_->Initialize();
+	
+	Vector3 radian = {0.0f, 0.0f, 0.0f};
+
+	railCamera_->Initialize(player_->GetWorldPosition(), radian);
 
 	// ビュープロジェクション
 	viewProjection_.Initialize();
@@ -66,6 +71,7 @@ void GameScene::Update()
 	skydome_->Update();
 
 	// Camera
+	railCamera_->Update();
 
 #ifdef _DEBUG
 
@@ -91,7 +97,9 @@ void GameScene::Update()
 
 	} else {
 
-		viewProjection_.UpdateMatrix();
+		viewProjection_.matView = railCamera_->GetViewProjection().matView;
+		viewProjection_.matProjection = railCamera_->GetViewProjection().matProjection;
+		viewProjection_.TransferMatrix();
 	}
 }
 
