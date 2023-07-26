@@ -40,6 +40,8 @@ void GameScene::Initialize()
 	Vector3 radian = {0.0f, 0.0f, 0.0f};
 
 	railCamera_->Initialize(player_->GetWorldPosition(), radian);
+	player_->SetParent(&railCamera_->GetworldTransform());
+
 
 	// ビュープロジェクション
 	viewProjection_.Initialize();

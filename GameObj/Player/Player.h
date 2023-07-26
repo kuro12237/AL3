@@ -30,6 +30,8 @@ public:
 
 	const std::list<PlayerBullet*>& GetBullets() const { return bullets_; }
 
+	void SetParent(const WorldTransform* parent);
+
 private:
 
 	void Attack(Vector3 &position);

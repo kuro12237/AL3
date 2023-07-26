@@ -172,3 +172,10 @@ Vector3 Player::GetWorldPosition()
 
 void Player::OnCollision() {}
 
+void Player::SetParent(const WorldTransform* parent)
+{
+
+worldTransform_.parent_ = parent;
+
+}
+
