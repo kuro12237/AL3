@@ -21,6 +21,7 @@ public:
 	}
     const WorldTransform &GetworldTransform() const{ return worldTransform_; }
 
+	Vector3 GetPlayerWorldPos();
 
 private:
 

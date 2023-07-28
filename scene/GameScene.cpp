@@ -34,7 +34,7 @@ void GameScene::Initialize() {
 	player_->SetParent(&railCamera_->GetworldTransform());
 
 	// player
-	Vector3 playerpos = {0.0f, 0.0f, 14.0f};
+	
 	player_->Initialize(playerpos);
 	
 

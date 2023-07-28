@@ -35,6 +35,7 @@ void Player::Attack(Vector3& position) {
 	
 		//intealize
 		PlayerBullet* newBullet = new PlayerBullet();
+
 		newBullet->Initialize(model_, position,velocity);
 
 		bullets_.push_back(newBullet);
@@ -115,12 +116,15 @@ void Player::Update()
 	//RotateMatrix
 	worldTransform_.rotation_ = Add(worldTransform_.rotation_, RotateMove_);
 
+	Vector3 pos;
 
-	worldTransform_.UpdateMatrix();
-
+	pos.x = worldTransform_.matWorld_.m[3][0];
+	pos.y = worldTransform_.matWorld_.m[3][1];
+	pos.z = worldTransform_.matWorld_.m[3][2];
 	
-		// bullet
-	Attack(worldTransform_.translation_);
+	// bullet
+	Attack(pos);
+	worldTransform_.UpdateMatrix();
 
 	for (PlayerBullet* bullet : bullets_) {
 		bullet->Update();

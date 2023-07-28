@@ -15,8 +15,10 @@ void PlayerBullet::Initialize(Model* model, Vector3& position,const Vector3& vel
 	model_ = model;
 	modeltexHandle = TextureManager::Load("Stone.png");
 	
-	worldTransform_.Initialize();
 	worldTransform_.translation_ = position;
+	
+	worldTransform_.Initialize();
+	
 	velocity_ = velocity;
 
 }

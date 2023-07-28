@@ -15,7 +15,8 @@ public:
 	/// </summary>
 	/// <param name="model"></param>
 	/// <param name="position"></param>
-	void Initialize(Model* model, Vector3& position,const Vector3& velocity);
+	void Initialize(
+	    Model* model, Vector3& position, const Vector3& velocity);
 
 	/// <summary>
 	/// 

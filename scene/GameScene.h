@@ -74,7 +74,7 @@ private: // メンバ変数
 	 Enemy* enemy_ = nullptr;
 	 Skydome* skydome_ = nullptr;
 	 RailCamera* railCamera_ = nullptr;
-
+	 Vector3 playerpos = {0.0f, 0.0f, 14.0f};
 	 bool isDebugCameraActive_ = false;
 	/// <summary>
 	/// ゲームシーン用
