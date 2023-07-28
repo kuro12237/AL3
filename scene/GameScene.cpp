@@ -16,33 +16,36 @@ GameScene::~GameScene()
 	enemy_->~Enemy();
 	skydome_->~Skydome();
 }
-void GameScene::Initialize() 
-{
-    //ライン描画
+void GameScene::Initialize() {
+	// ライン描画
 	PrimitiveDrawer::GetInstance()->SetViewProjection(&viewProjection_);
-	
+
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
-	
 	enemy_ = new Enemy();
 	skydome_ = new Skydome();
 	railCamera_ = new RailCamera();
 
-	//player
-	player_->Initialize();
-	enemy_->Initialize();
-
-	enemy_->SetPlayer(player_);
-	skydome_->Initialize();
-	
 	Vector3 radian = {0.0f, 0.0f, 0.0f};
 
 	railCamera_->Initialize(player_->GetWorldPosition(), radian);
 	player_->SetParent(&railCamera_->GetworldTransform());
 
+	// player
+	Vector3 playerpos = {0.0f, 0.0f, 14.0f};
+	player_->Initialize(playerpos);
+	
 
+	
+	enemy_->Initialize();
+
+	enemy_->SetPlayer(player_);
+	skydome_->Initialize();
+	
+	
+	viewProjection_.farZ = 1200.0f;
 	// ビュープロジェクション
 	viewProjection_.Initialize();
 	//でバックカメラの生成
@@ -55,23 +58,19 @@ void GameScene::Initialize()
 void GameScene::Update() 
 { 
 	
-
-
-	
-	
-	//debugCamera_->Update();
 	player_->Update();
 
-	CheckAllCollosions();
 
 	if (enemy_ != nullptr) {
 
 		enemy_->Update();
-
 	}
 
 	skydome_->Update();
 
+	CheckAllCollosions();
+
+	
 	// Camera
 	railCamera_->Update();
 

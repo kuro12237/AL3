@@ -75,23 +75,29 @@
     <ClCompile Include="2d\ImGuiManager.cpp">
       <Filter>ソース ファイル\2d</Filter>
     </ClCompile>
-    <ClCompile Include="WorldTransformEx.cpp">
-      <Filter>ヘッダー ファイル\3d</Filter>
-    </ClCompile>
     <ClCompile Include="math\Matrix\MatrixTrans.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="scene\Obj\Enemy\Enemy.cpp">
-      <Filter>ソース ファイル\scene</Filter>
+    <ClCompile Include="GameObj\Enemy\Bullet\EnemyBullet.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="scene\Obj\Enemy\Bullet\EnemyBullet.cpp">
-      <Filter>ソース ファイル\scene</Filter>
+    <ClCompile Include="GameObj\Enemy\Enemy.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="scene\Obj\Player\Player.cpp">
-      <Filter>ソース ファイル\scene</Filter>
+    <ClCompile Include="GameObj\Player\Bullet\PlayerBullet.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="scene\Obj\Player\Bullet\PlayerBullet.cpp">
-      <Filter>ソース ファイル\scene</Filter>
+    <ClCompile Include="GameObj\Player\Player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObj\RailCamera\RailCamera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObj\Skydome\Skydome.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldTransformEx.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,17 +188,23 @@
     <ClInclude Include="math\Matrix\MatrixTrans.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="scene\Obj\Enemy\Enemy.h">
+    <ClInclude Include="GameObj\Enemy\Bullet\EnemyBullet.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="scene\Obj\Enemy\Bullet\EnemyBullet.h">
-      <Filter>ソース ファイル\scene</Filter>
+    <ClInclude Include="GameObj\Enemy\Enemy.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="scene\Obj\Player\Player.h">
-      <Filter>ソース ファイル\scene</Filter>
+    <ClInclude Include="GameObj\Player\Bullet\PlayerBullet.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="scene\Obj\Player\Bullet\PlayerBullet.h">
-      <Filter>ソース ファイル\scene</Filter>
+    <ClInclude Include="GameObj\Player\Player.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObj\RailCamera\RailCamera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObj\Skydome\Skydome.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

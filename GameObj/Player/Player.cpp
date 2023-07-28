@@ -42,8 +42,9 @@ void Player::Attack(Vector3& position) {
 	}
 }
 
-void Player::Initialize()
+void Player::Initialize(Vector3 pos)
 {
+	worldTransform_.translation_ = pos;
 	worldTransform_.Initialize();
 	
 	model_ = Model::Create();
@@ -84,34 +85,19 @@ void Player::Update()
 		VelocityMove.y -= kCharacterSpeed;
 	}
     //Rotate
-	Vector3 RotateMove = {0, 0, 0};
+	
 	const float kRotSpeed = 0.2f;
+	RotateMove_ = {0.0f, 0.0f, 0.0f};
 	if (input_->PushKey(DIK_A))
 	{
-		RotateMove.y += kRotSpeed;
+		RotateMove_.y += kRotSpeed;
 	}
 	if (input_->PushKey(DIK_D))
 	{
-		RotateMove.y -= kRotSpeed;
+		RotateMove_.y -= kRotSpeed;
 	}
-	
-	//bullet
-	Attack(worldTransform_.translation_);
+	worldTransform_.TransferMatrix();
 
-	for (PlayerBullet* bullet : bullets_)
-	{
-		bullet->Update();
-	}
-	
-
-
-
-
-
-
-
-
-	
 	//MoveLimit
 	const float kmoveLimitX = 35.0f;
 	const float kmoveLimitY = 18.0f;
@@ -121,18 +107,25 @@ void Player::Update()
 	worldTransform_.translation_.y = max(worldTransform_.translation_.y, -kmoveLimitY);
 	worldTransform_.translation_.y = min(worldTransform_.translation_.y, kmoveLimitY);
 
-
+	//worldTransform_.translation_.z += 0.5f;
 
     //VelocityMatrix
 	worldTransform_.translation_ = Add(worldTransform_.translation_, VelocityMove);
 
 	//RotateMatrix
-	worldTransform_.rotation_ = Add(worldTransform_.rotation_, RotateMove);
+	worldTransform_.rotation_ = Add(worldTransform_.rotation_, RotateMove_);
 
-	worldTransform_.matWorld_ = MakeAffineMatrix(
-	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
-	worldTransform_.TransferMatrix();
 
+	worldTransform_.UpdateMatrix();
+
+	
+		// bullet
+	Attack(worldTransform_.translation_);
+
+	for (PlayerBullet* bullet : bullets_) {
+		bullet->Update();
+	}
+	
 	
 
 	ImGui::Begin("Player");
@@ -175,7 +168,13 @@ void Player::OnCollision() {}
 void Player::SetParent(const WorldTransform* parent)
 {
 
-worldTransform_.parent_ = parent;
+    worldTransform_.parent_ = parent;
 
 }
+
+void Player::SetPlayerPos(Vector3 v)
+{
+	position_ = v;
+
+} 
 

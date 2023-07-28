@@ -35,8 +35,10 @@ void PlayerBullet::Update()
 	worldTransform_.translation_ = Add(worldTransform_.translation_, velocity_);
 	
 
-	worldTransform_.UpdateMatrix();
-
+	//worldTransform_.UpdateMatrix();
+	worldTransform_.matWorld_ = MakeAffineMatrix(
+	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
+	worldTransform_.TransferMatrix();
 
 
 }

@@ -7,27 +7,24 @@ RailCamera::~RailCamera() {}
 
 void RailCamera::Initialize(Vector3 pos, Vector3 rotate)
 {
+	worldTransform_.Initialize();
+	worldTransform_.translation_ = pos;
 
-worldTransform_.translation_ = pos;
+    worldTransform_.rotation_ = rotate;
 
-worldTransform_.rotation_ = rotate;
-worldTransform_.Initialize();
-
-viewProjection_.farZ = 1200.0f;
-viewProjection_.Initialize();
-
+ 
+   
+     viewProjection_.Initialize();
+	 viewProjection_.farZ = 1200.0f;
 }
 
 void RailCamera::Update()
 {
 
+	 worldTransform_.translation_.z += 0.1f;
 
-  // worldTransform_.translation_ = Add(worldTransform_.translation_, {0.0f, 0.0f, -0.2f});
-
-
-   Vector3 rotate = {0.0f, 0.0f, 0.0f};
-   worldTransform_.rotation_ = Add(worldTransform_.rotation_, rotate);
-
+  worldTransform_.matWorld_ = MakeAffineMatrix(
+	  worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
 
    worldTransform_.UpdateMatrix();
    viewProjection_.matView = Inverse(worldTransform_.matWorld_);

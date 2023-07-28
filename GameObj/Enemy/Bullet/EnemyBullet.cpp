@@ -38,8 +38,10 @@ void EnemyBullet::Update()
 		isDead_ = true;
 	}
 
-	worldTransform_.UpdateMatrix();	
-
+	//worldTransform_.UpdateMatrix();	
+		worldTransform_.matWorld_ = MakeAffineMatrix(
+	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
+	worldTransform_.TransferMatrix();
 
 }
 
