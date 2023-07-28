@@ -108,7 +108,6 @@ void Player::Update()
 	worldTransform_.translation_.y = max(worldTransform_.translation_.y, -kmoveLimitY);
 	worldTransform_.translation_.y = min(worldTransform_.translation_.y, kmoveLimitY);
 
-	//worldTransform_.translation_.z += 0.5f;
 
     //VelocityMatrix
 	worldTransform_.translation_ = Add(worldTransform_.translation_, VelocityMove);
@@ -125,7 +124,7 @@ void Player::Update()
 	// bullet
 	Attack(worldPos);
 	worldTransform_.UpdateMatrix();
-
+	worldTransform_.TransferMatrix();
 	for (PlayerBullet* bullet : bullets_) {
 		bullet->Update();
 	}
