@@ -116,14 +116,14 @@ void Player::Update()
 	//RotateMatrix
 	worldTransform_.rotation_ = Add(worldTransform_.rotation_, RotateMove_);
 
-	Vector3 pos;
+	Vector3 worldPos;
 
-	pos.x = worldTransform_.matWorld_.m[3][0];
-	pos.y = worldTransform_.matWorld_.m[3][1];
-	pos.z = worldTransform_.matWorld_.m[3][2];
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
 	
 	// bullet
-	Attack(pos);
+	Attack(worldPos);
 	worldTransform_.UpdateMatrix();
 
 	for (PlayerBullet* bullet : bullets_) {
@@ -160,9 +160,9 @@ Vector3 Player::GetWorldPosition()
 {
 	Vector3 worldPos;
 	
-	worldPos.x = worldTransform_.matWorld_.m[3][0];
-	worldPos.y = worldTransform_.matWorld_.m[3][1];
-	worldPos.z = worldTransform_.matWorld_.m[3][2];
+	worldPos.x = worldTransform_.translation_.x;
+	worldPos.y = worldTransform_.translation_.y;
+	worldPos.z = worldTransform_.translation_.z;
 	return worldPos;
 
 }
