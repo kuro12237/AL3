@@ -202,9 +202,7 @@ void Player::Draw(ViewProjection ViewProjection_)
 
 	model_->Draw(worldTransform_, ViewProjection_, modeltexHandle);
 	
-	//model_->Draw(worldTransform3DReticle_, ViewProjection_);
-	// bullet
-	
+
 for (PlayerBullet*bullet:bullets_) 
 	{
 
