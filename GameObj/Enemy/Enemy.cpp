@@ -1,45 +1,33 @@
 ﻿#include "Enemy.h"
 #include"math/Matrix/MatrixTrans.h"
-
+#include"GameScene.h"
 Enemy::Enemy() {}
 
 Enemy::~Enemy() 
 {
 	model_->~Model();
-
+	/*
 	for (EnemyBullet* bullet : bullets_) {
 		delete bullet;
 	}
+	*/
 }
 
 
 
-void Enemy::Initialize() {
+void Enemy::Initialize(Vector3 v) {
 
 	phase_ = Phase::Approach;
 	PhaseInitialize();
 
 	worldTransform_.Initialize();
-	worldTransform_.translation_ = {-10.0f, 5.0f, 30.0f};
+	worldTransform_.translation_ = v;
 	model_ = Model::Create();
 	modeltexHandle = TextureManager::Load("Dirt.png");
 }
 
 void Enemy::Update() {
 
-	
-	
-	
-
-	const float kCharacterSpeed = 0.2f;
-
-	bullets_.remove_if([](EnemyBullet* bullet) {
-		if (bullet->IsDead()) {
-			delete bullet;
-			return true;
-		}
-		return false;
-	});
 
 
 
@@ -48,7 +36,7 @@ void Enemy::Update() {
 
 		case Phase::Approach:
 			
-	        worldTransform_.translation_.z += -kCharacterSpeed;
+	       // worldTransform_.translation_.z += -kCharacterSpeed;
 		   
 			if (worldTransform_.translation_.z<0.0f) {
 			    phase_ = Phase::Leave;
@@ -61,11 +49,14 @@ void Enemy::Update() {
 			
 			}
 			
+
+		
+
 			break;
 
 		case Phase::Leave:
-		    worldTransform_.translation_.x -= kCharacterSpeed;
-		    worldTransform_.translation_.z -= kCharacterSpeed;
+		    //worldTransform_.translation_.x -= kCharacterSpeed;
+		    //worldTransform_.translation_.z -= kCharacterSpeed;
 		   
 			
 			break;
@@ -74,9 +65,6 @@ void Enemy::Update() {
 		break;
 	}
 
-	for (EnemyBullet* bullet : bullets_) {
-		bullet->Update();
-	}	 
 	//worldTransform_.translation_ = Add(worldTransform_.translation_, move);
 
 	worldTransform_.matWorld_ = MakeAffineMatrix(
@@ -88,10 +76,6 @@ void Enemy::Draw(ViewProjection ViewProjection_) {
 
 	model_->Draw(worldTransform_, ViewProjection_, modeltexHandle);
 
-	for (EnemyBullet* bullet : bullets_) {
-
-		bullet->Draw(ViewProjection_);
-	}
 }
 
 void Enemy::PhaseInitialize() 
@@ -100,7 +84,7 @@ void Enemy::PhaseInitialize()
 
 }
 
-void Enemy::OnCollision() {}
+void Enemy::OnCollision(){ isDead_ = true; }
 
 Vector3 Enemy::GetWorldPosition() {
 	Vector3 worldPos;
@@ -129,9 +113,14 @@ Vector3 Enemy::LerpFanc(Vector3 v1, Vector3 v2)
 void Enemy::Fire()
 {
 
-	
+	Vector3 v;
+	v.x = player_->GetWorldTransform().matWorld_.m[3][0];
+	v.y = player_->GetWorldTransform().matWorld_.m[3][1];
+	v.z = player_->GetWorldTransform().matWorld_.m[3][2];
+
 	//ホーミング処理
-	Vector3 PlayerPos=player_->GetWorldPosition();
+	Vector3 PlayerPos = v;
+	//player_->GetWorldPosition();
 	Vector3 EnemyPos = GetWorldPosition();
 
 	Vector3 PiEnLerp = LerpFanc(EnemyPos, PlayerPos);
@@ -147,5 +136,6 @@ void Enemy::Fire()
 
 	newBullet->Initialize(model_, worldTransform_.translation_, PiEnNormalize);
 
-	bullets_.push_back(newBullet);
+	gameScene_->AddEnemyBullet(newBullet);
+	//bullets_.push_back(newBullet);
 }

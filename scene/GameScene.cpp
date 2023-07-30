@@ -4,7 +4,7 @@
 #include<ImGuiManager.h>
 #include<PrimitiveDrawer.h>
 #include "AxisIndicator.h"
-
+#include<fstream>
 GameScene::GameScene() 
 {
 
@@ -13,7 +13,7 @@ GameScene::GameScene()
 GameScene::~GameScene()
 { 
     player_->~Player();
-	enemy_->~Enemy();
+	//enemy_->~Enemy();
 	skydome_->~Skydome();
 }
 void GameScene::Initialize() {
@@ -24,7 +24,7 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
-	enemy_ = new Enemy();
+	//enemy_ = new Enemy();
 	skydome_ = new Skydome();
 	railCamera_ = new RailCamera();
 
@@ -37,14 +37,11 @@ void GameScene::Initialize() {
 	
 	player_->Initialize(playerpos);
 	
-
-	
-	enemy_->Initialize();
-
-	enemy_->SetPlayer(player_);
+	//EnemySpawn({-10, 3, 5});
+	//EnemySpawn({10, 3, 5});
+	LoadEnemyPopData();
 	skydome_->Initialize();
-	
-	
+
 	viewProjection_.farZ = 1200.0f;
 	// ビュープロジェクション
 	viewProjection_.Initialize();
@@ -60,11 +57,9 @@ void GameScene::Update()
 	
 	player_->Update();
 
+    EnemyObjUpdate();
 
-	if (enemy_ != nullptr) {
-
-		enemy_->Update();
-	}
+	UpdateEnemyPopCommands();
 
 	skydome_->Update();
 
@@ -85,7 +80,7 @@ void GameScene::Update()
 	}
 
 	if (input_->TriggerKey(DIK_R)) {
-		enemy_->Initialize();
+		//enemy_->Initialize();
 	}
 #endif // _DEBUG
 	if (isDebugCameraActive_) {
@@ -139,7 +134,8 @@ void GameScene::Draw() {
 
 	player_->Draw(viewProjection_);
 
-	enemy_->Draw(viewProjection_);
+
+	EnemyObjDraw();
 
 	skydome_->Draw(viewProjection_);
 	// 3Dオブジェクト描画後処理
@@ -165,7 +161,7 @@ void GameScene::CheckAllCollosions()
 	Vector3 posE, posEb;
 	Vector3 posP, posPb;
 
-    const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
+    const std::list<EnemyBullet*>& enemyBullets = enemyBullet_;
 	const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
 
 	const int ObjHitRadious = 3;
@@ -193,19 +189,20 @@ void GameScene::CheckAllCollosions()
 
   
 
-	 posE = enemy_->GetWorldPosition();
-	  
+
    
-   for (PlayerBullet* bullet : playerBullets)
-   {
-		posPb = bullet->GetWorldTransform().translation_;
+   for (PlayerBullet* bullet : playerBullets) {
+		
+	   for (Enemy* enemy : enemys_) {
 
-		if (CheckBallCollosion(posE, ObjHitRadious, posPb, ObjHitRadious))
-		{
-			bullet->OnCollision();
-			enemy_->OnCollision();
-
-	    }
+			posPb = bullet->GetWorldTransform().translation_;
+			posE = enemy->GetWorldPosition();
+	  
+			if (CheckBallCollosion(posE, ObjHitRadious, posPb, ObjHitRadious)) {
+				bullet->OnCollision();
+				enemy->OnCollision();
+			}
+		}
    }
    #pragma endregion
 
@@ -253,4 +250,129 @@ bool GameScene::CheckBallCollosion(Vector3 v1, float v1Radious, Vector3 v2, floa
 	}
 
 	return Flag;
+}
+
+void GameScene::AddEnemyBullet(EnemyBullet* enemyBullet) 
+{
+	
+	enemyBullet_.push_back(enemyBullet); }
+
+void GameScene::LoadEnemyPopData()
+{
+	
+	std::ifstream file;
+	file.open("Resources/EnemyPop.csv");
+	assert(file.is_open());
+
+	enemyPopCommands << file.rdbuf();
+	file.close();
+
+}
+
+void GameScene::UpdateEnemyPopCommands()
+{
+	if (EnemyWaitFlag_) 
+	{
+		WaitTimer_--;
+		if (WaitTimer_<=0)
+		{
+			EnemyWaitFlag_ = false;
+		}
+		return;
+	}
+
+	std::string line;
+
+
+	while (std::getline(enemyPopCommands,line))
+	{
+
+		std::istringstream line_stream(line);
+
+		std::string word;
+		std::getline(line_stream, word, ',');
+
+		if (word.find("//")==0 )
+		{
+			continue;
+		}
+		//POPコマンド
+		if (word.find("POP")==0)
+		{
+			Vector3 pos;
+			std::getline(line_stream, word, ',');
+			pos.x = (float)std::atof(word.c_str());
+
+			std::getline(line_stream, word, ',');
+			pos.y = (float)std::atof(word.c_str());
+
+			std::getline(line_stream, word, ',');
+			pos.z = (float)std::atof(word.c_str());
+
+			EnemySpawn(pos);
+		} else if (word.find("WAIT")==0)
+		{
+			std::getline(line_stream, word, ',');
+			int32_t waitTimer = atoi(word.c_str());
+			EnemyWaitFlag_ = true;
+			WaitTimer_ = waitTimer;
+			
+			break;
+
+		}
+
+	}
+
+}
+
+
+void GameScene::EnemySpawn(const Vector3& position) {
+	Enemy* enemy_ = new Enemy();
+	enemy_->Initialize(position);
+	// EnemyにPlayerのアドレスを渡す
+	enemy_->SetPlayer(player_);
+	enemy_->SetGameScene(this);
+	// 敵
+	enemys_.push_back(enemy_);
+}
+
+void GameScene::EnemyObjUpdate()
+{
+	for (Enemy* enemy : enemys_)
+	{
+		enemy->Update();
+	}
+	
+	enemys_.remove_if([](Enemy* enemy_) {
+		if (enemy_->IsDead()) {
+			delete enemy_;
+			return true;
+		}
+		return false;
+	});
+
+
+	for (EnemyBullet* bullet_ : enemyBullet_) {
+		bullet_->Update();
+	}
+	
+	enemyBullet_.remove_if([](EnemyBullet* bullet_) {
+		if (bullet_->IsDead()) {
+			delete bullet_;
+			return true;
+		}
+		return false;
+	});
+}
+
+void GameScene::EnemyObjDraw()
+{
+	for (Enemy* enemy : enemys_) {
+
+		enemy->Draw(viewProjection_);
+	}
+	for (EnemyBullet* bullet_ : enemyBullet_)
+	{
+		bullet_->Draw(viewProjection_);
+	}
 }

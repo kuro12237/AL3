@@ -15,6 +15,8 @@
 #include"GameObj/Skydome/Skydome.h"
 #include<cmath>
 #include"../GameObj/RailCamera/RailCamera.h"
+#include<sstream>
+
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -53,6 +55,13 @@ public: // メンバ関数
 
 	bool CheckBallCollosion(Vector3 v1, float v1Radious, Vector3 v2, float v2Radious);
 
+
+	void AddEnemyBullet(EnemyBullet* enemyBullet);
+	
+	void LoadEnemyPopData();
+
+	void UpdateEnemyPopCommands();
+
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -61,8 +70,9 @@ private: // メンバ変数
 	//ビュープロジェクション
 	ViewProjection viewProjection_;
 
-
-
+	void EnemyObjUpdate();
+	void EnemyObjDraw();
+	void EnemySpawn(const Vector3& position);
 	
 	 //uint32_t soundDataHandle_ = 0;
 	 //uint32_t voiceHandle_ = 0;
@@ -71,11 +81,20 @@ private: // メンバ変数
 	 DebugCamera* debugCamera_ = nullptr;
 
 	 Player* player_ = new Player();
-	 Enemy* enemy_ = nullptr;
+
 	 Skydome* skydome_ = nullptr;
 	 RailCamera* railCamera_ = nullptr;
 	 Vector3 playerpos = {0.0f, 0.0f, 14.0f};
 	 bool isDebugCameraActive_ = false;
+
+	 std::list<EnemyBullet*> enemyBullet_;
+	 std::list<Enemy*> enemys_;
+
+	 std::stringstream enemyPopCommands;
+
+	 bool EnemyWaitFlag_ = false;
+	 int32_t WaitTimer_ = 0;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
