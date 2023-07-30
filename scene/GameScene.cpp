@@ -55,7 +55,7 @@ void GameScene::Initialize() {
 void GameScene::Update() 
 { 
 	
-	player_->Update();
+	player_->Update(viewProjection_);
 
     EnemyObjUpdate();
 
@@ -149,6 +149,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
+	player_->DrawUI();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();

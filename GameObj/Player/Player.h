@@ -5,10 +5,10 @@
 #include<Input.h>
 #include"math/Matrix/MatrixTrans.h"
 #include"GameObj/Player/Bullet/PlayerBullet.h"
+#include"math/Vector/VectorTransform.h"
 
-
-
-
+#include"WinApp.h"
+#include"Sprite.h"
 
 #include <list>
 //#incude"MatrixTrans.h"
@@ -20,10 +20,13 @@ public:
 
 	void Initialize(Vector3 pos);
 
-	void Update();
+	void Update(ViewProjection viewProjection);
+
+	void UpdateUI(ViewProjection viewProjection);
 
 	void Draw(ViewProjection ViewProjection_);
 
+	void DrawUI();
 	Vector3 GetWorldPosition();
 
 	WorldTransform GetWorldTransform() { return worldTransform_; }
@@ -52,6 +55,12 @@ private:
 	std::list<PlayerBullet*> bullets_;
 
 	int bulletCoolTimer = 0;
+
+	WorldTransform worldTransform3DReticle_;
+	Sprite* sprite2DReticle_ = nullptr;
+	Vector2 ReticlePos_ = {640, 360};
+	Vector4 color_ = {1, 1, 1, 1};
+	Vector2 anchor_ = {0.5f, 0.5f};
 };
 
 
