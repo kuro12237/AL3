@@ -52,6 +52,18 @@ void Player::Attack(Vector3& position) {
 	}
 }
 
+void Player::GetmousePointer() 
+{
+
+	GetCursorPos(&mousePosition);
+	HWND hwnd = WinApp::GetInstance()->GetHwnd();
+	ScreenToClient(hwnd, &mousePosition);
+	ReticlePos_.x = float(mousePosition.x);
+	ReticlePos_.y = float(mousePosition.y);
+
+
+}
+
 void Player::Initialize(Vector3 pos)
 {
 	worldTransform_.translation_ = pos;
@@ -112,6 +124,8 @@ void Player::Update(ViewProjection viewProjection)
 	}
 	worldTransform_.TransferMatrix();
 
+	
+
 	//MoveLimit
 	const float kmoveLimitX = 35.0f;
 	const float kmoveLimitY = 18.0f;
@@ -162,7 +176,7 @@ void Player::Update(ViewProjection viewProjection)
 		UpdateUI(viewProjection);
 
 	}
-
+	GetmousePointer();
 	for (PlayerBullet* bullet : bullets_) {
 		bullet->Update();
 	}

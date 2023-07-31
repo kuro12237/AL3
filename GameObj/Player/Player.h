@@ -42,6 +42,10 @@ private:
 
 	void Attack(Vector3 &position);
 
+	void GetmousePointer();
+
+	POINT mousePosition;
+
 	Vector3 position_;
 	uint32_t modeltexHandle;
 	Model* model_;
