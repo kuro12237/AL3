@@ -201,7 +201,7 @@ void Player::Update(ViewProjection viewProjection)
 		offset.x *=  kDistancePlayerTo3DReticle;
 		offset.y *= kDistancePlayerTo3DReticle;
 		offset.z *= kDistancePlayerTo3DReticle;
-		worldTransform3DReticle_.translation_.x = offset.x +pos.x;
+		worldTransform3DReticle_.translation_.x = offset.x + pos.x;
 		worldTransform3DReticle_.translation_.y = offset.y + pos.y;
 		worldTransform3DReticle_.translation_.z = offset.z + pos.z;
 
