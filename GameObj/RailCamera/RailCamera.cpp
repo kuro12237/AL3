@@ -23,9 +23,6 @@ void RailCamera::Update()
 
 	 worldTransform_.translation_.z += 0.05f;
 	
- // worldTransform_.matWorld_ = MakeAffineMatrix(
-//	  worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
-	
    worldTransform_.UpdateMatrix();
    viewProjection_.matView = Inverse(worldTransform_.matWorld_);
 

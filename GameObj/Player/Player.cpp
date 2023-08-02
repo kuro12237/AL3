@@ -60,8 +60,11 @@ void Player::GetmousePointer()
 	ScreenToClient(hwnd, &mousePosition);
 	ReticlePos_.x = float(mousePosition.x);
 	ReticlePos_.y = float(mousePosition.y);
-
-
+	/*
+	worldTransform3DReticle_.translation_.x = ReticlePos_.x;
+	worldTransform3DReticle_.translation_.y = ReticlePos_.y;*/
+	//worldTransform3DReticle_.
+	sprite2DReticle_->SetPosition(ReticlePos_);
 }
 
 void Player::Initialize(Vector3 pos)
@@ -153,30 +156,31 @@ void Player::Update(ViewProjection viewProjection)
 	worldTransform_.UpdateMatrix();
 	worldTransform_.TransferMatrix();
 
-	{
-		const float kDistancePlayerTo3DReticle = 50.0f;
-		Vector3 offset = {0, 0, 1.0f};
-		
-		Vector3 pos;
-		pos.x = worldTransform_.matWorld_.m[3][0];
-		pos.y = worldTransform_.matWorld_.m[3][1];
-		pos.z = worldTransform_.matWorld_.m[3][2];
+	//{
+	//	const float kDistancePlayerTo3DReticle = 50.0f;
+	//	Vector3 offset = {0, 0, 1.0f};
+	//	
+	//	Vector3 pos;
+	//	pos.x = worldTransform_.matWorld_.m[3][0];
+	//	pos.y = worldTransform_.matWorld_.m[3][1];
+	//	pos.z = worldTransform_.matWorld_.m[3][2];
 
-		offset = TransformNormal(offset, worldTransform_.constMap->matWorld);
-		offset = Normalize(offset);
+	//	offset = TransformNormal(offset, worldTransform_.constMap->matWorld);
+	//	offset = Normalize(offset);
 
-		offset.x *=  kDistancePlayerTo3DReticle;
-		offset.y *= kDistancePlayerTo3DReticle;
-		offset.z *= kDistancePlayerTo3DReticle;
-		worldTransform3DReticle_.translation_.x = offset.x +pos.x;
-		worldTransform3DReticle_.translation_.y = offset.y + pos.y;
-		worldTransform3DReticle_.translation_.z = offset.z + pos.z;
+	//	offset.x *=  kDistancePlayerTo3DReticle;
+	//	offset.y *= kDistancePlayerTo3DReticle;
+	//	offset.z *= kDistancePlayerTo3DReticle;
+	//	worldTransform3DReticle_.translation_.x = offset.x +pos.x;
+	//	worldTransform3DReticle_.translation_.y = offset.y + pos.y;
+	//	worldTransform3DReticle_.translation_.z = offset.z + pos.z;
 
-		worldTransform3DReticle_.UpdateMatrix();
-		UpdateUI(viewProjection);
+	//	worldTransform3DReticle_.UpdateMatrix();
+	//	UpdateUI(viewProjection);
 
-	}
+	//}
 	GetmousePointer();
+
 	for (PlayerBullet* bullet : bullets_) {
 		bullet->Update();
 	}
