@@ -44,6 +44,8 @@ private:
 
 	void GetmousePointer();
 
+	void GetReticlePointer();
+
 	POINT mousePosition;
 
 	Vector3 position_;
@@ -65,6 +67,9 @@ private:
 	Vector2 ReticlePos_ = {640, 360};
 	Vector4 color_ = {1, 1, 1, 1};
 	Vector2 anchor_ = {0.5f, 0.5f};
+
+	XINPUT_STATE joyState;
+	Vector2 JoyPos = {640.0f, 360.0f};
 };
 
 

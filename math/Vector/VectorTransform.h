@@ -8,3 +8,6 @@
 /// <param name="v2"></param>
 /// <returns></returns>
 Vector3 Multiply(Vector3 v1, Vector3 v2);
+
+Vector3 Substract(Vector3 v1, Vector3 v2);
+ 
