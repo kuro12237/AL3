@@ -218,8 +218,6 @@ void Player::Update(ViewProjection viewProjection)
 		bullet->Update();
 	}
 	
-	
-
 	ImGui::Begin("Player");
 
 	ImGui::Text("bullet::Space");
