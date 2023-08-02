@@ -266,14 +266,14 @@ void Player::UpdateUI(ViewProjection viewProjection)
 
 	ImGui::Begin("Player");
 	ImGui::Text(
-	    "2DReticle(%f,%f)",
+	    "2DReticle:(%f,%f)",
 		sprite2DReticle_->GetPosition().x,
 		sprite2DReticle_->GetPosition().y);
-	ImGui::Text(
-	    "3DreticleObj %f,%f,%f", worldTransform3DReticle_.translation_.x,
-	    worldTransform3DReticle_.translation_.y, worldTransform3DReticle_.translation_.z
 
-	);
+	ImGui::Text("Near:(%+2f,%+2f,%+2)",posNear.x,posNear,posNear.z);
+	ImGui::Text("Far :(%+2f,%+2f,%+2)",posFar.x,posFar.y,posFar.z);
+	ImGui::Text("3DreticleObjTranslate:( %f,%f,%f)", worldTransform3DReticle_.translation_.x,
+	    worldTransform3DReticle_.translation_.y, worldTransform3DReticle_.translation_.z);
 	ImGui::End();
 
 
