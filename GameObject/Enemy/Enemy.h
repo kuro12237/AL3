@@ -10,7 +10,6 @@ public:
 	Enemy();
 	~Enemy();
 
-	
 	void Initialize(Model* model, uint32_t textureHandle);
 
 	void Update();
