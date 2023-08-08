@@ -2,8 +2,8 @@
 #include <Model.h>
 #include <ViewProjection.h>
 #include <WorldTransform.h>
-#include"State/IEnemy.h"
-#include"State/EnemyApproach.h"
+#include"IEnemy.h"
+#include"EnemyApproach.h"
 
 class Enemy {
 public:
