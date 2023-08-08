@@ -5,8 +5,9 @@
 #include"Enemy.h"
 #include"EnemyApproach.h"
 #include"EnemyLeave.h"
-#include"IEnemy.h"
-class EnemyStateApproach : public IEnemy {
+#include"IEnemyState.h"
+class EnemyStateApproach : public IEnemyState {
+
 public:
 	void Update(Enemy* enemy) override;
 

@@ -58,7 +58,7 @@ void Enemy::Draw(const ViewProjection& viewProjection) {
 
 Enemy::~Enemy() { }
 
-void Enemy::ChangeState(IEnemy* newState) {
+void Enemy::ChangeState(IEnemyState* newState) {
 	
 	this->state_ = newState;
 }

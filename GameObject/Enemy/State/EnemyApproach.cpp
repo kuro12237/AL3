@@ -1,6 +1,5 @@
 ﻿#include"EnemyApproach.h"
 
-
 void EnemyStateApproach::Update(Enemy* enemy) {
 
 	enemy->SetVelocity({0.0f, 0.0f, -0.2f});

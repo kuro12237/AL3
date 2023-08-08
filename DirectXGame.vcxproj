@@ -121,7 +121,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="base\WinApp.cpp" />
     <ClCompile Include="GameObject\Enemy\Enemy.cpp" />
     <ClCompile Include="GameObject\Enemy\State\EnemyApproach.cpp" />
-    <ClCompile Include="GameObject\Enemy\State\IEnemy.cpp" />
+    <ClCompile Include="GameObject\Enemy\State\IEnemyState.cpp" />
     <ClCompile Include="GameObject\Enemy\State\EnemyLeave.cpp" />
     <ClCompile Include="GameObject\Player\Bullet\PlayerBullet.cpp" />
     <ClCompile Include="GameObject\Player\Player.cpp" />
@@ -155,7 +155,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="base\WinApp.h" />
     <ClInclude Include="GameObject\Enemy\Enemy.h" />
     <ClInclude Include="GameObject\Enemy\State\EnemyApproach.h" />
-    <ClInclude Include="GameObject\Enemy\State\IEnemy.h" />
+    <ClInclude Include="GameObject\Enemy\State\IEnemyState.h" />
     <ClInclude Include="GameObject\Enemy\State\EnemyLeave.h" />
     <ClInclude Include="GameObject\Player\Bullet\PlayerBullet.h" />
     <ClInclude Include="GameObject\Player\Player.h" />

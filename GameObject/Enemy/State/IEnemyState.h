@@ -1,11 +1,9 @@
 #pragma once
 
-
 class Enemy;
 
-class IEnemy {
+class IEnemyState {
 public:
-	//IEnemy();
 
 	virtual void Update(Enemy* enemy) = 0;
 
