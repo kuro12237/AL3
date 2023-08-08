@@ -1,8 +1,8 @@
 #pragma once
-#include"EnemyBase.h"
+#include"IEnemy.h"
 #include"Enemy.h"
 
-class EnemyStateLeave : public BaseEnemyState {
+class EnemyStateLeave : public IEnemy {
 public:
 	void Update(Enemy* enemy) override;
 };

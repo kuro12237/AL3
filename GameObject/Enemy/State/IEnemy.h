@@ -3,9 +3,9 @@
 
 class Enemy;
 
-class BaseEnemyState {
+class IEnemy {
 public:
-	BaseEnemyState();
+	//IEnemy();
 
 	virtual void Update(Enemy* enemy) = 0;
 

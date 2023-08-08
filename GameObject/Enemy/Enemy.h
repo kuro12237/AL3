@@ -2,8 +2,8 @@
 #include <Model.h>
 #include <ViewProjection.h>
 #include <WorldTransform.h>
-#include"EnemyBase.h"
-#include"EnemyApproach.h"
+#include"State/IEnemy.h"
+#include"State/EnemyApproach.h"
 
 class Enemy {
 public:
@@ -25,7 +25,7 @@ public:
 	void SetVelocity(Vector3 enemyVelocity);
 
 	
-	void ChangeState(BaseEnemyState* newState);
+	void ChangeState(IEnemy* newState);
 
 private:
 
@@ -52,5 +52,5 @@ private:
 	static void (Enemy::*spFuncTable[])();
 
 	// StatePattern
-	BaseEnemyState* state_ = nullptr;
+	IEnemy* state_ = nullptr;
 };
