@@ -5,10 +5,7 @@
 #include<Input.h>
 #include"PlayerBullet.h"
 #include"MatrixTrans.h"
-
-
 #include <list>
-
 
 class Player {
 public:
