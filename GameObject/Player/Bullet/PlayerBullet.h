@@ -1,8 +1,8 @@
 #pragma once
-#include "Model.h"
+#include"Model.h"
 #include"Vector3.h"
-#include "WorldTransform.h"
-#include "Matrix/MatrixTrans.h"
+#include"WorldTransform.h"
+#include"MatrixTrans.h"
 class PlayerBullet {
 public:
 	PlayerBullet();

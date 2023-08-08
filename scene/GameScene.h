@@ -10,8 +10,8 @@
 #include "WorldTransform.h"
 #include"DebugCamera.h"
 
-#include "GameObject/Player/Player.h"
-#include "GameObject/Enemy/Enemy.h"
+#include "Player.h"
+#include "Enemy.h"
 
 /// <summary>
 /// ゲームシーン
