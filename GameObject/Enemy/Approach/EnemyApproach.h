@@ -1,9 +1,10 @@
 #pragma once
-#include"Enemy/Base/EnemyBase.h"
+
 #include"Vector3.h"
 #include"Matrix/MatrixTrans.h"
-#include"Enemy/Enemy.h"
-#include"Enemy/Leave/EnemyLeave.h"
+#include"GameObject/Enemy/Enemy.h"
+#include"GameObject/Enemy/Approach/EnemyApproach.h"
+#include"GameObject/Enemy/Leave/EnemyLeave.h"
 class EnemyStateApproach : public BaseEnemyState {
 public:
 	void Update(Enemy* enemy) override;

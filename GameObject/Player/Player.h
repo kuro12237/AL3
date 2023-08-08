@@ -3,11 +3,11 @@
 #include<WorldTransform.h>
 #include<Vector3.h>
 #include<Input.h>
-#include"Player/PlayerBullet.h"
-#include "Matrix/MatrixTrans.h" 
+#include"Bullet/PlayerBullet.h"
+#include "Matrix/MatrixTrans.h"
+
 
 #include <list>
-//#incude"MatrixTrans.h"
 
 
 class Player {
