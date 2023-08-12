@@ -20,7 +20,7 @@ void Enemy::Initialize() {
 	PhaseInitialize();
 
 	worldTransform_.Initialize();
-	worldTransform_.translation_ = {-10.0f, 5.0f, 30.0f};
+	worldTransform_.translation_ = {-10.0f, 5.0f, 60.0f};
 	model_ = Model::Create();
 	modeltexHandle = TextureManager::Load("Dirt.png");
 }
@@ -70,7 +70,7 @@ void Enemy::Update() {
 		bullet->Update();
 	} 
 
-	worldTransform_.translation_ = Add(worldTransform_.translation_, move);
+	//worldTransform_.translation_ = Add(worldTransform_.translation_, move);
 
 	worldTransform_.matWorld_ = MakeAffineMatrix(
 	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
