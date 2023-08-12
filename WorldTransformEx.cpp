@@ -1,5 +1,5 @@
 #include "WorldTransform.h"
-#include"scene/Matrix/MatrixTrans.h"
+#include"Matrix/MatrixTrans.h"
 
 void WorldTransform::UpdateMatrix() {
 	matWorld_ = MakeAffineMatrix(

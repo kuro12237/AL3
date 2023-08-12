@@ -2,8 +2,8 @@
 #include "Model.h"
 #include"Vector3.h"
 #include "WorldTransform.h"
-#include "scene/Player/PlayerBullet.h"
-#include"scene/Matrix/MatrixTrans.h"
+#include "GameObject/Player/PlayerBullet.h"
+#include"Matrix/MatrixTrans.h"
 
 class PlayerBullet {
 public:

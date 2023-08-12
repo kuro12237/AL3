@@ -2,12 +2,10 @@
 
 #include <Model.h>
 #include <WorldTransform.h>
-#include"scene/Enemy/Bullet/EnemyBullet.h"
-#include"scene/Player/Player.h"
-
+#include"GameObject/Enemy/Bullet/EnemyBullet.h"
+#include"GameObject/Player/Player.h"
+#include"Matrix/MatrixTrans.h"
 class Player;
-
-
 class Enemy {
 public:
 	enum class Phase {
