@@ -2,7 +2,8 @@
 
 #include <Model.h>
 #include <WorldTransform.h>
-#include"scene/Enemy/Bullet/EnemyBullet.h"
+#include"GameObject/Enemy/Bullet/EnemyBullet.h"
+#include"GameObject/TimedCall/TimedCall.h"
 
 class Enemy {
 public:
@@ -25,6 +26,7 @@ public:
 
 private:
 	
+	void FireReset();
 
 	void Fire();
 
@@ -37,8 +39,11 @@ private:
 
 	std::list<EnemyBullet*> bullets_;
 
+	std::list<TimedCall*> timedCall_;
+
 	static const int kFireInterval = 60;
 
 	int32_t FireTimer = 0;
+
 
 };

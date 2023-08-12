@@ -2,7 +2,7 @@
 #include "Model.h"
 #include"Vector3.h"
 #include "WorldTransform.h"
-#include "scene/Player/PlayerBullet.h"
+#include "GameObject/Player/PlayerBullet.h"
 #include"math/Matrix/MatrixTrans.h"
 
 class PlayerBullet {

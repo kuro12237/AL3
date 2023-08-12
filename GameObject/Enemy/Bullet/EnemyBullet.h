@@ -27,5 +27,8 @@ private:
 
 
 	bool isDead_ = false;
+
+
+
 };
 
