@@ -3,7 +3,7 @@
 #include <Model.h>
 #include <WorldTransform.h>
 #include"GameObject/Enemy/Bullet/EnemyBullet.h"
-#include"GameObject/TimedCall/TimedCall.h"
+#include"Utility/TimedCall/TimedCall.h"
 
 class Enemy {
 public:
