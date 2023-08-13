@@ -25,6 +25,7 @@ public:
 
 	Vector3 GetWorldPosition();
 
+	WorldTransform GetWorldTransform() { return worldTransform_; }
 
 private:
 

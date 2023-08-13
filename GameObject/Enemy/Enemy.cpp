@@ -68,6 +68,7 @@ void Enemy::Update() {
 
 		for (EnemyBullet* bullet : bullets_) {
 		bullet->Update();
+	
 	} 
 
 	//worldTransform_.translation_ = Add(worldTransform_.translation_, move);
@@ -141,6 +142,7 @@ void Enemy::Fire()
 	// intealize
 	EnemyBullet* newBullet = new EnemyBullet();
 	newBullet->Initialize(model_, worldTransform_.translation_, velocity);
+	newBullet->SetPlayer(player_);
 
 	bullets_.push_back(newBullet);
 }

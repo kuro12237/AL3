@@ -81,6 +81,7 @@ void GameScene::Update()
 	if (enemy_ != nullptr) {
 
 		enemy_->Update();
+		
 	}
 	
 }
