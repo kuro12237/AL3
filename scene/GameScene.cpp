@@ -166,8 +166,6 @@ void GameScene::CheckAllCollosions()
     const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
 	const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
 
-
-
 #pragma region  自キャラと敵弾の当たり判定
 
    for(EnemyBullet *bullet: enemyBullets)  
@@ -178,8 +176,7 @@ void GameScene::CheckAllCollosions()
 
    #pragma region 自弾と敵との当たり判定
 
-	
-   
+
    for (PlayerBullet* bullet : playerBullets)
    {
 		CheckCollisionPair(bullet, enemy_);
@@ -194,8 +191,7 @@ void GameScene::CheckAllCollosions()
 	   {
 	
 		   CheckCollisionPair(Pbullet, Ebullet);
-
-	   }
+       }
    }
 
 
