@@ -116,7 +116,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\Matrix\MatrixTrans.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
-    <ClCompile Include="Utility\Collider\Collider.cpp" />
+    <ClCompile Include="Utility\CollisionManager\Collider\Collider.cpp" />
+    <ClCompile Include="Utility\CollisionManager\CollisionManager.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,8 +154,9 @@
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
     <ClInclude Include="scene\GameScene.h" />
-    <ClInclude Include="Utility\Collider\Collider.h" />
-    <ClInclude Include="Utility\Collider\Collisionconfig.h" />
+    <ClInclude Include="Utility\CollisionManager\Collider\Collider.h" />
+    <ClInclude Include="Utility\CollisionManager\Collider\Collisionconfig.h" />
+    <ClInclude Include="Utility\CollisionManager\CollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">

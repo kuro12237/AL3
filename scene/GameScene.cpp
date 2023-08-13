@@ -14,6 +14,7 @@ GameScene::~GameScene()
 { 
     player_->~Player();
 	enemy_->~Enemy();
+	delete collisionManager;
 }
 void GameScene::Initialize() 
 {
@@ -32,6 +33,7 @@ void GameScene::Initialize()
 	enemy_->Initialize();
 
 	enemy_->SetPlayer(player_);
+	collisionManager = new CollisionManager;
 
 
 	// ビュープロジェクション
@@ -142,87 +144,23 @@ void GameScene::Draw() {
 
 #pragma endregion
 }
-void GameScene::CheckCollisionPair(Collider* cA, Collider* cB)
-{
-	Vector3 cApos = cA->GetWorldPosition();
-	Vector3 cBpos = cB->GetWorldPosition();
+void GameScene::CheckAllCollosions() {
 
-	float cAradious = cA->GetRadious();
-	float cBradious = cB->GetRadious();
-	if ((cA->GetCollosionAttribute()&cB->GetCollisionMask())==0||
-	    (cB->GetCollosionAttribute() & cA->GetCollisionMask()) == 0)
-	{
-		return;
-	}
-
-	bool isHit=CheckBallCollosion(cApos, cAradious, cBpos, cBradious);
-
-	if (isHit) 
-	{
-		cA->OnCollision();
-		cB->OnCollision();
-	}
-}
-
-void GameScene::CheckAllCollosions() 
-{
-
-    const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
+	const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
 	const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
 
-	std::list<Collider*> colliders_;
+	collisionManager->ClliderClear();
 
-	colliders_.push_back(player_);
-	colliders_.push_back(enemy_);
-    
-
-
-	for (PlayerBullet* bullet : playerBullets)
-	{
-		colliders_.push_back(bullet);
-	}
-	for (EnemyBullet* bullet : enemyBullets)
-	{
-		colliders_.push_back(bullet);
-	}
-
-	std::list<Collider*>::iterator itrA = colliders_.begin();
-
-	for (; itrA != colliders_.end(); ++itrA) {
+	collisionManager->ClliderPush(player_);
+	collisionManager->ClliderPush(enemy_);
 	
-		Collider* colliderA = *itrA;
-		
-		std::list<Collider*>::iterator itrB = itrA;
-		itrB++;
-
-		for (; itrB != colliders_.end(); ++itrB)
-		{
-			Collider* colliderB = *itrB;
-
-			CheckCollisionPair(colliderA, colliderB);
-		}
+	for (PlayerBullet* bullet : playerBullets) {
+		collisionManager->ClliderPush(bullet);
+	}
+	for (EnemyBullet* bullet : enemyBullets) {
+		collisionManager->ClliderPush(bullet);
 	}
 
-}
+	collisionManager->CheckAllCollision();
 
-bool GameScene::CheckBallCollosion(Vector3 v1, float v1Radious, Vector3 v2, float v2Radious) 
-{
-	float x = (v2.x - v1.x);
-	float y = (v2.y - v1.y);
-	float z = (v2.z - v1.z);
-
-	float resultPos = (x* x) + (y* y) + (z* z);
-	
-	 float resultRadious = v1Radious + v2Radious;
-
-	bool Flag = false;
-
-
-
-	if (resultPos<=(resultRadious*resultRadious))
-	{
-		Flag = true;
-	}
-
-	return Flag;
 }

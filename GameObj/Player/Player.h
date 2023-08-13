@@ -6,8 +6,8 @@
 #include"math/Matrix/MatrixTrans.h"
 #include"GameObj/Player/Bullet/PlayerBullet.h"
 
-#include"Utility/Collider/Collider.h"
-#include"Utility/Collider/Collisionconfig.h"
+#include"Utility/CollisionManager/Collider/Collider.h"
+#include"Utility/CollisionManager/Collider/Collisionconfig.h"
 
 
 #include <list>

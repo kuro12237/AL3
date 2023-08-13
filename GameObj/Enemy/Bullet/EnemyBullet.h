@@ -1,8 +1,8 @@
 #pragma once
 #include"math/Matrix/MatrixTrans.h"
 #include"Model.h"
-#include"Utility/Collider/Collider.h"
-#include"Utility/Collider/Collisionconfig.h"
+#include"Utility/CollisionManager/Collider/Collider.h"
+#include"Utility/CollisionManager/Collider/Collisionconfig.h"
 
 class EnemyBullet : public Collider
 {

@@ -4,8 +4,8 @@
 #include <WorldTransform.h>
 #include"GameObj/Enemy/Bullet/EnemyBullet.h"
 #include"GameObj/Player/Player.h"
-#include"Utility/Collider/Collider.h"
-#include"Utility/Collider/Collisionconfig.h"
+#include"Utility/CollisionManager/Collider/Collider.h"
+#include"Utility/CollisionManager/Collider/Collisionconfig.h"
 
 class Player;
 

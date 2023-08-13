@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include"Vector3.h"
 
 class Collider {
 public:
@@ -9,7 +9,7 @@ public:
 
 	void SetRadious(float radious) { radious_ = radious; }
 
-	virtual Vector3 GetWorldPosition() = 0;
+	virtual Vector3 GetWorldPosition()=0;
 
 	virtual void OnCollision()=0;
 

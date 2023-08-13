@@ -12,8 +12,8 @@
 
 #include"GameObj/Enemy/Enemy.h"
 #include "GameObj/Player/Player.h"
-#include"Utility/Collider/Collider.h"
-
+#include"Utility/CollisionManager/Collider/Collider.h"
+#include"Utility/CollisionManager/CollisionManager.h"
 #include<cmath>
 /// <summary>
 /// ゲームシーン
@@ -52,9 +52,7 @@ public: // メンバ関数
 
 private: // メンバ変数
 
-    void CheckCollisionPair(Collider* cA, Collider* cB);
-	
-	bool CheckBallCollosion(Vector3 v1, float v1Radious, Vector3 v2, float v2Radious);
+ 
 	void CheckAllCollosions();
 
 	DirectXCommon* dxCommon_ = nullptr;
@@ -73,6 +71,7 @@ private: // メンバ変数
 
 	 Player* player_ = new Player();
 	 Enemy* enemy_ = nullptr;
+	 CollisionManager *collisionManager = nullptr;
 
 
 	 bool isDebugCameraActive_ = false;
