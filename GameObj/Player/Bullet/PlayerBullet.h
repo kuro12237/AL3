@@ -4,8 +4,9 @@
 #include "WorldTransform.h"
 #include "GameObj/Player/Bullet/PlayerBullet.h"
 #include"math/Matrix/MatrixTrans.h"
+#include"Utility/Collider/Collider.h"
 
-class PlayerBullet {
+class PlayerBullet :public Collider{
 public:
 	PlayerBullet();
 	~PlayerBullet();
@@ -31,7 +32,11 @@ public:
 	// BulletLimitTime
 	static const int32_t kLifeTime = 60 * 5;
 
-	void OnCollision();
+	Vector3 GetWorldPosition() override;
+
+	void OnCollision() override;
+
+
 
     /// Getter
 	bool IsDead() const { return isDead_; }

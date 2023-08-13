@@ -1,9 +1,10 @@
 #pragma once
 #include"math/Matrix/MatrixTrans.h"
 #include"Model.h"
+#include"Utility/Collider/Collider.h"
 
-
-class EnemyBullet {
+class EnemyBullet : public Collider
+{
 public:
 	EnemyBullet();
 	~EnemyBullet();
@@ -14,7 +15,9 @@ public:
 
 	void Draw(const ViewProjection& viewProjection);
 
-	void OnCollision();
+	void OnCollision()override;
+
+	Vector3 GetWorldPosition() override;
 
 	WorldTransform GetWorldTransform() { return worldTransform_; }
 

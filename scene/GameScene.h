@@ -12,6 +12,7 @@
 
 #include"GameObj/Enemy/Enemy.h"
 #include "GameObj/Player/Player.h"
+#include"Utility/Collider/Collider.h"
 
 #include<cmath>
 /// <summary>
@@ -48,11 +49,14 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
-	void CheckAllCollosions();
-
-	bool CheckBallCollosion(Vector3 v1, float v1Radious, Vector3 v2, float v2Radious);
 
 private: // メンバ変数
+
+    void CheckCollisionPair(Collider* cA, Collider* cB);
+	
+	bool CheckBallCollosion(Vector3 v1, float v1Radious, Vector3 v2, float v2Radious);
+	void CheckAllCollosions();
+
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	
@@ -61,8 +65,6 @@ private: // メンバ変数
 	ViewProjection viewProjection_;
 
 
-
-	
 	 //uint32_t soundDataHandle_ = 0;
 	 //uint32_t voiceHandle_ = 0;
 	float inputFloat3[3] = {0, 0, 0};

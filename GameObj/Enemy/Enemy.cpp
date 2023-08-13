@@ -31,7 +31,7 @@ void Enemy::Update() {
 	
 	
 
-	const float kCharacterSpeed = 0.2f;
+	//const float kCharacterSpeed = 0.2f;
 
 	bullets_.remove_if([](EnemyBullet* bullet) {
 		if (bullet->IsDead()) {
@@ -48,7 +48,7 @@ void Enemy::Update() {
 
 		case Phase::Approach:
 			
-	        worldTransform_.translation_.z += -kCharacterSpeed;
+	        //worldTransform_.translation_.z += -kCharacterSpeed;
 		   
 			if (worldTransform_.translation_.z<0.0f) {
 			    phase_ = Phase::Leave;
@@ -64,8 +64,8 @@ void Enemy::Update() {
 			break;
 
 		case Phase::Leave:
-		    worldTransform_.translation_.x -= kCharacterSpeed;
-		    worldTransform_.translation_.z -= kCharacterSpeed;
+		    //worldTransform_.translation_.x -= kCharacterSpeed;
+		    //worldTransform_.translation_.z -= kCharacterSpeed;
 		   
 			
 			break;

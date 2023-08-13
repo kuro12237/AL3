@@ -142,53 +142,47 @@ void GameScene::Draw() {
 
 #pragma endregion
 }
+void GameScene::CheckCollisionPair(Collider* cA, Collider* cB)
+{
+	Vector3 cApos = cA->GetWorldPosition();
+	Vector3 cBpos = cB->GetWorldPosition();
+
+	float cAradious = cA->GetRadious();
+	float cBradious = cB->GetRadious();
+
+
+	bool isHit=CheckBallCollosion(cApos, cAradious, cBpos, cBradious);
+
+	if (isHit) 
+	{
+		cA->OnCollision();
+		cB->OnCollision();
+	}
+}
 
 void GameScene::CheckAllCollosions() 
 {
-	Vector3 posE, posEb;
-	Vector3 posP, posPb;
 
     const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
 	const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
 
-	const int ObjHitRadious = 3;
 
 
 #pragma region  自キャラと敵弾の当たり判定
 
-   posP = player_->GetWorldPosition();
-
    for(EnemyBullet *bullet: enemyBullets)  
    {
-		posEb = bullet->GetWorldTransform().translation_;
-
-		if (CheckBallCollosion(posP, ObjHitRadious, posEb, ObjHitRadious))
-		{
-			player_->OnCollision();
-
-			bullet->OnCollision();
-
-		}
+		CheckCollisionPair(player_, bullet);	
    }
 #pragma endregion
 
    #pragma region 自弾と敵との当たり判定
 
-  
-
-	 posE = enemy_->GetWorldPosition();
-	  
+	
    
    for (PlayerBullet* bullet : playerBullets)
    {
-		posPb = bullet->GetWorldTransform().translation_;
-
-		if (CheckBallCollosion(posE, ObjHitRadious, posPb, ObjHitRadious))
-		{
-			bullet->OnCollision();
-			enemy_->OnCollision();
-
-	    }
+		CheckCollisionPair(bullet, enemy_);
    }
    #pragma endregion
 
@@ -198,17 +192,10 @@ void GameScene::CheckAllCollosions()
    {
 	   for (EnemyBullet* Ebullet : enemyBullets)
 	   {
-			posPb = Pbullet->GetWorldTransform().translation_;
-			posEb = Ebullet->GetWorldTransform().translation_;
+	
+		   CheckCollisionPair(Pbullet, Ebullet);
 
-			if (CheckBallCollosion(posPb,ObjHitRadious,posEb,ObjHitRadious)) 
-			{
-       			Pbullet->OnCollision();
-				Ebullet->OnCollision();        
-			}
-		}
-
-
+	   }
    }
 
 

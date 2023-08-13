@@ -6,14 +6,14 @@
 #include"math/Matrix/MatrixTrans.h"
 #include"GameObj/Player/Bullet/PlayerBullet.h"
 
-
+#include"Utility/Collider/Collider.h"
 
 
 
 #include <list>
 //#incude"MatrixTrans.h"
 
-class Player {
+class Player:public Collider {
 public:
 	Player();
 	~Player();
@@ -24,9 +24,9 @@ public:
 
 	void Draw(ViewProjection ViewProjection_);
 
-	Vector3 GetWorldPosition();
+	Vector3 GetWorldPosition()override;
 
-	void OnCollision();
+	void OnCollision()override;
 
 	const std::list<PlayerBullet*>& GetBullets() const { return bullets_; }
 
