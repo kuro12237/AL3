@@ -1,4 +1,4 @@
-#include"CollisionManager.h"
+﻿#include"CollisionManager.h"
 
 
 void CollisionManager::CheckAllCollision()
@@ -13,7 +13,7 @@ void CollisionManager::CheckAllCollision()
 		itrB++;
 		for (; itrB != colliders_.end(); ++itrB) {
 			Collider* colliderB = *itrB;
-
+			//当たり判定処理
 			CheckCollisionPair(colliderA, colliderB);
 		}
 	}
@@ -21,12 +21,12 @@ void CollisionManager::CheckAllCollision()
 
 void CollisionManager::CheckCollisionPair(Collider* cA, Collider* cB) {
 	
-	
+	//フィルタリング
 	if ((cA->GetCollosionAttribute() & cB->GetCollisionMask()) == 0 ||
-	    (cB->GetCollosionAttribute() & cA->GetCollisionMask()) == 0) {
+	    (cA->GetCollisionMask()&cB->GetCollosionAttribute()) == 0) {
 		return;
 	}
-
+	//当たり判定の計算開始
 	Vector3 cApos = cA->GetWorldPosition();
 	Vector3 cBpos = cB->GetWorldPosition();
 

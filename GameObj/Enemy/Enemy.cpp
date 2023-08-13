@@ -33,9 +33,6 @@ void Enemy::Initialize() {
 void Enemy::Update() {
 
 	
-	
-	
-
 	//const float kCharacterSpeed = 0.2f;
 
 	bullets_.remove_if([](EnemyBullet* bullet) {

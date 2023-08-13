@@ -146,10 +146,11 @@ void GameScene::Draw() {
 }
 void GameScene::CheckAllCollosions() {
 
-	const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
-	const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
 
 	collisionManager->ClliderClear();
+    //
+	const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
+	const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
 
 	collisionManager->ClliderPush(player_);
 	collisionManager->ClliderPush(enemy_);
@@ -160,7 +161,7 @@ void GameScene::CheckAllCollosions() {
 	for (EnemyBullet* bullet : enemyBullets) {
 		collisionManager->ClliderPush(bullet);
 	}
-
+	//
 	collisionManager->CheckAllCollision();
 
 }

@@ -71,7 +71,7 @@ private: // メンバ変数
 
 	 Player* player_ = new Player();
 	 Enemy* enemy_ = nullptr;
-	 CollisionManager *collisionManager = nullptr;
+	 CollisionManager* collisionManager = nullptr;
 
 
 	 bool isDebugCameraActive_ = false;
