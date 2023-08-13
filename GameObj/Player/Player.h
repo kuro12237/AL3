@@ -7,7 +7,7 @@
 #include"GameObj/Player/Bullet/PlayerBullet.h"
 
 #include"Utility/Collider/Collider.h"
-
+#include"Utility/Collider/Collisionconfig.h"
 
 
 #include <list>
@@ -47,6 +47,8 @@ private:
 	std::list<PlayerBullet*> bullets_;
 
 	int bulletCoolTimer = 0;
+
+
 };
 
 

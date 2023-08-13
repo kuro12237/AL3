@@ -149,7 +149,11 @@ void GameScene::CheckCollisionPair(Collider* cA, Collider* cB)
 
 	float cAradious = cA->GetRadious();
 	float cBradious = cB->GetRadious();
-
+	if ((cA->GetCollosionAttribute()&cB->GetCollisionMask())==0||
+	    (cB->GetCollosionAttribute() & cA->GetCollisionMask()) == 0)
+	{
+		return;
+	}
 
 	bool isHit=CheckBallCollosion(cApos, cAradious, cBpos, cBradious);
 
@@ -166,36 +170,38 @@ void GameScene::CheckAllCollosions()
     const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
 	const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
 
-#pragma region  自キャラと敵弾の当たり判定
+	std::list<Collider*> colliders_;
 
-   for(EnemyBullet *bullet: enemyBullets)  
-   {
-		CheckCollisionPair(player_, bullet);	
-   }
-#pragma endregion
-
-   #pragma region 自弾と敵との当たり判定
+	colliders_.push_back(player_);
+	colliders_.push_back(enemy_);
+    
 
 
-   for (PlayerBullet* bullet : playerBullets)
-   {
-		CheckCollisionPair(bullet, enemy_);
-   }
-   #pragma endregion
+	for (PlayerBullet* bullet : playerBullets)
+	{
+		colliders_.push_back(bullet);
+	}
+	for (EnemyBullet* bullet : enemyBullets)
+	{
+		colliders_.push_back(bullet);
+	}
 
-   #pragma region 自弾と敵弾の当たり判定
-   
-   for (PlayerBullet* Pbullet : playerBullets)
-   {
-	   for (EnemyBullet* Ebullet : enemyBullets)
-	   {
+	std::list<Collider*>::iterator itrA = colliders_.begin();
+
+	for (; itrA != colliders_.end(); ++itrA) {
 	
-		   CheckCollisionPair(Pbullet, Ebullet);
-       }
-   }
+		Collider* colliderA = *itrA;
+		
+		std::list<Collider*>::iterator itrB = itrA;
+		itrB++;
 
+		for (; itrB != colliders_.end(); ++itrB)
+		{
+			Collider* colliderB = *itrB;
 
-#pragma endregion
+			CheckCollisionPair(colliderA, colliderB);
+		}
+	}
 
 }
 

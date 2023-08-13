@@ -18,6 +18,11 @@ void PlayerBullet::Initialize(Model* model, Vector3& position,const Vector3& vel
 	worldTransform_.translation_ = position;
 	velocity_ = velocity;
 
+	
+    SetCollosionAttribute(kCollisionAttributePlayer);
+	SetCollisionMask(~kCollisionAttributePlayer);
+
+
 }
 
 

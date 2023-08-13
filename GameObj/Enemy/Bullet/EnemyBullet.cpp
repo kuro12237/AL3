@@ -6,9 +6,6 @@ EnemyBullet::~EnemyBullet() {}
 
 void EnemyBullet::Initialize(Model* model, Vector3& position, const Vector3& velocity) {
 	
-
-
-
 	model_ = model;
 	modeltexHandle = TextureManager::Load("Stone.png");
 
@@ -20,6 +17,9 @@ void EnemyBullet::Initialize(Model* model, Vector3& position, const Vector3& vel
  
 	Velocity_ =velocity;
 	BulletDrawFlag = true;
+
+	SetCollosionAttribute(kCollisionAttributeEnemy);
+	SetCollisionMask(kCollisionAttributePlayer);
 
 }
 

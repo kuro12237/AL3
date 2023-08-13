@@ -2,6 +2,7 @@
 #include"math/Matrix/MatrixTrans.h"
 #include"Model.h"
 #include"Utility/Collider/Collider.h"
+#include"Utility/Collider/Collisionconfig.h"
 
 class EnemyBullet : public Collider
 {
@@ -38,5 +39,6 @@ private:
 	bool BulletDrawFlag = false;
 	//int32_t deathTimer_ = kLifeTime;
 	bool isDead_ = false;
+
 };
 

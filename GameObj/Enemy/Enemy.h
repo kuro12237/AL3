@@ -5,6 +5,7 @@
 #include"GameObj/Enemy/Bullet/EnemyBullet.h"
 #include"GameObj/Player/Player.h"
 #include"Utility/Collider/Collider.h"
+#include"Utility/Collider/Collisionconfig.h"
 
 class Player;
 
@@ -60,4 +61,5 @@ private:
 	int32_t FireTimer = 0;
 
 	Player* player_ = nullptr;
+
 };

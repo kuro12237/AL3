@@ -154,6 +154,7 @@
     <ClInclude Include="math\Vector4.h" />
     <ClInclude Include="scene\GameScene.h" />
     <ClInclude Include="Utility\Collider\Collider.h" />
+    <ClInclude Include="Utility\Collider\Collisionconfig.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">

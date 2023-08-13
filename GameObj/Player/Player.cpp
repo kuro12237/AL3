@@ -49,13 +49,15 @@ void Player::Initialize()
 	model_ = Model::Create();
 	modeltexHandle = TextureManager::Load("Dirt.png");
 	input_ = Input::GetInstance();
+	
+	SetCollosionAttribute(kCollisionAttributePlayer);
+	SetCollisionMask(kCollisionAttributeEnemy);
 
 }
 
 void Player::Update()
 {
 
-		// BulletKill
 	bullets_.remove_if([](PlayerBullet* bullet) {
 		if (bullet->IsDead()) {
 			delete bullet;

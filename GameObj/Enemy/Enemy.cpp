@@ -23,6 +23,11 @@ void Enemy::Initialize() {
 	worldTransform_.translation_ = {-10.0f, 5.0f, 30.0f};
 	model_ = Model::Create();
 	modeltexHandle = TextureManager::Load("Dirt.png");
+	
+	SetCollosionAttribute(kCollisionAttributeEnemy);
+	SetCollisionMask(kCollisionAttributePlayer);
+
+
 }
 
 void Enemy::Update() {
