@@ -7,7 +7,10 @@
 #include"Input.h"
 #include"MatrixTransform.h"
 
-class Player {
+#include<Xinput.h>
+
+class Player
+{
 public:
 
 	Player();
@@ -26,6 +29,9 @@ private:
 	WorldTransform worldTransform_ = {};
 	Model* model_ = nullptr;
 	Input* input_ = nullptr;
+
+	int HP = {};
+
 
 
 };
