@@ -9,7 +9,7 @@ void Player::Initialize()
 	
     worldTransform_.Initialize();	
 
-	model->Create();
+	model_ = Model::Create();
 
 
 }
@@ -24,7 +24,7 @@ void Player::Draw(ViewProjection view)
 {
 
 
-    model->Draw(worldTransform_,view);
+    model_->Draw(worldTransform_,view);
 
 
 }
