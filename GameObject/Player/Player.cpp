@@ -8,6 +8,7 @@ void Player::Initialize()
 {
 	
     worldTransform_.Initialize();	
+
 	model->Create();
 
 
