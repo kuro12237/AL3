@@ -11,11 +11,12 @@ void Player::Initialize()
 
 	model_ = Model::Create();
 
-
+	input_ = Input::GetInstance();
 }
 
 void Player::Update() 
 {
+
 
 
 }
