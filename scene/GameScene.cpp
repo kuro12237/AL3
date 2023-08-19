@@ -25,7 +25,8 @@ void GameScene::Initialize()
 	audio_ = Audio::GetInstance();
 	
 
-	
+	player->Initialize();
+
 
 #ifdef _DEBUG
 
@@ -75,7 +76,7 @@ void GameScene::Draw() {
 	// 3Dオブジェクト描画前処理
 	Model::PreDraw(commandList);
 
-
+	player->Draw(viewProjection_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

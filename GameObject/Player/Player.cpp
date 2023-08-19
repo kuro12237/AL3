@@ -23,7 +23,7 @@ void Player::Draw(ViewProjection view)
 {
 
 
-    model->Draw(view);
+    model->Draw(worldTransform_,view);
 
 
 }
