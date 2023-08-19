@@ -19,6 +19,7 @@ void Player::Update()
 
 
 
+
 }
 
 void Player::Draw(ViewProjection view) 
