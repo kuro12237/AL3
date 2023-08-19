@@ -24,6 +24,7 @@ void GameScene::Initialize()
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	
+	player = new Player();
 
 	player->Initialize();
 
