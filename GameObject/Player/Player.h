@@ -4,6 +4,7 @@
 #include "3d/Model.h"
 #include"WorldTransform.h"
 #include"ViewProjection.h"
+#include"Input.h"
 
 class Player {
 public:
@@ -22,7 +23,7 @@ private:
 
 	WorldTransform worldTransform_ = {};
 	Model* model_ = nullptr;
-
+	Input* input_ = nullptr;
 
 
 };

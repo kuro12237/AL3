@@ -28,8 +28,10 @@ void GameScene::Initialize()
 
 	player->Initialize();
 
+	viewProjection_.Initialize();
 
 #ifdef _DEBUG
+
 
 
 	debugCamera_ = new DebugCamera(1280, 720);
