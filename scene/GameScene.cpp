@@ -44,8 +44,8 @@ void GameScene::Initialize()
 
 void GameScene::Update() 
 { 
-
-
+	
+	player->Update();
 
 
 }
