@@ -24,7 +24,7 @@ void Player::Draw(ViewProjection view)
 {
 
 
-   // model_->Draw(worldTransform_,view);
+    model_->Draw(worldTransform_,view);
 
 
 }
