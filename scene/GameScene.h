@@ -10,7 +10,8 @@
 #include "WorldTransform.h"
 #include"DebugCamera.h"
 #include"GameObject/Player/Player.h"
-
+#include"GameObject/Player/RailCamera/RailCamera.h"
+#include"GameObject/SkyDome/SkyDome.h"
 
 /// <summary>
 /// ゲームシーン
@@ -67,8 +68,11 @@ private: // メンバ変数
 	 float inputFloat3[3] = {0, 0, 0};
 
 	 DebugCamera* debugCamera_ = nullptr;
+	 bool isDebugCameraActive_ = false;
 
 	 Player* player = nullptr;
+	 RailCamera* railcamera = nullptr;
+	 Skydome* skydome = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用

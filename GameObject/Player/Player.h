@@ -6,6 +6,7 @@
 #include"ViewProjection.h"
 #include"Input.h"
 #include"MatrixTransform.h"
+#include"VectorTransform.h"
 
 #include<Xinput.h>
 
@@ -22,13 +23,23 @@ public:
 
 	void Draw(ViewProjection view);
 
+	void ReticleDraw();
+
+	void SetParent(const WorldTransform* parent) { worldTransform_.parent_ = parent; }
 
 
 private:
 
+    void Move();
+
+
+
 	WorldTransform worldTransform_ = {};
 	Model* model_ = nullptr;
 	Input* input_ = nullptr;
+	XINPUT_STATE joystate;
+
+
 
 	int HP = {};
 

@@ -14,19 +14,26 @@ GameScene::~GameScene()
 {
 	
 	delete debugCamera_;
+	delete player;
+	delete railcamera;
 }
-void GameScene::Initialize() 
-{
-    //ライン描画
+void GameScene::Initialize() {
+	// ライン描画
 	PrimitiveDrawer::GetInstance()->SetViewProjection(&viewProjection_);
-	
+
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
-	
+
 	player = new Player();
+	railcamera = new RailCamera();
+	skydome = new Skydome();
 
 	player->Initialize();
+	railcamera->Initialize({0, 0, -10}, {0, 0, 0});
+	skydome->Initialize();
+
+	player->SetParent(&railcamera->GetworldTransform());
 
 	viewProjection_.Initialize();
 
@@ -46,7 +53,32 @@ void GameScene::Update()
 { 
 	
 	player->Update();
+	railcamera->Update();
 
+	#ifdef _DEBUG
+
+	if (input_->TriggerKey(DIK_K) == isDebugCameraActive_ == false) {
+		isDebugCameraActive_ = true;
+
+		// debugCamera_->Update();
+	} else if (input_->TriggerKey(DIK_K) == isDebugCameraActive_ == true) {
+		isDebugCameraActive_ = false;
+	}
+#endif // _DEBUG
+	if (isDebugCameraActive_) {
+		debugCamera_->Update();
+
+		viewProjection_.matView = debugCamera_->GetViewProjection().matView;
+		viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;
+
+		viewProjection_.TransferMatrix();
+
+	} else {
+
+		viewProjection_.matView = railcamera->GetViewProjection().matView;
+		viewProjection_.matProjection = railcamera->GetViewProjection().matProjection;
+		viewProjection_.TransferMatrix();
+	}
 
 }
 
@@ -80,7 +112,7 @@ void GameScene::Draw() {
 	Model::PreDraw(commandList);
 
 	player->Draw(viewProjection_);
-
+	skydome->Draw(viewProjection_);
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion

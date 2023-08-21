@@ -3,6 +3,7 @@
 #include"Matrix4x4.h"
 #include"Vector3.h"
 #include<cmath>
+#include<cassert>
 
 class MatrixTransform {
 public:
@@ -29,6 +30,8 @@ public:
 	static Matrix4x4 MakeRotateXYZMatrix(float radianX, float radianY, float radianZ);
 
     static Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Vector3& translate);
+
+	static Matrix4x4 Inverse(const Matrix4x4& m);
 
 private:
 };

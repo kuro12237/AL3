@@ -12,33 +12,32 @@ void Player::Initialize()
 	model_ = Model::Create();
 
 	input_ = Input::GetInstance();
+	worldTransform_.translation_ = {0, 0, 20};
+
 }
 
 void Player::Update() 
 {
-	float move = 0;
+	Move();
 
-	if (input_->PushKey(DIK_W))
-	{
-		move += 0.5f;
-	}
-	worldTransform_.translation_.z += move;
-
-
-
-
-
-	worldTransform_.matWorld_ =
-	    MatrixTransform::MakeAffineMatrix(worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
-	worldTransform_.TransferMatrix();
-
+	worldTransform_.UpdateMatrix();
+	
 }
 
 void Player::Draw(ViewProjection view) 
 {
     model_->Draw(worldTransform_,view);
+}
 
-
+void Player::Move()
+{
+	const float kCharacterSpeed = 0.5f;
+	if (Input::GetInstance()->GetJoystickState(0, joystate)) {
+		worldTransform_.translation_.x =
+		    (float)joystate.Gamepad.sThumbLX / SHRT_MAX * kCharacterSpeed;
+		worldTransform_.translation_.y =
+		    (float)joystate.Gamepad.sThumbLY / SHRT_MAX * kCharacterSpeed;
+	}
 }
 
 
