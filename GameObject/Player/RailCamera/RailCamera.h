@@ -18,7 +18,7 @@ public:
 
 	void Initialize(Vector3 pos, Vector3 rotate);
 
-	void Update();
+	void Update(Vector3 velocity);
 
 	ViewProjection GetViewProjection() { return viewProjection_; }
 	const WorldTransform& GetworldTransform() const { return worldTransform_; }
@@ -26,7 +26,7 @@ public:
 	Vector3 GetPlayerWorldPos();
 
 private:
-    void Move();
+	void Move(Vector3 velocity);
 
 	WorldTransform worldTransform_;
 	ViewProjection viewProjection_;

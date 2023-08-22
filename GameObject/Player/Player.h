@@ -31,6 +31,7 @@ public:
 
 	void SetParent(const WorldTransform* parent) { worldTransform_.parent_ = parent; }
 
+	Vector3 Getvelocity() {return velocity_;}
 
 private:
 
@@ -41,6 +42,7 @@ private:
 
 
 	WorldTransform worldTransform_ = {};
+	Vector3 velocity_ = {};
 	Model* model_ = nullptr;
 	Input* input_ = nullptr;
 	XINPUT_STATE joystate = {};

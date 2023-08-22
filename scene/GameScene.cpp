@@ -53,7 +53,7 @@ void GameScene::Update()
 { 
 	
 	player->Update(viewProjection_);
-	railcamera->Update();
+	railcamera->Update(player->Getvelocity());
 
 	#ifdef _DEBUG
 

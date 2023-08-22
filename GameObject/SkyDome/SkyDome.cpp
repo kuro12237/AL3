@@ -9,7 +9,7 @@ void Skydome::Initialize() {
 	modelSkydome_ = Model::CreateFromOBJ("Skydome", true);
 	worldTransform_.Initialize();
 
-	worldTransform_.scale_ = {1000.0f, 1000.0f, 1000.0f};
+	worldTransform_.scale_ = {1.0f, 1.0f, 1.0f};
 }
 
 void Skydome::Update() {
