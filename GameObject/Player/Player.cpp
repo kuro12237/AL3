@@ -40,4 +40,12 @@ void Player::Move()
 	}
 }
 
+void Player::Attak()
+{
+
+
+
+
+}
+
 

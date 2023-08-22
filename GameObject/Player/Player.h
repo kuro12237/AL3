@@ -32,6 +32,8 @@ private:
 
     void Move();
 
+	void Attak();
+
 
 
 	WorldTransform worldTransform_ = {};
