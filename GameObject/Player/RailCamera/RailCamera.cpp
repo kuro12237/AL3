@@ -17,9 +17,18 @@ void RailCamera::Initialize(Vector3 pos, Vector3 rotate) {
 void RailCamera::Move() {
 
     const float kCharacterSpeed = 0.5f;
+	//移動
 	if (Input::GetInstance()->GetJoystickState(0, joyState)) {
 		worldTransform_.translation_.x += (float)joyState.Gamepad.sThumbLX / SHRT_MAX *kCharacterSpeed;
 		worldTransform_.translation_.y += (float)joyState.Gamepad.sThumbLY / SHRT_MAX *kCharacterSpeed;
+	}
+	const float kCharacterRotate = 0.005f;
+	//回転
+	if (Input::GetInstance()->GetJoystickState(0, joyState)) {
+		worldTransform_.rotation_.y +=
+		    (float)joyState.Gamepad.sThumbRX / SHRT_MAX * kCharacterRotate;
+		worldTransform_.rotation_.x -=
+		    (float)joyState.Gamepad.sThumbRY / SHRT_MAX * kCharacterRotate;
 	}
 
 }
@@ -29,7 +38,7 @@ void RailCamera::Update() {
 
 	Move();
 
-	worldTransform_.translation_.z += 0.05f;
+	//worldTransform_.translation_.z += 0.05f;
 	worldTransform_.UpdateMatrix();
 	viewProjection_.matView = MatrixTransform::Inverse(worldTransform_.matWorld_);
 

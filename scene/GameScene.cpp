@@ -52,7 +52,7 @@ void GameScene::Initialize() {
 void GameScene::Update() 
 { 
 	
-	player->Update();
+	player->Update(viewProjection_);
 	railcamera->Update();
 
 	#ifdef _DEBUG
@@ -124,6 +124,9 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
+
+		player->ReticleDraw();
+
 
 	// スプライト描画後処理
 	Sprite::PostDraw();

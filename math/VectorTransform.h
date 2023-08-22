@@ -9,12 +9,14 @@
 #include "Matrix4x4.h"
 
 #include<cassert>
-
+#include<cmath>
 class VectorTransform {
 public:
 	VectorTransform();
 	~VectorTransform();
 
+	static float Dot(const Vector3& v1, const Vector3& v2);
+	static float Length(const Vector3& v);
 #pragma region 二次元
 
 #pragma region +=*
@@ -104,6 +106,12 @@ public:
 	/// <returns></returns>
 	//Vector3 Multiply(Vector3 v, Matrix3x3 matrix);
 
+	static Vector3 Transform(const Vector3& v, const Matrix4x4& matrix);
+
+	static Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m);
+
+	static Vector3 Normalize(const Vector3& v);
+
 #pragma endregion
 #pragma endregion
 
@@ -161,7 +169,7 @@ public:
 	/// <param name="v"></param>
 	/// <param name="m"></param>
 	/// <returns></returns>
-	Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m);
+	//Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m);
 #pragma endregion
 
 #pragma region

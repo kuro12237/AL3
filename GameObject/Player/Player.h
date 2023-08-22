@@ -9,6 +9,8 @@
 #include"VectorTransform.h"
 
 #include<Xinput.h>
+#include"Sprite.h"
+#include"WinApp.h"
 
 class Player
 {
@@ -19,9 +21,11 @@ public:
 
 	void Initialize();
 
-	void Update();
+	void Update(ViewProjection view);
 
 	void Draw(ViewProjection view);
+
+	void ReticleUpdate(ViewProjection view);
 
 	void ReticleDraw();
 
@@ -39,8 +43,14 @@ private:
 	WorldTransform worldTransform_ = {};
 	Model* model_ = nullptr;
 	Input* input_ = nullptr;
-	XINPUT_STATE joystate;
+	XINPUT_STATE joystate = {};
 
+
+	Sprite* sprite_ = nullptr;
+	Vector2 anchor_ = {0.5f, 0.5f};
+	Vector4 color_ = {1, 1, 1, 1};
+	Vector2 SpritePos_ = {640, 360};
+	WorldTransform worldTransform3DReticle_ = {};
 
 
 	int HP = {};
