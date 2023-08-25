@@ -28,6 +28,7 @@ public:
 private:
 	void Move(Vector3 velocity);
 
+	
 
 	WorldTransform worldTransform_;
 	ViewProjection viewProjection_;

@@ -12,10 +12,10 @@ void RailCamera::Initialize(Vector3 pos, Vector3 rotate) {
 
 	viewProjection_.Initialize();
 	viewProjection_.farZ = 1200.0f;
+	BoostOver = 0.0f;
 }
 
 void RailCamera::Move(Vector3 velocity) {
-
 
 	const float kCharacterRotate = -0.02f;
 	//回転
@@ -26,8 +26,6 @@ void RailCamera::Move(Vector3 velocity) {
 		    (float)joyState.Gamepad.sThumbLY / SHRT_MAX * kCharacterRotate;
 	}
 
-
-	
 	kCharacterSpeed = 0.4f;
 	
 	if (joyState.Gamepad.wButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
@@ -44,7 +42,7 @@ void RailCamera::Move(Vector3 velocity) {
 	
 	if (BoostOver>=3.0f) 
 	{
-		isOverBoost = true;
+		//isOverBoost = true;
 	}
 	if (isOverBoost) 
 	{
@@ -60,6 +58,7 @@ void RailCamera::Move(Vector3 velocity) {
 	ImGui::Begin("Boost");
 	ImGui::Text("Over::%f", BoostOver);
 	ImGui::End();
+
 	velocity.x = velocity.x * kCharacterSpeed;
 	velocity.y = velocity.y * kCharacterSpeed;
 	velocity.z = velocity.z * kCharacterSpeed;

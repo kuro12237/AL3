@@ -22,6 +22,33 @@ void Player::Update(ViewProjection view) {
 	Move();
 	ReticleUpdate(view);
 
+	Vector3 worldPos = {};
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+
+	// BulletKill
+	bullets_.remove_if([](PlayerBullet* bullet) {
+		if (bullet->IsDead()) {
+			delete bullet;
+			return true;
+		}
+		return false;
+	});
+
+	bulletCoolTimer--;
+	if (bulletCoolTimer<=0) {
+		Attak(worldPos);
+		bulletCoolTimer = 30;
+		
+	}
+
+
+
+	for (PlayerBullet* bullet : bullets_) {
+		bullet->Update();
+	}
+
 	worldTransform_.UpdateMatrix();
 }
 
@@ -29,6 +56,10 @@ void Player::Draw(ViewProjection view)
 {
     model_->Draw(worldTransform_,view); 
     model_->Draw(worldTransform3DReticle_, view);
+	for (PlayerBullet* bullet : bullets_) {
+
+		bullet->Draw(view);
+	}
 }
 
 void Player::ReticleUpdate(ViewProjection view) {
@@ -102,10 +133,41 @@ void Player::Move() {
 
 }
 
-void Player::Attak()
+void Player::Attak(Vector3 position)
 {
 
+	if (!Input::GetInstance()->GetJoystickState(0, joystate)) {
+		return;
+	}
+	if (joystate.Gamepad.wButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER) {
 
+		// BulletSpeed
+		const float kBulletSpeed = 1.0f;
+
+		Vector3 PlWorldPos, ReWorldPos;
+
+		PlWorldPos.x = worldTransform_.matWorld_.m[3][0];
+		PlWorldPos.y = worldTransform_.matWorld_.m[3][1];
+		PlWorldPos.z = worldTransform_.matWorld_.m[3][2];
+
+		ReWorldPos.x = worldTransform3DReticle_.matWorld_.m[3][0];
+		ReWorldPos.y = worldTransform3DReticle_.matWorld_.m[3][1];
+		ReWorldPos.z = worldTransform3DReticle_.matWorld_.m[3][2];
+		Vector3 velocity = VectorTransform::Subtract(ReWorldPos, PlWorldPos);
+		velocity = VectorTransform::Normalize(velocity);
+
+		velocity.x *= kBulletSpeed;
+		velocity.y *= kBulletSpeed;
+		velocity.z *= kBulletSpeed;
+
+		// intealize
+		PlayerBullet* newBullet = new PlayerBullet();
+
+		newBullet->Initialize(model_, position, velocity);
+
+		bullets_.push_back(newBullet);
+		bulletCoolTimer = 20;
+	}
 
 
 }

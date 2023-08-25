@@ -13,6 +13,17 @@
 #include"GameObject/Player/RailCamera/RailCamera.h"
 #include"GameObject/SkyDome/SkyDome.h"
 
+#include<Xinput.h>
+enum GAMEMODE 
+{
+	START,
+	RESET,
+	PLAY,
+	CLEAR,
+	OVER
+};
+
+
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -73,6 +84,10 @@ private: // メンバ変数
 	 Player* player = nullptr;
 	 RailCamera* railcamera = nullptr;
 	 Skydome* skydome = nullptr;
+
+	 GAMEMODE Game = START; 
+
+	 XINPUT_STATE joystate_;
 
 	/// <summary>
 	/// ゲームシーン用

@@ -11,6 +11,7 @@
 #include<Xinput.h>
 #include"Sprite.h"
 #include"WinApp.h"
+#include"GameObject/Player/Bullet/PlayerBullet.h"
 
 class Player
 {
@@ -37,9 +38,8 @@ private:
 
     void Move();
 
-	void Attak();
+	void Attak(Vector3 position);
 
-	void ContorolPointer();
 
 	WorldTransform worldTransform_ = {};
 	Vector3 velocity_ = {};
@@ -54,6 +54,8 @@ private:
 	Vector2 SpritePos_ = {640, 360};
 	WorldTransform worldTransform3DReticle_ = {};
 
+	std::list<PlayerBullet*> bullets_;
+	int bulletCoolTimer = 0;
 
 	int HP = {};
 
