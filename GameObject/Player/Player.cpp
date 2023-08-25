@@ -55,7 +55,7 @@ void Player::Update(ViewProjection view) {
 void Player::Draw(ViewProjection view) 
 {
     model_->Draw(worldTransform_,view); 
-    model_->Draw(worldTransform3DReticle_, view);
+    //model_->Draw(worldTransform3DReticle_, view);
 	for (PlayerBullet* bullet : bullets_) {
 
 		bullet->Draw(view);
