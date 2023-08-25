@@ -39,7 +39,7 @@ private:
 
 	void Attak();
 
-
+	void ContorolPointer();
 
 	WorldTransform worldTransform_ = {};
 	Vector3 velocity_ = {};

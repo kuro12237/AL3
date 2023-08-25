@@ -28,9 +28,17 @@ public:
 private:
 	void Move(Vector3 velocity);
 
+
 	WorldTransform worldTransform_;
 	ViewProjection viewProjection_;
 
 	XINPUT_STATE joyState = {};
 	Input* input_ = nullptr;
+	bool isReturn_ = false;
+
+	float kCharacterSpeed = 0.0f;
+
+	float BoostOver = 0.0f;
+	bool isOverBoost = false;
+
 };
