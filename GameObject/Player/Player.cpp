@@ -15,6 +15,10 @@ void Player::Initialize()
 	uint32_t texReticle_ = TextureManager::Load("reticle.png");
 	sprite_=Sprite::Create(texReticle_, SpritePos_, color_,anchor_);
 
+	SetCollosionAttribute(kCollisionAttributePlayer);
+	SetCollisionMask(kCollisionAttributeEnemy);
+
+
 }
 
 void Player::Update(ViewProjection view) {
@@ -168,9 +172,20 @@ void Player::Attak(Vector3 position)
 		bullets_.push_back(newBullet);
 		bulletCoolTimer = 20;
 	}
-
-
 }
+
+Vector3 Player::GetWorldPosition() {
+	Vector3 worldPos;
+
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+	return worldPos;
+}
+
+void Player::OnCollision() {}
+
+
 
 
 

@@ -3,7 +3,11 @@
 #include"WorldTransform.h"
 #include"MatrixTransform.h"
 #include"VectorTransform.h"
-class PlayerBullet {
+#include "utility/Collider.h"
+#include"utility/CollisionConfig.h"
+
+class PlayerBullet : public Collider
+{
 public:
 	PlayerBullet();
 	~PlayerBullet();
@@ -17,7 +21,10 @@ public:
 
 	static const int32_t kLifeTime = 60 * 5;
 
-	void OnCollision();
+	Vector3 GetWorldPosition() override;
+
+	void OnCollision() override;
+
 
 	/// Getter
 	bool IsDead() const { return isDead_; }

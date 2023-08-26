@@ -12,8 +12,10 @@
 #include"Sprite.h"
 #include"WinApp.h"
 #include"GameObject/Player/Bullet/PlayerBullet.h"
+#include"utility/CollisionConfig.h"
+#include"utility/Collider.h"
 
-class Player
+class Player : public Collider
 {
 public:
 
@@ -33,6 +35,12 @@ public:
 	void SetParent(const WorldTransform* parent) { worldTransform_.parent_ = parent; }
 
 	Vector3 Getvelocity() {return velocity_;}
+
+	Vector3 GetWorldPosition() override;
+
+	void OnCollision() override;
+	
+	const std::list<PlayerBullet*>& GetBullets() const { return bullets_; }
 
 private:
 

@@ -14,6 +14,10 @@
 #include"GameObject/SkyDome/SkyDome.h"
 
 #include<Xinput.h>
+
+#include"utility/Collider.h"
+#include"utility/CollisionManager.h"
+
 enum GAMEMODE 
 {
 	START,
@@ -59,9 +63,15 @@ public: // メンバ関数
 	void Draw();
 
 private: // メンバ変数
+
+	void CheckAllCollosions();
+
+	
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	
+
+
 	Audio* audio_ = nullptr;
 	Sprite* sprite_ = nullptr;
 	Model* model_ = nullptr;
@@ -88,6 +98,7 @@ private: // メンバ変数
 	 GAMEMODE Game = START; 
 
 	 XINPUT_STATE joystate_;
+	 CollisionManager* collisionManager = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用

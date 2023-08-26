@@ -12,6 +12,9 @@ PlayerBullet::~PlayerBullet() {}
 void PlayerBullet::Initialize(Model* model, Vector3& position, const Vector3& velocity)
 {
 	model;
+	SetCollosionAttribute(kCollisionAttributePlayer);
+	SetCollisionMask(~kCollisionAttributePlayer);
+
 	model_ = Model::CreateFromOBJ("PlayerBullet");
 	worldTransform_.Initialize();
 
@@ -49,7 +52,15 @@ void PlayerBullet::Draw(const ViewProjection& viewProjection) {
 	model_->Draw(worldTransform_, viewProjection);
 }
 
+Vector3 PlayerBullet::GetWorldPosition() {
+	Vector3 result;
 
+	result.x = worldTransform_.matWorld_.m[3][0];
+	result.y = worldTransform_.matWorld_.m[3][1];
+	result.z = worldTransform_.matWorld_.m[3][2];
+
+	return result;
+}
 void PlayerBullet::OnCollision() { isDead_ = true; }
 
 

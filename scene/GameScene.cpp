@@ -29,7 +29,8 @@ void GameScene::Initialize() {
 	player = new Player();
 	railcamera = new RailCamera();
 	skydome = new Skydome();
-	
+	collisionManager = new CollisionManager;
+
 	player->Initialize();
 	railcamera->Initialize({0, 0, -10}, {0, 0, 0});
 	skydome->Initialize();
@@ -74,6 +75,9 @@ void GameScene::Update()
 	case PLAY:
 		player->Update(viewProjection_);
 		railcamera->Update(player->Getvelocity());
+
+
+		CheckAllCollosions();
 
 #ifdef _DEBUG
 
@@ -197,4 +201,24 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 
 #pragma endregion
+}
+void GameScene::CheckAllCollosions() {
+
+	collisionManager->ClliderClear();
+	//
+	//const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
+	const std::list<PlayerBullet*>& playerBullets = player->GetBullets();
+
+	collisionManager->ClliderPush(player);
+	//collisionManager->ClliderPush(enemy_);
+
+	for (PlayerBullet* bullet : playerBullets) {
+		collisionManager->ClliderPush(bullet);
+	}
+	/*
+	for (EnemyBullet* bullet : enemyBullets) {
+		collisionManager->ClliderPush(bullet);
+	}
+	*/
+	collisionManager->CheckAllCollision();
 }
