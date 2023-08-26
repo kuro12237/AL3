@@ -9,7 +9,9 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include"DebugCamera.h"
+
 #include"GameObject/Player/Player.h"
+#include"GameObject/enemy/Enemy.h"
 #include"GameObject/Player/RailCamera/RailCamera.h"
 #include"GameObject/SkyDome/SkyDome.h"
 
@@ -81,6 +83,7 @@ private: // メンバ変数
 	 Player* player = nullptr;
 	 RailCamera* railcamera = nullptr;
 	 Skydome* skydome = nullptr;
+	 Enemy* enemy_ = nullptr;
 
 	 GAMEMODE Game = START; 
 

@@ -34,15 +34,15 @@ void GameScene::Initialize() {
 	player->Initialize();
 	railcamera->Initialize({0, 0, -10}, {0, 0, 0});
 	skydome->Initialize();
-	
+
 	player->SetParent(&railcamera->GetworldTransform());
 	viewProjection_.Initialize();
 
 	StarBackTex_ = TextureManager::Load("StarBack.png");
 	uvTex_ = TextureManager::Load("uvChecker.png");
 	StarBack_ = new Sprite;
-	StarBack_=Sprite::Create(StarBackTex_, {0, 0});
-	
+	StarBack_ = Sprite::Create(StarBackTex_, {0, 0});
+
 	pushATex_ = TextureManager::Load("pushA.png");
 	pushA_ = new Sprite;
 	pushA_ = Sprite::Create(pushATex_, {320, 320});
@@ -61,9 +61,10 @@ void GameScene::Initialize() {
 
 	GameOver_ = new Sprite;
 	GameOverTex_ = TextureManager::Load("GameOver.png");
-	GameOver_=Sprite::Create(GameOverTex_, {0, 0});
+	GameOver_ = Sprite::Create(GameOverTex_, {0, 0});
 
-
+	enemy_ = new Enemy;
+	enemy_->Initialize({0, 0,100});
 
 	Game = START;
 
@@ -104,6 +105,8 @@ void GameScene::Update()
 		player->Update(viewProjection_);
 		railcamera->Update(player->Getvelocity());
 
+		enemy_->SetPlayer(player);
+		enemy_->Update();
 
 		CheckAllCollosions();
 
@@ -237,7 +240,7 @@ void GameScene::Draw() {
 
 		player->Draw(viewProjection_);
 		skydome->Draw(viewProjection_);
-
+		enemy_->Draw(viewProjection_);
 		break;
 	case CLEAR:
 		break;
