@@ -158,6 +158,7 @@
     <ClInclude Include="utility\Collider.h" />
     <ClInclude Include="utility\CollisionConfig.h" />
     <ClInclude Include="utility\CollisionManager.h" />
+    <ClInclude Include="utility\GameConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">

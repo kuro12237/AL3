@@ -14,6 +14,8 @@
 #include"GameObject/Player/Bullet/PlayerBullet.h"
 #include"utility/CollisionConfig.h"
 #include"utility/Collider.h"
+#include"utility/GameConfig.h"
+#include"ImGuiManager.h"
 
 class Player : public Collider
 {
@@ -42,6 +44,11 @@ public:
 	
 	const std::list<PlayerBullet*>& GetBullets() const { return bullets_; }
 
+	GAMEMODE GetMode() { return game; }
+
+	void Reset();
+
+
 private:
 
     void Move();
@@ -65,9 +72,9 @@ private:
 	std::list<PlayerBullet*> bullets_;
 	int bulletCoolTimer = 0;
 
-	int HP = {};
+	int HP = 2;
 
-
+	GAMEMODE game = PLAY;
 
 };
 

@@ -55,6 +55,12 @@
     <Filter Include="ソース ファイル\Collision">
       <UniqueIdentifier>{265f5a14-1c2b-4088-ab39-b1004ca7b2ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameObj">
+      <UniqueIdentifier>{b25426ce-5606-416f-b690-d8630a1da2c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameObj\player">
+      <UniqueIdentifier>{9737ed72-8516-4bde-9c56-e166e766d36d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -72,29 +78,29 @@
     <ClCompile Include="2d\ImGuiManager.cpp">
       <Filter>ソース ファイル\2d</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject\Player\Bullet\PlayerBullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject\Player\Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject\Player\RailCamera\RailCamera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject\SkyDome\SkyDome.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="math\MatrixTransform.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="math\VectorTransform.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldTransformEx.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="utility\CollisionManager.cpp">
       <Filter>ソース ファイル\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Player\Player.cpp">
+      <Filter>ソース ファイル\GameObj\player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Player\RailCamera\RailCamera.cpp">
+      <Filter>ソース ファイル\GameObj\player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Player\Bullet\PlayerBullet.cpp">
+      <Filter>ソース ファイル\GameObj\player</Filter>
+    </ClCompile>
+    <ClCompile Include="math\VectorTransform.cpp">
+      <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldTransformEx.cpp">
+      <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\MatrixTransform.cpp">
+      <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\SkyDome\SkyDome.cpp">
+      <Filter>ソース ファイル\GameObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="utility\CollisionConfig.h">
       <Filter>ソース ファイル\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\GameConfig.h">
+      <Filter>ソース ファイル\GameObj</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

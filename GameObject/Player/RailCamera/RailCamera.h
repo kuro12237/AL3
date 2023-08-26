@@ -23,6 +23,7 @@ public:
 	ViewProjection GetViewProjection() { return viewProjection_; }
 	const WorldTransform& GetworldTransform() const { return worldTransform_; }
 
+	void Reset();
 	Vector3 GetPlayerWorldPos();
 
 private:

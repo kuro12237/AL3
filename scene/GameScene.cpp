@@ -36,8 +36,34 @@ void GameScene::Initialize() {
 	skydome->Initialize();
 	
 	player->SetParent(&railcamera->GetworldTransform());
-
 	viewProjection_.Initialize();
+
+	StarBackTex_ = TextureManager::Load("StarBack.png");
+	uvTex_ = TextureManager::Load("uvChecker.png");
+	StarBack_ = new Sprite;
+	StarBack_=Sprite::Create(StarBackTex_, {0, 0});
+	
+	pushATex_ = TextureManager::Load("pushA.png");
+	pushA_ = new Sprite;
+	pushA_ = Sprite::Create(pushATex_, {320, 320});
+
+	pushB_ = new Sprite;
+	pushBTex_ = TextureManager::Load("pushB.png");
+	pushB_ = Sprite::Create(pushBTex_, {0, 0});
+
+	GameTitle_ = new Sprite;
+	GameTitleTex_ = TextureManager::Load("Title.png");
+	GameTitle_ = Sprite::Create(GameTitleTex_, {0, 0});
+
+	GameClear_ = new Sprite;
+	GameClearTex_ = TextureManager::Load("GameOver.png");
+	GameClear_ = Sprite::Create(GameClearTex_, {0, 0});
+
+	GameOver_ = new Sprite;
+	GameOverTex_ = TextureManager::Load("GameOver.png");
+	GameOver_=Sprite::Create(GameOverTex_, {0, 0});
+
+
 
 	Game = START;
 
@@ -63,12 +89,14 @@ void GameScene::Update()
 		}
 		if (joystate_.Gamepad.wButtons &XINPUT_GAMEPAD_A)
 		{
+			IsTrigger = true;
 			Game = RESET;
 		}
 
 		break;
 	case RESET:
-
+		player->Reset();
+		railcamera->Reset();
 		Game = PLAY;
 
 		break;
@@ -104,10 +132,35 @@ void GameScene::Update()
 			viewProjection_.TransferMatrix();
 		}
 
+		if (player->GetMode()==OVER)
+		{
+			Game = OVER;
+			IsTrigger = false;
+		} 
+
 		break;
 	case CLEAR:
+
+		if (!Input::GetInstance()->GetJoystickState(0, joystate_)) {
+			return;
+		}
+		if (joystate_.Gamepad.wButtons & XINPUT_GAMEPAD_B) {
+			Game = START;
+			
+		}
+
+
 		break;
 	case OVER:
+		if (!Input::GetInstance()->GetJoystickState(0, joystate_)) {
+			return;
+		}
+		if (joystate_.Gamepad.wButtons & XINPUT_GAMEPAD_B) {
+			Game = START;
+		
+		}
+
+
 		break;
 	default:
 		break;
@@ -135,6 +188,33 @@ void GameScene::Draw() {
 	//sprite_->Draw();
 
 
+	switch (Game) {
+	case START:
+
+		StarBack_->Draw();
+		GameTitle_->Draw();
+		pushA_->Draw();
+
+
+		break;
+	case RESET:
+		break;
+	case PLAY:
+
+		break;
+	case CLEAR:
+		StarBack_->Draw();
+		GameClear_->Draw();
+		pushB_->Draw();
+		break;
+	case OVER:
+		StarBack_->Draw();
+		GameOver_->Draw();
+		pushB_->Draw();
+		break;
+	default:
+		break;
+	}
 	// スプライト描画後処理
 	Sprite::PostDraw();
 	// ライン描画
@@ -149,6 +229,7 @@ void GameScene::Draw() {
 	Model::PreDraw(commandList);
 	switch (Game) {
 	case START:
+
 		break;
 	case RESET:
 		break;
@@ -181,6 +262,7 @@ void GameScene::Draw() {
 
 	switch (Game) {
 	case START:
+	
 		break;
 	case RESET:
 		break;
@@ -191,6 +273,7 @@ void GameScene::Draw() {
 	case CLEAR:
 		break;
 	case OVER:
+	
 		break;
 	default:
 		break;

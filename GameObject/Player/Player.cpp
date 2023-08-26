@@ -13,7 +13,7 @@ void Player::Initialize()
 	worldTransform_.translation_ = {0, -3, 20};
 	worldTransform3DReticle_.Initialize();
 	uint32_t texReticle_ = TextureManager::Load("reticle.png");
-	sprite_=Sprite::Create(texReticle_, SpritePos_, color_,anchor_);
+	sprite_ = Sprite::Create(texReticle_, SpritePos_, {1,1,1,1}, anchor_);
 
 	SetCollosionAttribute(kCollisionAttributePlayer);
 	SetCollisionMask(kCollisionAttributeEnemy);
@@ -46,8 +46,13 @@ void Player::Update(ViewProjection view) {
 		bulletCoolTimer = 30;
 		
 	}
+	ImGui::Begin("hp");
+	ImGui::SliderInt("hp", &HP, -2, 2);
+	ImGui::End();
 
-
+	if (HP <= 0) {
+		game = OVER;
+	}
 
 	for (PlayerBullet* bullet : bullets_) {
 		bullet->Update();
@@ -121,6 +126,14 @@ void Player::ReticleDraw()
 
 }
 
+void Player::Reset()
+{
+	HP = 2;
+	game = PLAY;
+	//worldTransform_.translation_ = {0.0f, 0.0f, 0.0f};
+
+}
+
 void Player::Move() {
 
 	Vector3 PlWorldPos, ReWorldPos;
@@ -183,7 +196,12 @@ Vector3 Player::GetWorldPosition() {
 	return worldPos;
 }
 
-void Player::OnCollision() {}
+void Player::OnCollision()
+{
+	HP--;
+
+
+}
 
 
 

@@ -15,6 +15,13 @@ void RailCamera::Initialize(Vector3 pos, Vector3 rotate) {
 	BoostOver = 0.0f;
 }
 
+void RailCamera::Reset() 
+{
+	worldTransform_.translation_ = {0.0f, 0.0f, 0.0f};
+	worldTransform_.rotation_ = {0.0f, 0.0f, 0.0f};
+
+}
+
 void RailCamera::Move(Vector3 velocity) {
 
 	const float kCharacterRotate = -0.02f;

@@ -17,17 +17,7 @@
 
 #include"utility/Collider.h"
 #include"utility/CollisionManager.h"
-
-enum GAMEMODE 
-{
-	START,
-	RESET,
-	PLAY,
-	CLEAR,
-	OVER
-};
-
-
+#include"utility/GameConfig.h"
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -73,7 +63,7 @@ private: // メンバ変数
 
 
 	Audio* audio_ = nullptr;
-	Sprite* sprite_ = nullptr;
+
 	Model* model_ = nullptr;
 	//ワールドトランスフォーム
 	WorldTransform worldTransform_;
@@ -81,9 +71,6 @@ private: // メンバ変数
 	ViewProjection viewProjection_;
 
 
-	 uint32_t textureHandle_ = 0;
-	 uint32_t textureModelHandle_ = 0;
-	 
 	 uint32_t soundDataHandle_ = 0;
 	 uint32_t voiceHandle_ = 0;
 	 float inputFloat3[3] = {0, 0, 0};
@@ -100,6 +87,27 @@ private: // メンバ変数
 	 XINPUT_STATE joystate_;
 	 CollisionManager* collisionManager = nullptr;
 
+	 bool IsTrigger = false;
+
+	 Sprite* StarBack_ = nullptr;
+	 int32_t StarBackTex_ = {};
+
+	 Sprite* pushA_ = nullptr;
+	 int32_t pushATex_ = {};
+
+	 Sprite* pushB_ = nullptr;
+	 int32_t pushBTex_ = {};
+
+	 Sprite* GameOver_ = nullptr;
+	 int32_t GameOverTex_ = {};
+
+	  Sprite* GameTitle_ = nullptr;
+	 int32_t  GameTitleTex_ = {};
+
+	  Sprite* GameClear_ = nullptr;
+	  int32_t GameClearTex_ = {};
+
+	 int32_t uvTex_{};
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
