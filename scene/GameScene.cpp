@@ -63,6 +63,8 @@ void GameScene::Initialize() {
 	GameOverTex_ = TextureManager::Load("GameOver.png");
 	GameOver_ = Sprite::Create(GameOverTex_, {0, 0});
 
+	for (int i = 0; i < 5; i++) {
+	}
 	enemy_ = new Enemy;
 	enemy_->Initialize({0, 0,100});
 

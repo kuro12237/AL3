@@ -83,7 +83,8 @@ private: // メンバ変数
 	 Player* player = nullptr;
 	 RailCamera* railcamera = nullptr;
 	 Skydome* skydome = nullptr;
-	 Enemy* enemy_ = nullptr;
+
+	 std::list<Enemy*> enemy_;
 
 	 GAMEMODE Game = START; 
 
