@@ -31,6 +31,9 @@ void PlayerBullet::Initialize(Model* model, Vector3& position, const Vector3& ve
 	velocity_.x = velocity_.x * 1.2f;
 	velocity_.y = velocity_.y * 1.2f;
 	velocity_.z = velocity_.z * 1.2f;
+
+	SetCollosionAttribute(kCollisionAttributePlayer);
+	SetCollisionMask(kCollisionAttributeEnemy);
 }
 
 void PlayerBullet::Update() {

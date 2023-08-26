@@ -17,6 +17,10 @@ GameScene::~GameScene()
 	delete player;
 	delete railcamera;
 	delete skydome;
+	for (Enemy* enemy_ : enemys_) 
+	{
+		delete enemy_;
+	}
 }
 void GameScene::Initialize() {
 	// ライン描画
@@ -56,34 +60,14 @@ void GameScene::Initialize() {
 	GameTitle_ = Sprite::Create(GameTitleTex_, {0, 0});
 
 	GameClear_ = new Sprite;
-	GameClearTex_ = TextureManager::Load("GameOver.png");
+	GameClearTex_ = TextureManager::Load("GameClear.png");
 	GameClear_ = Sprite::Create(GameClearTex_, {0, 0});
 
 	GameOver_ = new Sprite;
 	GameOverTex_ = TextureManager::Load("GameOver.png");
 	GameOver_ = Sprite::Create(GameOverTex_, {0, 0});
 
-	Enemy *enemy[5];
-	Vector3 pos[5];
-	pos[0] = {0, 0, 100};
-	pos[1] = {120, 0, 50};
-	pos[2] = {60, 0, 300};
-	pos[3] = {120, 0,- 250};
-	pos[4] = {-120, -60, 200};
 
-	for (int i = 0; i < 5; i++)
-	{
-		enemy[i] = new Enemy;
-		enemy[i]->Initialize(pos[i]);
-
-	}
-
-
-	
-	for (int i = 0; i < 5; i++) {
-
-		enemys_.push_back(enemy[i]);
-	}
 	
 
 	Game = START;
@@ -118,12 +102,38 @@ void GameScene::Update()
 	case RESET:
 		player->Reset();
 		railcamera->Reset();
+
+		Enemy* enemy[5];
+		Vector3 pos[5];
+		pos[0] = {0, 0, 100};
+		pos[1] = {120, 0, 50};
+		pos[2] = {60, 0, 300};
+		pos[3] = {120, 0, -250};
+		pos[4] = {-120, -60, 200};
+
+		for (int i = 0; i < 5; i++) {
+			enemy[i] = new Enemy;
+			enemy[i]->Initialize(pos[i]);
+		}
+
+		for (int i = 0; i < 5; i++) {
+
+			enemys_.push_back(enemy[i]);
+		}
 		Game = PLAY;
 
 		break;
 	case PLAY:
 		player->Update(viewProjection_);
 		railcamera->Update(player->Getvelocity());
+
+		enemys_.remove_if([](Enemy* enemy) {
+			if (enemy->IsDead()) {
+				delete enemy;
+				return true;
+			}
+			return false;
+		});
 
 		for (Enemy* enemy_ : enemys_) {
 
@@ -160,8 +170,14 @@ void GameScene::Update()
 		if (player->GetMode()==OVER)
 		{
 			Game = OVER;
-			IsTrigger = false;
+			
 		} 
+		if (enemys_.size()==0) 
+		{
+
+			Game = CLEAR;
+		}
+
 
 		break;
 	case CLEAR:
@@ -322,10 +338,15 @@ void GameScene::CheckAllCollosions() {
 	const std::list<PlayerBullet*>& playerBullets = player->GetBullets();
 
 	collisionManager->ClliderPush(player);
-	//collisionManager->ClliderPush(enemy_);
-
+	
+	
+	for (Enemy* enemy : enemys_) {
+		collisionManager->ClliderPush(enemy);
+	
+	}
 	for (PlayerBullet* bullet : playerBullets) {
 		collisionManager->ClliderPush(bullet);
+
 	}
 	/*
 	for (EnemyBullet* bullet : enemyBullets) {

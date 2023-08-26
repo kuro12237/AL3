@@ -17,7 +17,8 @@ void Player::Initialize()
 
 	SetCollosionAttribute(kCollisionAttributePlayer);
 	SetCollisionMask(kCollisionAttributeEnemy);
-
+	audio_ = Audio ::GetInstance();
+	shotSound = audio_->LoadWave("Shot.wav");
 
 }
 
@@ -49,7 +50,7 @@ void Player::Update(ViewProjection view) {
 	ImGui::Begin("hp");
 	ImGui::SliderInt("hp", &HP, -2, 2);
 	ImGui::End();
-
+	HitInvincibeTime--;
 	if (HP <= 0) {
 		game = OVER;
 	}
@@ -177,6 +178,7 @@ void Player::Attak(Vector3 position)
 		velocity.y *= kBulletSpeed;
 		velocity.z *= kBulletSpeed;
 
+		audio_->PlayWave(shotSound);
 		// intealize
 		PlayerBullet* newBullet = new PlayerBullet();
 
@@ -198,9 +200,9 @@ Vector3 Player::GetWorldPosition() {
 
 void Player::OnCollision()
 {
-	HP--;
-
-
+	if (HitInvincibeTime <= 0) {
+		HP--;
+	}
 }
 
 

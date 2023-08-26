@@ -16,6 +16,7 @@
 #include"utility/Collider.h"
 #include"utility/GameConfig.h"
 #include"ImGuiManager.h"
+#include"Audio.h"
 
 class Player : public Collider
 {
@@ -60,6 +61,9 @@ private:
 	Vector3 velocity_ = {};
 	Model* model_ = nullptr;
 	Input* input_ = nullptr;
+	Audio* audio_ = nullptr;
+
+	int32_t shotSound = {};
 	XINPUT_STATE joystate = {};
 
 
@@ -72,6 +76,8 @@ private:
 	std::list<PlayerBullet*> bullets_;
 	int bulletCoolTimer = 0;
 
+	int HitInvincibeTime = 0;
+	;
 	int HP = 2;
 
 	GAMEMODE game = PLAY;

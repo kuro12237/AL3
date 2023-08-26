@@ -4,12 +4,15 @@
 #include "GameObject/Player/Player.h"
 #include <Model.h>
 #include <WorldTransform.h>
+#include"utility/Collider.h"
+#include"utility/GameConfig.h"
 
 class Player;
 
 class GameScene;
 
-class Enemy {
+class Enemy :public Collider
+{
 public:
 	enum class Phase {
 		Approach,
@@ -29,9 +32,10 @@ public:
 
 	void SetPlayer(Player* player) { player_ = player; }
 
-	void OnCollision();
+  
+	void OnCollision()override;
 
-	Vector3 GetWorldPosition();
+	Vector3 GetWorldPosition()override;
 
 	Vector3 LerpFanc(Vector3 v1, Vector3 v2);
 

@@ -17,10 +17,15 @@ void Enemy::Initialize(Vector3 v) {
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = v;
 	worldTransform_.scale_ = {
-	    10,
-	    10,
-	    10,
+	    5,
+	    5,
+	    5,
 	};
+
+	SetCollosionAttribute(kCollisionAttributeEnemy);
+	SetCollisionMask(kCollisionAttributePlayer);
+	SetRadious(7.0f);
+
 	model_ = Model::Create();
 	//modeltexHandle = TextureManager::Load("Dirt.png");
 }
@@ -42,7 +47,7 @@ void Enemy::Draw(ViewProjection ViewProjection_) {
 	model_->Draw(worldTransform_, ViewProjection_);
 }
 
-void Enemy::PhaseInitialize() { FireTimer = kFireInterval; }
+
 
 void Enemy::OnCollision() { isDead_ = true; }
 

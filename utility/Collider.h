@@ -6,7 +6,7 @@ class Collider {
 public:
 	float GetRadious() { return radious_; }
 
-	void SetRadious(float radious) { radious_ = radious; }
+	virtual void SetRadious(float radious=3.0f){ radious_ = radious; }
 
 	virtual Vector3 GetWorldPosition() = 0;
 
