@@ -42,7 +42,7 @@ void RailCamera::Move(Vector3 velocity) {
 	
 	if (BoostOver>=3.0f) 
 	{
-		//isOverBoost = true;
+		isOverBoost = true;
 	}
 	if (isOverBoost) 
 	{
