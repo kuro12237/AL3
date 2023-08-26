@@ -63,10 +63,28 @@ void GameScene::Initialize() {
 	GameOverTex_ = TextureManager::Load("GameOver.png");
 	GameOver_ = Sprite::Create(GameOverTex_, {0, 0});
 
-	for (int i = 0; i < 5; i++) {
+	Enemy *enemy[5];
+	Vector3 pos[5];
+	pos[0] = {0, 0, 100};
+	pos[1] = {120, 0, 50};
+	pos[2] = {60, 0, 300};
+	pos[3] = {120, 0,- 250};
+	pos[4] = {-120, -60, 200};
+
+	for (int i = 0; i < 5; i++)
+	{
+		enemy[i] = new Enemy;
+		enemy[i]->Initialize(pos[i]);
+
 	}
-	enemy_ = new Enemy;
-	enemy_->Initialize({0, 0,100});
+
+
+	
+	for (int i = 0; i < 5; i++) {
+
+		enemys_.push_back(enemy[i]);
+	}
+	
 
 	Game = START;
 
@@ -107,9 +125,11 @@ void GameScene::Update()
 		player->Update(viewProjection_);
 		railcamera->Update(player->Getvelocity());
 
-		enemy_->SetPlayer(player);
-		enemy_->Update();
+		for (Enemy* enemy_ : enemys_) {
 
+			enemy_->SetPlayer(player);
+			enemy_->Update();
+		}
 		CheckAllCollosions();
 
 #ifdef _DEBUG
@@ -242,7 +262,11 @@ void GameScene::Draw() {
 
 		player->Draw(viewProjection_);
 		skydome->Draw(viewProjection_);
-		enemy_->Draw(viewProjection_);
+		
+		for (Enemy* enemy_ : enemys_) {
+
+			enemy_->Draw(viewProjection_);
+		}
 		break;
 	case CLEAR:
 		break;
