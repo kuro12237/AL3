@@ -334,7 +334,7 @@ void GameScene::CheckAllCollosions() {
 
 	collisionManager->ClliderClear();
 	//
-	//const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
+
 	const std::list<PlayerBullet*>& playerBullets = player->GetBullets();
 
 	collisionManager->ClliderPush(player);
@@ -342,16 +342,17 @@ void GameScene::CheckAllCollosions() {
 	
 	for (Enemy* enemy : enemys_) {
 		collisionManager->ClliderPush(enemy);
+
+		for (EnemyBullet* bullet : enemy->GetBullets()) {
+			collisionManager->ClliderPush(bullet);
+		}
 	
 	}
 	for (PlayerBullet* bullet : playerBullets) {
 		collisionManager->ClliderPush(bullet);
 
 	}
-	/*
-	for (EnemyBullet* bullet : enemyBullets) {
-		collisionManager->ClliderPush(bullet);
-	}
-	*/
+	
+
 	collisionManager->CheckAllCollision();
 }

@@ -5,11 +5,11 @@ Enemy::Enemy() {}
 
 Enemy::~Enemy() {
 	model_->~Model();
-	/*
+	
 	for (EnemyBullet* bullet : bullets_) {
 	    delete bullet;
 	}
-	*/
+	
 }
 
 void Enemy::Initialize(Vector3 v) {
@@ -27,16 +27,29 @@ void Enemy::Initialize(Vector3 v) {
 	SetRadious(7.0f);
 
 	model_ = Model::Create();
-	//modeltexHandle = TextureManager::Load("Dirt.png");
+
 }
 
 void Enemy::Update() {
 
+	bullets_.remove_if([](EnemyBullet* bullet) {
+		if (bullet->IsDead()) {
+			delete bullet;
+			return true;
+		}
+		return false;
+	});
+
 	FireTimer--;
 	if (FireTimer <= 0) {
 		Fire();
-		FireTimer = kFireInterval;
+		FireTimer = kFireInterval+std::rand()%600;
 	}
+
+	for (EnemyBullet* bullet : bullets_) {
+		bullet->Update();
+	}
+
 	worldTransform_.matWorld_ = MatrixTransform::MakeAffineMatrix(
 	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
 	worldTransform_.TransferMatrix();
@@ -45,6 +58,10 @@ void Enemy::Update() {
 void Enemy::Draw(ViewProjection ViewProjection_) {
 
 	model_->Draw(worldTransform_, ViewProjection_);
+	for (EnemyBullet* bullet : bullets_)
+	{
+		bullet->Draw(ViewProjection_);
+	}
 }
 
 
@@ -88,11 +105,11 @@ void Enemy::Fire() {
 
 	PiEnNormalize = VectorTransform::TransformNormal(PiEnNormalize, worldTransform_.matWorld_);
 
+	
 	// intealize
-	/*EnemyBullet* newBullet = new EnemyBullet();
+	EnemyBullet* newBullet = new EnemyBullet();
 
 	newBullet->Initialize(model_, worldTransform_.translation_, PiEnNormalize);
 
-	gameScene_->AddEnemyBullet(newBullet);*/
-	// bullets_.push_back(newBullet);
+	bullets_.push_back(newBullet);
 }

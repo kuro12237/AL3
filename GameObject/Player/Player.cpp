@@ -130,6 +130,7 @@ void Player::ReticleDraw()
 void Player::Reset()
 {
 	HP = 2;
+	HitInvincibeTime = 120;
 	game = PLAY;
 	//worldTransform_.translation_ = {0.0f, 0.0f, 0.0f};
 
@@ -202,6 +203,7 @@ void Player::OnCollision()
 {
 	if (HitInvincibeTime <= 0) {
 		HP--;
+		HitInvincibeTime = 120;
 	}
 }
 
