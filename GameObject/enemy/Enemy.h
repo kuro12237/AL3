@@ -28,11 +28,8 @@ public:
 
 	void Draw(ViewProjection ViewProjection_);
 
-	void PhaseInitialize();
-
 	void SetPlayer(Player* player) { player_ = player; }
 
-  
 	void OnCollision()override;
 
 	Vector3 GetWorldPosition()override;
@@ -53,12 +50,8 @@ private:
 	WorldTransform worldTransform_;
 
 	static const int kFireInterval = 60;
-
 	int32_t FireTimer = 90;
-
-	
 	std::list<EnemyBullet*> bullets_;
-
 	
 	Player* player_ = nullptr;
 	GameScene* gameScene_ = nullptr;

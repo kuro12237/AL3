@@ -34,6 +34,9 @@ void CollisionManager::CheckCollisionPair(Collider* cA, Collider* cB) {
 	if (CheckBallCollosion(cApos, cAradious, cBpos, cBradious)) {
 		cA->OnCollision();
 		cB->OnCollision();
+		Audio* audio = Audio::GetInstance();
+		uint32_t sound = audio->LoadWave("hit.wav");
+		audio->PlayWave(sound);
 	}
 }
 

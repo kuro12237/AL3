@@ -2,6 +2,7 @@
 #include"utility/Collider.h"
 #include "Vector3.h"
 #include <list>
+#include"Audio.h"
 
 class CollisionManager {
 public:
