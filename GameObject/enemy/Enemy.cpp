@@ -26,7 +26,7 @@ void Enemy::Initialize(Vector3 v) {
 	SetCollisionMask(kCollisionAttributePlayer);
 	SetRadious(7.0f);
 
-	model_ = Model::Create();
+	model_ = Model::CreateFromOBJ("Enemy");
 
 }
 
@@ -43,15 +43,10 @@ void Enemy::Update() {
 	FireTimer--;
 	if (FireTimer <= 0) {
 		Fire();
-		FireTimer = kFireInterval+std::rand()%600;
+		FireTimer = kFireInterval+std::rand()%300;
 	}
 
-
-	
-
-	
-
-
+    // worldTransform_.rotation_.y += 0.01f;
 	for (EnemyBullet* bullet : bullets_) {
 		bullet->Update();
 	}
@@ -104,18 +99,22 @@ void Enemy::Fire() {
 	Vector3 PlayerPos = v;
 	// player_->GetWorldPosition();
 	Vector3 EnemyPos = GetWorldPosition();
-
+	//worldTransform_.rotation_ = {0.0f, 0.0f, 0.0f};
 	Vector3 PiEnLerp = LerpFanc(EnemyPos, PlayerPos);
 
 	Vector3 PiEnNormalize = VectorTransform::Normalize(PiEnLerp);
 
 	PiEnNormalize = VectorTransform::TransformNormal(PiEnNormalize, worldTransform_.matWorld_);
-
 	
+	
+
+
 	// intealize
 	EnemyBullet* newBullet = new EnemyBullet();
 
 	newBullet->Initialize(model_, worldTransform_.translation_, PiEnNormalize);
 
 	bullets_.push_back(newBullet);
+
+
 }

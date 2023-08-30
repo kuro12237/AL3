@@ -6,7 +6,8 @@ Player::~Player() {}
 
 void Player::Initialize() 
 {
-	model_ = Model::Create();
+	model_ = Model::CreateFromOBJ("Player");
+
 	input_ = Input::GetInstance();
 
 	worldTransform_.Initialize();	
@@ -150,13 +151,9 @@ void Player::ReticleDraw()
 
 void Player::Reset()
 {
-	
 	HPCount = 2;
 	HitInvincibeTime = 20;
 	game = PLAY;
-
-
-
 }
 
 void Player::Move() {
