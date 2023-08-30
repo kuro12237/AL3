@@ -46,6 +46,12 @@ void Enemy::Update() {
 		FireTimer = kFireInterval+std::rand()%600;
 	}
 
+
+	
+
+	
+
+
 	for (EnemyBullet* bullet : bullets_) {
 		bullet->Update();
 	}

@@ -78,9 +78,20 @@ private:
 
 	int HitInvincibeTime = 0;
 	;
-	int HP = 2;
+	int HPCount = 2;
 
 	GAMEMODE game = PLAY;
+
+	int32_t ClearRequirementTex = {};
+	Sprite* ClearRequirement = nullptr;
+
+	int32_t HP_BarTex = {};
+	Sprite* HP_Bar[2] = {nullptr};
+
+	int32_t HPTex = {};
+	Sprite* HP = nullptr;
+
+	
 
 };
 

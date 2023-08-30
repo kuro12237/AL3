@@ -20,6 +20,21 @@ void Player::Initialize()
 	audio_ = Audio ::GetInstance();
 	shotSound = audio_->LoadWave("Shot.wav");
 
+	ClearRequirement = new Sprite;
+	ClearRequirementTex = TextureManager::Load("playClear.png");
+	ClearRequirement = Sprite::Create(ClearRequirementTex, {0, 0});
+
+	HP = new Sprite;
+	HPTex = TextureManager::Load("HP.png");
+	HP = Sprite::Create(HPTex, {0, 0});
+
+	HP_BarTex = TextureManager::Load("HP_Bar.png");
+
+	for (int i = 0; i < 2; i++) {
+		HP_Bar[i] = new Sprite;
+		HP_Bar[i] = Sprite::Create(HP_BarTex, {0, 0});
+	}
+
 }
 
 void Player::Update(ViewProjection view) {
@@ -48,10 +63,10 @@ void Player::Update(ViewProjection view) {
 		
 	}
 	ImGui::Begin("hp");
-	ImGui::SliderInt("hp", &HP, -2, 2);
+	ImGui::SliderInt("hp", &HPCount, -2, 2);
 	ImGui::End();
 	HitInvincibeTime--;
-	if (HP <= 0) {
+	if (HPCount <= 0) {
 		game = OVER;
 	}
 
@@ -124,15 +139,23 @@ void Player::ReticleDraw()
 {
 	
 	sprite_->Draw();
+	ClearRequirement->Draw();
+	HP->Draw();
+	HP_Bar[1]->SetPosition({100, 00});
 
+	for (int i = 0; i < HPCount; i++) {
+		HP_Bar[i]->Draw();
+	}
 }
 
 void Player::Reset()
 {
-	HP = 2;
-	HitInvincibeTime = 120;
+	
+	HPCount = 2;
+	HitInvincibeTime = 20;
 	game = PLAY;
-	//worldTransform_.translation_ = {0.0f, 0.0f, 0.0f};
+
+
 
 }
 
@@ -202,7 +225,7 @@ Vector3 Player::GetWorldPosition() {
 void Player::OnCollision()
 {
 	if (HitInvincibeTime <= 0) {
-		HP--;
+		HPCount--;
 		HitInvincibeTime = 120;
 	}
 }

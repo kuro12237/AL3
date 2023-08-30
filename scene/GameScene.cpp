@@ -59,6 +59,10 @@ void GameScene::Initialize() {
 	GameTitleTex_ = TextureManager::Load("Title.png");
 	GameTitle_ = Sprite::Create(GameTitleTex_, {0, 0});
 
+	ContorolTex = TextureManager::Load("Contorol.png");
+	Contorol_ = new Sprite;
+	Contorol_ = Sprite::Create(ContorolTex, {0, 0});
+
 	GameClear_ = new Sprite;
 	GameClearTex_ = TextureManager::Load("GameClear.png");
 	GameClear_ = Sprite::Create(GameClearTex_, {0, 0});
@@ -66,6 +70,7 @@ void GameScene::Initialize() {
 	GameOver_ = new Sprite;
 	GameOverTex_ = TextureManager::Load("GameOver.png");
 	GameOver_ = Sprite::Create(GameOverTex_, {0, 0});
+
 
 
 	
@@ -100,6 +105,8 @@ void GameScene::Update()
 
 		break;
 	case RESET:
+
+		
 		player->Reset();
 		railcamera->Reset();
 
@@ -308,6 +315,7 @@ void GameScene::Draw() {
 	switch (Game) {
 	case START:
 	
+		Contorol_->Draw();
 		break;
 	case RESET:
 		break;

@@ -112,6 +112,12 @@ private: // メンバ変数
 	  int32_t GameClearTex_ = {};
 
 	 int32_t uvTex_{};
+
+	 Sprite* Contorol_ = nullptr;
+	 int32_t ContorolTex = {};
+
+	 int32_t ClearRequirementTex = {};
+	 Sprite* ClearRequirement = nullptr;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
