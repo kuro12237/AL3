@@ -63,9 +63,7 @@ void Player::Update(ViewProjection view) {
 		bulletCoolTimer = 30;
 		
 	}
-	ImGui::Begin("hp");
-	ImGui::SliderInt("hp", &HPCount, -2, 2);
-	ImGui::End();
+
 	HitInvincibeTime--;
 	if (HPCount <= 0) {
 		game = OVER;

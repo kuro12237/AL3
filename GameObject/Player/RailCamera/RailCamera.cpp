@@ -62,9 +62,6 @@ void RailCamera::Move(Vector3 velocity) {
 		}
 	}
 
-	ImGui::Begin("Boost");
-	ImGui::Text("Over::%f", BoostOver);
-	ImGui::End();
 
 	velocity.x = velocity.x * kCharacterSpeed;
 	velocity.y = velocity.y * kCharacterSpeed;
@@ -84,8 +81,5 @@ void RailCamera::Update(Vector3 velocity) {
 	worldTransform_.UpdateMatrix();
 	viewProjection_.matView = MatrixTransform::Inverse(worldTransform_.matWorld_);
 
-	ImGui::Begin("RailCamera");
-	ImGui::SliderFloat3("translate", &worldTransform_.translation_.x, -100.0f, 100.0f);
-	ImGui::SliderFloat3("rotate", &worldTransform_.rotation_.x, -10.0f, 10.0f);
-	ImGui::End();
+	
 }

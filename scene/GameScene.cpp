@@ -82,8 +82,8 @@ void GameScene::Initialize() {
 
 	debugCamera_ = new DebugCamera(1280, 720);
     
-	AxisIndicator::GetInstance()->SetVisible(true);
-	AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
+	//AxisIndicator::GetInstance()->SetVisible(true);
+	//AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
 
 #endif // _DEBUG
 }
