@@ -70,8 +70,7 @@ void GameScene::Initialize() {
 	GameOver_ = new Sprite;
 	GameOverTex_ = TextureManager::Load("GameOver.png");
 	GameOver_ = Sprite::Create(GameOverTex_, {0, 0});
-
-
+	SelectSound_=audio_->LoadWave("Select.wav");
 
 	
 
@@ -100,6 +99,7 @@ void GameScene::Update()
 		if (joystate_.Gamepad.wButtons &XINPUT_GAMEPAD_A)
 		{
 			IsTrigger = true;
+			audio_->PlayWave(SelectSound_);
 			Game = RESET;
 		}
 
@@ -176,13 +176,15 @@ void GameScene::Update()
 
 		if (player->GetMode()==OVER)
 		{
+			audio_->PlayWave(SelectSound_);
 			Game = OVER;
 			
 		} 
 		if (enemys_.size()==0) 
 		{
-
+			audio_->PlayWave(SelectSound_);
 			Game = CLEAR;
+	
 		}
 
 
@@ -193,6 +195,7 @@ void GameScene::Update()
 			return;
 		}
 		if (joystate_.Gamepad.wButtons & XINPUT_GAMEPAD_B) {
+			audio_->PlayWave(SelectSound_);
 			Game = START;
 			
 		}
@@ -204,6 +207,7 @@ void GameScene::Update()
 			return;
 		}
 		if (joystate_.Gamepad.wButtons & XINPUT_GAMEPAD_B) {
+			audio_->PlayWave(SelectSound_);
 			Game = START;
 		
 		}

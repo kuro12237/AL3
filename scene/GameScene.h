@@ -118,6 +118,8 @@ private: // メンバ変数
 
 	 int32_t ClearRequirementTex = {};
 	 Sprite* ClearRequirement = nullptr;
+
+	 int32_t SelectSound_ = {};
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
