@@ -12,6 +12,7 @@
 #include"GameObject/Player/Player.h"
 #include"GameObject/Player/RailCamera/RailCamera.h"
 #include"GameObject/SkyDome/SkyDome.h"
+#include"GameObject/Enemy/TransCube/TransCube.h"
 
 /// <summary>
 /// ゲームシーン
@@ -73,6 +74,8 @@ private: // メンバ変数
 	 Player* player = nullptr;
 	 RailCamera* railcamera = nullptr;
 	 Skydome* skydome = nullptr;
+
+	 TransCube* enemy_ = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用

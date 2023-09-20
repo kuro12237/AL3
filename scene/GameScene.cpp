@@ -36,6 +36,8 @@ void GameScene::Initialize() {
 	player->SetParent(&railcamera->GetworldTransform());
 
 	viewProjection_.Initialize();
+	enemy_ = new TransCube();
+	enemy_->Initialize();
 
 #ifdef _DEBUG
 
@@ -51,7 +53,7 @@ void GameScene::Initialize() {
 
 void GameScene::Update() 
 { 
-	
+	enemy_->Update();
 	player->Update(viewProjection_);
 	railcamera->Update(player->Getvelocity());
 
@@ -110,6 +112,8 @@ void GameScene::Draw() {
 #pragma region 3Dオブジェクト描画
 	// 3Dオブジェクト描画前処理
 	Model::PreDraw(commandList);
+
+	enemy_->Draw(viewProjection_);
 
 	player->Draw(viewProjection_);
 	skydome->Draw(viewProjection_);

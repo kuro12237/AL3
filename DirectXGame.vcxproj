@@ -109,6 +109,10 @@
     <ClCompile Include="2d\ImGuiManager.cpp" />
     <ClCompile Include="base\DirectXCommon.cpp" />
     <ClCompile Include="base\WinApp.cpp" />
+    <ClCompile Include="GameObject\Enemy\TransCube\RandBullet\TransCubeBullet.cpp" />
+    <ClCompile Include="GameObject\Enemy\TransCube\state\ITransCubeState.cpp" />
+    <ClCompile Include="GameObject\Enemy\TransCube\state\TransCubeRandBullet\TransCubeRandBulletState.cpp" />
+    <ClCompile Include="GameObject\Enemy\TransCube\TransCube.cpp" />
     <ClCompile Include="GameObject\Player\Bullet\PlayerBullet.cpp" />
     <ClCompile Include="GameObject\Player\Player.cpp" />
     <ClCompile Include="GameObject\Player\RailCamera\RailCamera.cpp" />
@@ -142,6 +146,10 @@
     <ClInclude Include="base\SafeDelete.h" />
     <ClInclude Include="base\TextureManager.h" />
     <ClInclude Include="base\WinApp.h" />
+    <ClInclude Include="GameObject\Enemy\TransCube\RandBullet\TransCubeBullet.h" />
+    <ClInclude Include="GameObject\Enemy\TransCube\state\ITransCubeState.h" />
+    <ClInclude Include="GameObject\Enemy\TransCube\state\TransCubeRandBullet\TransCubeRandBulletState.h" />
+    <ClInclude Include="GameObject\Enemy\TransCube\TransCube.h" />
     <ClInclude Include="GameObject\Player\Bullet\PlayerBullet.h" />
     <ClInclude Include="GameObject\Player\Player.h" />
     <ClInclude Include="GameObject\Player\RailCamera\RailCamera.h" />
